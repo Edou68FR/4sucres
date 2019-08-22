@@ -1,15 +1,21 @@
-import $ from 'jquery';
+import { InertiaApp } from '@inertiajs/inertia-vue'
+import Vue from 'vue'
 
-import 'bootstrap';
-import 'select2';
+Vue.mixin({
+    methods: {
+        route: route
+    }
+});
 
-import './vue.js';
-import './scripts/toasts.js';
-import './scripts/notifications.js';
-import './scripts/spoilers.js';
-import './scripts/baffle.js';
-import './scripts/setup.js';
-import './scripts/editor.js';
-import './scripts/lightbox.js';
-import './scripts/actions.js';
-import './scripts/post-effects.js';
+Vue.use(InertiaApp)
+
+const app = document.getElementById('app')
+
+new Vue({
+  render: h => h(InertiaApp, {
+    props: {
+      initialPage: JSON.parse(app.dataset.page),
+      resolveComponent: name => import(`@/Pages/${name}`).then(module => module.default),
+    },
+  }),
+}).$mount(app)

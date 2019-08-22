@@ -11,6 +11,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use Inertia\Inertia;
 
 class DiscussionController extends Controller
 {
@@ -131,7 +132,11 @@ class DiscussionController extends Controller
             $user_has_read = [];
         }
 
-        return view('welcome', compact('categories', 'sticky_discussions', 'discussions', 'user_has_read'));
+        if (request('legacy', false)) {
+            return view('welcome', compact('categories', 'sticky_discussions', 'discussions', 'user_has_read'));
+        } else {
+            return Inertia::render('Discussions/Index', compact('categories', 'sticky_discussions', 'discussions', 'user_has_read'));
+        }
     }
 
     public function subscriptions()

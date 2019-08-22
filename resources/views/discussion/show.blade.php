@@ -28,7 +28,7 @@
 		{{ $posts->onEachSide(1)->links() }}
 	</div>
 
-	<discussion :discussion-id="{{ $discussion->id }}" :initial-paginator="{{ $posts->toJson() }}"></discussion>
+	<discussion :discussion-id="{{ $discussion->id }}" :initial-paginator="{{ $posts->with('presented_date')->toJson() }}"></discussion>
 
 	<div class="pb-0">
 		{{ $posts->onEachSide(1)->links() }}

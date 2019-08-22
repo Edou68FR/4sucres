@@ -21,7 +21,6 @@ class Post extends Model implements ReactableInterface
 
     protected $appends = [
         'link',
-        'presented_body',
         'presented_date',
     ];
 

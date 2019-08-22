@@ -41,6 +41,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\LogsOutDeletedUser::class,
             \Cog\Laravel\Ban\Http\Middleware\LogsOutBannedUser::class,
             \App\Http\Middleware\DebugBarMiddleware::class,
+            \Inertia\Middleware::class,
         ],
 
         'api' => [

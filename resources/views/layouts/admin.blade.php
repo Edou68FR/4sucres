@@ -208,7 +208,7 @@
     @include('sweetalert::alert')
 
     @routes
-    <script src="{{ mix('/js/app.js') }}"></script>
+    <script src="{{ mix('/js/legacy-app.js') }}"></script>
     <script src="{{ mix('/js/admin.js') }}"></script>
     @stack('js')
 </body>

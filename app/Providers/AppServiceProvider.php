@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Models\User;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,6 +38,25 @@ class AppServiceProvider extends ServiceProvider
             }
 
             return $view;
+        });
+
+        Inertia::share([
+            'app' => [
+                'name' => Config::get('app.name'),
+            ],
+            'auth' => function () {
+                return [
+                    'user' => user() ? [
+                        'id'            => user()->id,
+                        'name'          => user()->name,
+                        'display_name'  => user()->display_name,
+                    ] : null,
+                ];
+            },
+        ]);
+
+        Inertia::version(function () {
+            return md5_file(public_path('mix-manifest.json'));
         });
     }
 

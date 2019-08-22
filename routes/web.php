@@ -1,5 +1,7 @@
 <?php
 
+use Inertia\Inertia;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +12,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/inertia', function () {
+    return Inertia::render('Inertia');
+});
 
 Route::get('/', 'DiscussionController@index')->name('home');
 
