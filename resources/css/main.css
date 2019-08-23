@@ -1,0 +1,11 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+
+@import 'fonts';
+@import 'base';
+@import 'theme-4sucres';
+/* @import 'theme-legacy'; */
+@import "tailwindcss/utilities";
+
+@import "utilities";
+@import "markdown";

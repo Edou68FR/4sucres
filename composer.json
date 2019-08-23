@@ -34,6 +34,7 @@
         "league/csv": "^9.2",
         "mattketmo/email-checker": "^1.5",
         "molayli/laravel-cloudflare-real-ip": "^0.1.0",
+        "monicahq/laravel-cloudflare": "^1.2",
         "more-cores/laravel-restcord": "2.*",
         "neitanod/forceutf8": "^2.0",
         "orchestra/imagine": "^3.5",

@@ -1,0 +1,35 @@
+hr {
+    @apply my-4;
+}
+
+nav {
+    @apply w-full py-3 mb-6;
+}
+
+.form-control {
+    @apply rounded px-2 py-1
+}
+
+.form-control:disabled {
+    @apply cursor-not-allowed;
+}
+
+.btn {
+    @apply inline-block px-3 py-1 font-bold text-center rounded-full;
+}
+
+.btn-lg {
+    @apply px-4 py-2;
+}
+
+.btn-xs {
+    @apply text-xs px-3 py-1;
+}
+
+.card {
+    @apply rounded shadow;
+}
+
+.card .hoverable {
+    @apply rounded;
+}

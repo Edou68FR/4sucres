@@ -1,0 +1,78 @@
+.theme-4sucres {
+    body {
+        @apply bg-gray-100 text-gray-700;
+    }
+
+    hr {
+        @apply bg-gray-200;
+        height: 1px;
+    }
+
+    .text-muted {
+        @apply text-gray-500;
+    }
+
+    a, .a {
+        @apply text-gray-600;
+    }
+
+    a:hover, .a:hover {
+        @apply text-gray-500;
+    }
+
+    nav {
+        background: linear-gradient(90deg, #3F4450 0%, #434E61 50%, #3F4450 100%);
+    }
+
+    .form-control {
+        @apply border border-gray-300;
+    }
+
+    .form-control.form-control-inverse {
+        @apply border-0 bg-gray-700 text-white;
+    }
+
+    .nav-link {
+        @apply text-gray-600;
+    }
+
+    .nav-link:hover {
+        @apply text-gray-400;
+    }
+
+    .nav-link.active {
+        @apply text-white;
+    }
+
+    .btn {
+        @apply text-gray-700;
+    }
+
+    .btn-primary {
+        @apply bg-teal-500 text-white;
+    }
+
+    .btn-primary:hover {
+        @apply bg-teal-600 text-white;
+    }
+
+    .btn-secondary {
+        @apply bg-gray-300;
+    }
+
+    .btn-secondary:hover {
+        @apply bg-gray-400 text-black;
+    }
+
+    .btn-tertiary:hover {
+        @apply bg-gray-200 text-black;
+    }
+
+    .card {
+        @apply bg-white;
+    }
+
+    .hoverable:hover {
+        @apply bg-gray-100;
+    }
+}

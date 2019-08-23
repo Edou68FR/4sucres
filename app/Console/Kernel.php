@@ -40,6 +40,10 @@ class Kernel extends ConsoleKernel
         $schedule
             ->command('ban:delete-expired')
             ->everyMinute();
+
+        $schedule
+            ->command('cloudflare:reload')
+            ->daily();
     }
 
     /**

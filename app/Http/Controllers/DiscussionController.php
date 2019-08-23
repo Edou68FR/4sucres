@@ -226,6 +226,10 @@ class DiscussionController extends Controller
             ->with('discussion')
             ->paginate(10);
 
+        $posts->getCollection()->transform(function ($post) {
+            return $post->append('presented_body');
+        });
+
         // Invalidation des notifications qui font référence à ces posts pour l'utilisateur connecté
         if (auth()->check()) {
             $classes = [

@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale(config('app.locale'));
         setlocale(LC_TIME, config('app.locale'));
 
-        View::composer(['layouts/app', 'layouts/admin'], function ($view) {
+        View::composer(['app', 'layouts/app', 'layouts/admin'], function ($view) {
             $view
                 ->with('presence', User::online()->pluck('name')->toArray());
 
@@ -31,10 +31,10 @@ class AppServiceProvider extends ServiceProvider
                 $view
                     ->with('notifications_count', user()->unreadNotifications->count())
                     ->with('private_unread_count', user()->private_unread_count)
-                    ->with('body_classes', (user()->getSetting('layout.compact', false)) ? ' layout-compact' : '');
+                    ->with('body_classes', 'theme-4sucres');
             } else {
                 $view
-                    ->with('body_classes', '');
+                    ->with('body_classes', 'theme-4sucres');
             }
 
             return $view;
