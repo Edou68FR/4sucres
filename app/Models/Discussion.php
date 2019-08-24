@@ -21,9 +21,6 @@ class Discussion extends Model
         'updated_at',
         'deleted_at',
         'last_reply_at',
-        'locked',
-        'private',
-        'sticky',
     ];
 
     protected static $logAttributes = ['title', 'sticky', 'locked', 'deleted_at'];
@@ -170,5 +167,10 @@ class Discussion extends Model
         $guessed_page = ceil($post_position / $pagniator);
 
         return $post->discussion->link . '?page=' . $guessed_page . '#p' . $post->id;
+    }
+
+    public function getTitleAttribute()
+    {
+        return e($this->attributes['title']);
     }
 }

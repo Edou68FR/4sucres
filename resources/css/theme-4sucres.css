@@ -12,13 +12,22 @@ body.theme-4sucres {
         @apply text-gray-500;
     }
 
-    a, .a {
+    a {
+        @apply text-blue-600;
+    }
+
+    a:hover {
+        @apply text-blue-500;
+    }
+
+    a.inactive {
         @apply text-gray-600;
     }
 
-    a:hover, .a:hover {
-        @apply text-gray-500;
+    a.inactive:hover {
+        @apply text-gray-600 underline;
     }
+
 
     nav {
         background: linear-gradient(90deg, #3F4450 0%, #434E61 50%, #3F4450 100%);
