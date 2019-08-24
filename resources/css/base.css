@@ -33,3 +33,7 @@ nav {
 .card .hoverable {
     @apply rounded;
 }
+
+footer {
+    @apply text-center text-xs;
+}

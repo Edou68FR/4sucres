@@ -1,6 +1,8 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 
+@import 'overlayscrollbars/css/OverlayScrollbars.css';
+
 @import 'fonts';
 @import 'base';
 @import 'theme-4sucres';

@@ -1,8 +1,8 @@
-.theme-4sucres {
-    body {
-        @apply bg-gray-100 text-gray-700;
-    }
+body.theme-4sucres {
+    @apply bg-gray-100 text-gray-700;
+}
 
+.theme-4sucres {
     hr {
         @apply bg-gray-200;
         height: 1px;
@@ -33,15 +33,22 @@
     }
 
     .nav-link {
-        @apply text-gray-600;
+        @apply text-gray-600 relative;
     }
 
-    .nav-link:hover {
+    .nav-link:hover, .nav-link:focus {
         @apply text-gray-400;
     }
 
     .nav-link.active {
         @apply text-white;
+    }
+
+    .nav-link.active::after {
+        @apply absolute bg-blue-600;
+        left: 4px; right: 4px; bottom: -4px;
+        height: 2px;
+        content: '';
     }
 
     .btn {

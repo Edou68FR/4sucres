@@ -1,9 +1,13 @@
-import { InertiaApp } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
+import { InertiaApp } from '@inertiajs/inertia-vue'
+
+import moment from 'moment';
+moment.locale('fr');
 
 Vue.mixin({
     methods: {
-        route: route
+        route: route,
+        moment: moment,
     }
 });
 

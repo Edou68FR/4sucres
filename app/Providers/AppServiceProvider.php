@@ -24,10 +24,7 @@ class AppServiceProvider extends ServiceProvider
         setlocale(LC_TIME, config('app.locale'));
 
         View::composer(['app', 'layouts/app', 'layouts/admin'], function ($view) {
-            $view
-                ->with('presence', User::online()->pluck('name')->toArray());
-
-            if (auth()->check()) {
+            if (user()) {
                 $view
                     ->with('notifications_count', user()->unreadNotifications->count())
                     ->with('private_unread_count', user()->private_unread_count)
@@ -37,12 +34,19 @@ class AppServiceProvider extends ServiceProvider
                     ->with('body_classes', 'theme-4sucres');
             }
 
+            $view
+                ->with('presence_counter', User::online()->pluck('name')->toArray())
+                ->with('body_classes', 'theme-4sucres');
+
             return $view;
         });
 
         Inertia::share([
             'app' => [
-                'name' => Config::get('app.name'),
+                'name'      => Config::get('app.name'),
+                'version'   => app(\PragmaRX\Version\Package\Version::class)->format('compact'),
+                'runtime'   => round((microtime(true) - LARAVEL_START), 3),
+                'presence'  => User::online()->pluck('name')->toArray(),
             ],
             'auth' => function () {
                 return [

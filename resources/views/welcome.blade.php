@@ -38,15 +38,6 @@
         </div>
 
         <div class="col-12 col-lg-9 col-xl-10">
-            @if ($all)
-                <div class="owl-carousel d-none d-md-block">
-                    <div><img src="{{ url('/img/banners/welcome.jpg') }}" class="img-fluid shadow"></div>
-                    <div><img src="{{ url('/img/banners/natives.jpg') }}" class="img-fluid shadow"></div>
-                    <div><img src="{{ url('/img/banners/beta.jpg') }}" class="img-fluid shadow"></div>
-                    <div><img src="{{ url('/img/banners/alpha.jpg') }}" class="img-fluid shadow"></div>
-                </div>
-            @endif
-
             @if (isset($sticky_discussions) && count($sticky_discussions))
                 <section class="card shadow-sm mb-3 discussion-previews discussion-sticky-previews">
                     @foreach ($sticky_discussions as $discussion)

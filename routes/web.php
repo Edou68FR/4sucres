@@ -15,7 +15,7 @@ use Inertia\Inertia;
 
 Route::get('/inertia', function () {
     return Inertia::render('Inertia');
-});
+})->name('inertia');
 
 Route::get('/', 'DiscussionController@index')->name('home');
 
