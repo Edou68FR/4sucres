@@ -23,7 +23,7 @@
           <div class="overflow-ellipsis m-w-0">
             <div class="truncate">
               <a :href="route('discussions.show', [discussion.id, discussion.slug])" :class="{
-                'font-bold': !user_has_read.includes(discussion.id)
+                'font-bold': app.auth && !user_has_read.includes(discussion.id)
               }">{{ discussion.title }}</a>
             </div>
             <div class="text-xs">

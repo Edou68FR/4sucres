@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
@@ -17,7 +18,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         if (config('app.env') === 'production') {
-            \URL::forceScheme('https');
+            URL::forceScheme('https');
+            $this->app['request']->server->set('HTTPS', 'on');
         }
 
         Carbon::setLocale(config('app.locale'));
