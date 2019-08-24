@@ -59,7 +59,7 @@ export default {
   components: {
     Layout
   },
-  props:[ "categories", "sticky_discussions", "discussions", "user_has_read"],
+  props:[ "categories", "discussions", "user_has_read"],
   mounted: function() {
     console.log(this.discussions);
   }

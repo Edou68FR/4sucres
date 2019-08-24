@@ -15,8 +15,15 @@ class Discussion extends Model
     protected $guarded = [];
     protected $dates = ['last_reply_at'];
 
-    protected $appends = [
-        'link',
+    protected $hidden = [
+        'category_id',
+        'user_id',
+        'updated_at',
+        'deleted_at',
+        'last_reply_at',
+        'locked',
+        'private',
+        'sticky',
     ];
 
     protected static $logAttributes = ['title', 'sticky', 'locked', 'deleted_at'];
@@ -154,11 +161,6 @@ class Discussion extends Model
                 }
             }
         }
-    }
-
-    public function getLinkAttribute()
-    {
-        return route('discussions.show', [$this->id, $this->slug]);
     }
 
     public static function link_to_post(Post $post)

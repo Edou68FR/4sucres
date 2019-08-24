@@ -115,27 +115,29 @@ class DiscussionController extends Controller
         if (request()->input('page', 1) == 1) {
             $sticky_discussions = clone $discussions;
             $sticky_discussions = $sticky_discussions->sticky()->get();
-        } else {
-            $sticky_discussions = collect([]);
         }
 
         $discussions = $discussions->ordered()->paginate(20);
 
+        if (request()->input('page', 1) == 1) {
+            $discussions->setCollection($sticky_discussions->merge($discussions));
+        }
+
         if (user()) {
             $user_has_read = DB::table('has_read_discussions_users')
                 ->select('discussion_id')
+                ->distinct('discussion_id')
                 ->where('user_id', user()->id)
-                ->whereIn('discussion_id', array_merge($sticky_discussions->pluck('id')->toArray(), $discussions->pluck('id')->toArray()))
-                ->pluck('discussion_id')
-                ->toArray();
+                ->whereIn('discussion_id', $discussions->pluck('id'))
+                ->pluck('discussion_id');
         } else {
             $user_has_read = [];
         }
 
         if (request('legacy', false)) {
-            return view('welcome', compact('categories', 'sticky_discussions', 'discussions', 'user_has_read'));
+            return view('welcome', compact('categories', 'discussions', 'user_has_read'));
         } else {
-            return Inertia::render('Discussions/Index', compact('categories', 'sticky_discussions', 'discussions', 'user_has_read'));
+            return Inertia::render('Discussions/Index', compact('categories', 'discussions', 'user_has_read'));
         }
     }
 

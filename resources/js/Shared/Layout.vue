@@ -8,6 +8,10 @@
         <div class="flex flex-wrap items-center">
           <inertia-link :href="route('home')" class="nav-link mx-2" :class="{ active: route().current('home') }">Accueil</inertia-link>
           <!-- <inertia-link :href="route('inertia')" class="nav-link mx-2" :class="{ active: route().current('inertia') }">Inertia</inertia-link> -->
+          <a href="#" class="mx-2">Statistiques</a>
+          <a href="#" class="mx-2">Messagerie</a>
+          <a href="#" class="mx-2">Extensions</a>
+          <a href="#" class="mx-2">Tribunal</a>
           <a href="https://vocabank.org" class="mx-2" target="_blank">VocaBank</a>
           <a :href="route('home') + '?legacy=true'" class="mx-2">Retour sur la v1</a>
         </div>
@@ -20,12 +24,11 @@
         <img src="/img/4sucres_alt_glitched.png" class="mx-auto h-6">
         4sucres.org {{ $page.app.version }} &copy; 2019<br>
         <br>
-        {{ $page.app.presence }} membres actifs <span class="mx-1">&mdash;</span> Temps d'exécution : {{ $page.app.runtime }}s<br>
+        {{ $page.app.presence }} membres actifs <span class="mx-1">&mdash;</span> Temps d'exécution : <span :title="$page.app.real_runtime + 's'">{{ $page.app.runtime }}s</span><br>
         <a :href="route('terms')">Conditions générales d'utilisation</a> <span class="mx-1">&mdash;</span>
         <a :href="route('charter')">Charte d'utilisation</a> <span class="mx-1">&mdash;</span>
         <a href="https://vocabank.org" target="_blank">VocaBank</a><span class="mx-1">&mdash;</span>
         <a href="https://github.com/4sucres/board" target="_blank">GitHub</a>
     </footer>
-
   </main>
 </template>

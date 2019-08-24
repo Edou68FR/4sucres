@@ -36,16 +36,24 @@ class User extends Authenticatable implements ReactsInterface, BannableContract
     protected $guarded = [];
 
     protected $appends = [
-        'link',
         'avatar_link',
         'is_birthday',
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
-        'email', 'gender', 'dob',
-        'email_verified_at', 'settings',
-        'avatar', 'api_token',
+        'password',
+        'remember_token',
+        'email',
+        'gender',
+        'dob',
+        'email_verified_at',
+        'settings',
+        'avatar',
+        'api_token',
+        'banned_at',
+        'deleted_at',
+        'last_activity',
+        'shown_role',
     ];
 
     protected static $logAttributes = ['name', 'display_name', 'shown_role', 'email', 'avatar', 'settings'];

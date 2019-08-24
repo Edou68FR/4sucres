@@ -19,13 +19,14 @@ class Post extends Model implements ReactableInterface
 
     protected $guarded = [];
 
-    protected $appends = [
-        'link',
-        'presented_date',
-    ];
-
     protected $casts = [
         'deleted_at' => 'datetime',
+    ];
+
+    protected $hidden = [
+        'body',
+        'discussion_id',
+        'user_id',
     ];
 
     protected static $logAttributes = ['body', 'deleted_at'];

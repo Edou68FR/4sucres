@@ -14,10 +14,14 @@ class Category extends Model
     const ANNOUNCES_CATEGORY_ID = 1;
     const SHITPOST_CATEGORY_ID = 5;
 
-    protected $casts = [
-        'can_post'  => 'array',
-        'can_view'  => 'array',
-        'can_reply' => 'array',
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'order',
+        'can_post',
+        'can_reply',
+        'can_view',
     ];
 
     public static function boot()
