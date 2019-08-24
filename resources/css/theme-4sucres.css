@@ -45,7 +45,8 @@ body.theme-4sucres {
     }
 
     .nav-link.active::after {
-        @apply absolute bg-blue-600;
+        @apply absolute;
+        background: #29d;
         left: 4px; right: 4px; bottom: -4px;
         height: 2px;
         content: '';

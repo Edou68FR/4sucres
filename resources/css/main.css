@@ -2,6 +2,7 @@
 @import "tailwindcss/components";
 
 @import 'overlayscrollbars/css/OverlayScrollbars.css';
+@import 'nprogress';
 
 @import 'fonts';
 @import 'base';
