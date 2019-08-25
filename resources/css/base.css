@@ -30,8 +30,8 @@ nav {
     @apply rounded shadow;
 }
 
-.card .hoverable {
-    @apply rounded;
+.hoverable {
+    @apply cursor-pointer;
 }
 
 footer {

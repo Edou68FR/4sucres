@@ -23,7 +23,7 @@
 
     <div class="col overflow-ellipsis">
         <div class="discussion-title overflow-ellipsis mb-2 mb-lg-0">
-            @if (!user() || in_array($discussion->id, $user_has_read))
+            @if (!user() || in_array($discussion->id, (array) $user_has_read))
                 <a href="{{ $discussion->link }}">{{ $discussion->title }}</a>
             @else
                 <strong><a href="{{ $discussion->link }}">{{ $discussion->title }}</a></strong>

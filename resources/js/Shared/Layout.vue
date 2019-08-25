@@ -6,21 +6,20 @@
           <inertia-link :href="route('home')"><img src="/img/4sucres_white.png" class="h-6" /></inertia-link>
         </div>
         <div class="flex flex-wrap items-center">
-          <inertia-link :href="route('home')" class="nav-link mx-2" :class="{ active: route().current('home') }">Accueil</inertia-link>
-          <!-- <inertia-link :href="route('inertia')" class="nav-link mx-2" :class="{ active: route().current('inertia') }">Inertia</inertia-link> -->
-          <a href="#" class="mx-2 nav-link">Statistiques</a>
-          <a href="#" class="mx-2 nav-link">Messagerie</a>
-          <a href="#" class="mx-2 nav-link">Extensions</a>
-          <a href="#" class="mx-2 nav-link">Tribunal</a>
-          <a href="https://vocabank.org" class="mx-2 nav-link" target="_blank">VocaBank</a>
-          <a :href="route('home') + '?legacy=true'" class="mx-2 nav-link">Retour sur la v1</a>
+          <inertia-link :href="route('home')" class="mx-2 nav-link flex-none" :class="{ active: route().current('home') }">Accueil</inertia-link>
+          <a href="#" class="mx-2 nav-link flex-none">Statistiques</a>
+          <a href="#" class="mx-2 nav-link flex-none">Messagerie</a>
+          <a href="#" class="mx-2 nav-link flex-none">Extensions</a>
+          <a href="#" class="mx-2 nav-link flex-none">Tribunal</a>
+          <a href="https://vocabank.org" class="mx-2 nav-link flex-none" target="_blank">VocaBank</a>
+          <a :href="route('home') + '?legacy=true'" class="mx-2 nav-link flex-none">Retour sur la v1</a>
         </div>
       </div>
     </nav>
     <div class="container mx-auto px-4 mb-6">
       <slot />
     </div>
-    <footer class="container mx-auto px-4 mb-6">
+    <footer class="container text-muted mx-auto px-4 mb-6">
         <img src="/img/4sucres_alt_glitched.png" class="mx-auto h-6">
         4sucres.org {{ $page.app.version }} &copy; 2019<br>
         <br>

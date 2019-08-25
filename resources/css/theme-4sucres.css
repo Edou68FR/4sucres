@@ -20,14 +20,13 @@ body.theme-4sucres {
         @apply text-blue-500;
     }
 
-    a.inactive {
+    a.inactive, .text-muted a {
         @apply text-gray-600;
     }
 
-    a.inactive:hover {
+    a.inactive:hover, .text-muted a:hover {
         @apply text-gray-600 underline;
     }
-
 
     nav {
         background: linear-gradient(90deg, #3F4450 0%, #434E61 50%, #3F4450 100%);

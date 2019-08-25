@@ -38,18 +38,6 @@
         </div>
 
         <div class="col-12 col-lg-9 col-xl-10">
-            @if (isset($sticky_discussions) && count($sticky_discussions))
-                <section class="card shadow-sm mb-3 discussion-previews discussion-sticky-previews">
-                    @foreach ($sticky_discussions as $discussion)
-                        <div class="discussion-preview">
-                            <div class="p-3">
-                                @include('discussion._small_preview')
-                            </div>
-                        </div>
-                    @endforeach
-                </section>
-            @endif
-
             @if (isset($discussions) && count($discussions))
                 <section class="card shadow-sm mb-3 discussion-previews">
                     @forelse ($discussions as $discussion)
@@ -61,7 +49,7 @@
                 </section>
             @endif
 
-            @if (count($sticky_discussions) + count($discussions) == 0)
+            @if (count($discussions) == 0)
                 <section class="card shadow-sm mb-3 discussion-previews discussion-empty-previews">
                     <div class="card-body">
                         <div class="text-center text-muted">

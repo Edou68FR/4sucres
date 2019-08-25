@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
                 'version'          => app(\PragmaRX\Version\Package\Version::class)->format('compact'),
                 'runtime'          => round((microtime(true) - LARAVEL_START), 3),
                 'real_runtime'     => function () { return round((microtime(true) - LARAVEL_START), 3); },
-                'presence'         => User::online()->pluck('name')->toArray(),
+                'presence'         => function () { return User::online()->pluck('name')->toArray(); },
             ],
             'auth' => function () {
                 return [
