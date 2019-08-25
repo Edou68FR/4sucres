@@ -53,7 +53,7 @@
         </div>
         <div class="w-12 md:w-40 ml-auto flex-none flex flex-wrap items-center text-xs text-center md:text-left m-w-0">
           <div class="mx-auto md:ml-0 md:mr-4">
-            <img :src="discussion.latest_post.user.avatar_link" :alt="'Avatar de ' + discussion.latest_post.user.display_name" class="rounded h-8 v-8">
+            <img :src="discussion.latest_post.user.avatar_link" :alt="'Avatar de ' + discussion.latest_post.user.display_name" class="rounded wh-8">
           </div>
           <div class="w-full md:flex-1 truncate">
             <inertia-link :href="route('user.show', discussion.latest_post.user.name)" class="hidden md:inline inactive">{{ discussion.latest_post.user.display_name }}</inertia-link>

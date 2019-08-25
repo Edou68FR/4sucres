@@ -66,4 +66,5 @@ mix
     .copyDirectory('resources/public', 'public/')
 
     .version()
+    .disableNotifications()
 ;

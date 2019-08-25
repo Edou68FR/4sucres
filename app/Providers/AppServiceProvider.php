@@ -55,8 +55,8 @@ class AppServiceProvider extends ServiceProvider
                 return [
                     'user' => user() ? [
                         'id'            => user()->id,
-                        'name'          => user()->name,
                         'display_name'  => user()->display_name,
+                        'avatar_link'   => user()->avatar_link,
                     ] : null,
                 ];
             },

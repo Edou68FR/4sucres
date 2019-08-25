@@ -3,5 +3,7 @@ module.exports = {
     extend: {}
   },
   variants: {},
-  plugins: []
+  plugins: [
+    require('@ky-is/tailwindcss-plugin-width-height')({ variants: ['responsive'] }),
+  ],
 }

@@ -2,8 +2,12 @@ hr {
     @apply my-4;
 }
 
+header {
+    @apply w-full py-4;
+}
+
 nav {
-    @apply w-full py-3 mb-6;
+    @apply w-full py-2;
 }
 
 .form-control {

@@ -1,10 +1,10 @@
 body.theme-4sucres {
-    @apply bg-gray-100 text-gray-700;
+    @apply bg-gray-200 text-gray-700;
 }
 
 .theme-4sucres {
     hr {
-        @apply bg-gray-200;
+        @apply bg-gray-300;
         height: 1px;
     }
 
@@ -28,8 +28,14 @@ body.theme-4sucres {
         @apply text-gray-600 underline;
     }
 
+    header {
+        background: linear-gradient(90deg, #3F4450 0%, #434E61 50%, #454D61 100%);
+    }
+
     nav {
-        background: linear-gradient(90deg, #3F4450 0%, #434E61 50%, #3F4450 100%);
+        /* @apply pb-4; */
+        border-top: 1px solid #4A5566;
+        background: linear-gradient(90deg, #323747 0%, #454C5F 100%);
     }
 
     .form-control {
@@ -41,7 +47,7 @@ body.theme-4sucres {
     }
 
     .nav-link {
-        @apply text-gray-600 relative;
+        @apply text-gray-500 relative;
     }
 
     .nav-link:hover, .nav-link:focus {
@@ -55,9 +61,11 @@ body.theme-4sucres {
     .nav-link.active::after {
         @apply absolute;
         background: #29d;
-        left: 4px; right: 4px; bottom: -4px;
+        left: 0; right: 0;
+        bottom: -8px;
         height: 2px;
         content: '';
+        box-shadow: 0 -4px 10px #29d, 0 -1px 5px #29d;
     }
 
     .btn {
