@@ -13,18 +13,30 @@ body.theme-4sucres {
     }
 
     a {
-        @apply text-blue-600;
-    }
-
-    a:hover {
-        @apply text-blue-500;
-    }
-
-    a.inactive, .text-muted a {
         @apply text-gray-600;
     }
 
-    a.inactive:hover, .text-muted a:hover {
+    a:hover {
+        @apply text-gray-500;
+    }
+
+    a.accent {
+        @apply text-blue-600;
+    }
+
+    a.accent:hover {
+        @apply text-blue-500;
+    }
+
+    a.accent:visited {
+        @apply text-blue-600 font-mono;
+    }
+
+    .text-muted a {
+        @apply text-gray-600;
+    }
+
+    .text-muted a:hover {
         @apply text-gray-600 underline;
     }
 
@@ -58,14 +70,16 @@ body.theme-4sucres {
         @apply text-white;
     }
 
-    .nav-link.active::after {
-        @apply absolute;
-        background: #29d;
-        left: 0; right: 0;
-        bottom: -8px;
-        height: 2px;
-        content: '';
-        box-shadow: 0 -4px 10px #29d, 0 -1px 5px #29d;
+    @screen sm {
+        .nav-link.active::after {
+            @apply absolute;
+            background: #29d;
+            left: 0; right: 0;
+            bottom: -8px;
+            height: 2px;
+            content: '';
+            box-shadow: 0 -4px 10px #29d, 0 -1px 5px #29d;
+        }
     }
 
     .nav-fa-stack {
@@ -115,10 +129,46 @@ body.theme-4sucres {
     }
 
     .card {
-        @apply bg-white;
+        @apply bg-white shadow;
+    }
+
+    .cards {
+        @apply shadow;
+
+        .card {
+            @apply rounded-none shadow-none border-b border-gray-300;
+        }
+
+        .card:first-child {
+            @apply rounded-t;
+        }
+
+        .card:last-child {
+            @apply rounded-b border-b-0;
+        }
+
+        .card:nth-child(even) {
+            @apply bg-gray-100;
+        }
     }
 
     .hoverable:hover {
-        @apply bg-gray-100;
+        @apply bg-gray-200 !important;
+    }
+
+    .badge {
+        color: #fff;
+    }
+
+    .badge:hover {
+        color: #fff;
+    }
+
+    .badge-primary {
+        background-color: #5f82aa;
+    }
+
+    blockquote {
+        @apply bg-white shadow border border-gray-300;
     }
 }

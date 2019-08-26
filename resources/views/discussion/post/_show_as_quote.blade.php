@@ -6,11 +6,12 @@
 @endphp
 
 <blockquote class="shadow-sm">
-    <div class="quote-header d-flex justify-content-between">
+    <div class="flex justify-between">
         <div>
-            <a href="{{ $post->user->link }}" class="align-middle"><img src="{{ $post->user->avatar_link }}" class="rounded" height="14px"></a>
             <a href="{{ $post->user->link }}"><strong>{{ $post->user->display_name }}</strong></a>
-            <small>{{ '@' . $post->user->name }}</small>
+            @if ($post->user->display_name != $post->user->name)
+                <small>{{ '@' . $post->user->name }}</small>
+            @endif
         </div>
         <div>
             @if ($post->discussion_id !== $current->discussion_id)

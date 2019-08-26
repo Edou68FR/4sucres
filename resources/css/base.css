@@ -31,7 +31,7 @@ nav {
 }
 
 .card {
-    @apply rounded shadow;
+    @apply rounded;
 }
 
 .hoverable {
@@ -43,6 +43,8 @@ footer {
 }
 
 .post {
+    word-break: break-all;
+
     img {
         max-width: 300px;
         max-height: 200px;
@@ -50,8 +52,21 @@ footer {
         display: inline;
     }
 
-    a {
-    }
+    a {}
+}
+
+.badge {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 .sticker-inline {
@@ -63,4 +78,22 @@ footer {
     max-width: 68px !important;
     max-height: 51px !important;
     vertical-align: baseline !important;
+}
+
+blockquote {
+    @apply p-4 rounded;
+}
+
+blockquote,
+.blockquote,
+.quote {
+    & > & {
+        margin-bottom: 0;
+    }
+}
+
+* {
+    transition: all ease-in-out .1s;
+    transition-property: background, color, text-shadow;
+
 }

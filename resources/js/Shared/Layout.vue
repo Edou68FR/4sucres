@@ -41,10 +41,11 @@
     <nav>
       <div class="container mx-auto px-4">
         <div class="flex flex-wrap items-center">
-          <inertia-link :href="route('home')" class="mx-2 nav-link flex-none" :class="{ active: route().current('home') }">Accueil</inertia-link>
-          <inertia-link :href="route('search.query')" class="mx-2 nav-link flex-none" :class="{ active: route().current('search.query') }">Recherche</inertia-link>
-          <inertia-link :href="route('private_discussions.index')" class="mx-2 nav-link flex-none" :class="{ active: route().current('private_discussions.index') }">Messagerie</inertia-link>
-          <a href="https://vocabank.org" class="mx-2 nav-link flex-none" target="_blank">VocaBank</a>
+            <inertia-link :href="route('home')" class="mx-2 nav-link w-full sm:w-auto" :class="{ active: route().current('home') }">Accueil</inertia-link>
+            <inertia-link :href="route('search.query')" class="mx-2 nav-link w-full sm:w-auto" :class="{ active: route().current('search.query') }">Recherche</inertia-link>
+            <inertia-link :href="route('private_discussions.index')" class="mx-2 nav-link w-full sm:w-auto" :class="{ active: route().current('private_discussions.index') }">Messagerie</inertia-link>
+            <a href="https://vocabank.org" class="mx-2 nav-link w-full sm:w-auto" target="_blank">VocaBank</a>
+            <inertia-link href="#" class="mx-2 sm:ml-auto nav-link w-full sm:w-auto"><i class="fas fa-circle text-xs text-green-600"></i> En ligne : {{ $page.app.presence }}</inertia-link>
         </div>
       </div>
     </nav>
@@ -52,11 +53,12 @@
     <div class="container mx-auto px-4 my-6">
       <slot />
     </div>
+
     <footer class="container text-muted mx-auto px-4 mb-6">
         <img src="/img/4sucres_alt_glitched.png" class="mx-auto h-6">
         4sucres.org {{ $page.app.version }} &copy; 2019<br>
         <br>
-        {{ $page.app.presence }} membres actifs <span class="mx-1">&mdash;</span> Temps d'exécution : <span :title="$page.app.real_runtime + 's'">{{ $page.app.runtime }}s</span><br>
+        <span class="mx-1">&mdash;</span> Temps d'exécution : <span :title="$page.app.real_runtime + 's'">{{ $page.app.runtime }}s</span><br>
         <a :href="route('terms')">Conditions générales d'utilisation</a> <span class="mx-1">&mdash;</span>
         <a :href="route('charter')">Charte d'utilisation</a> <span class="mx-1">&mdash;</span>
         <a href="https://vocabank.org" target="_blank">VocaBank</a><span class="mx-1">&mdash;</span>

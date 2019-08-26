@@ -2,7 +2,9 @@ module.exports = {
   theme: {
     extend: {}
   },
-  variants: {},
+  variants: {
+    container: ['responsive'],
+  },
   plugins: [
     require('@ky-is/tailwindcss-plugin-width-height')({ variants: ['responsive'] }),
   ],
