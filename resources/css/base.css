@@ -41,3 +41,26 @@ nav {
 footer {
     @apply text-center text-xs;
 }
+
+.post {
+    img {
+        max-width: 300px;
+        max-height: 200px;
+        vertical-align: baseline;
+        display: inline;
+    }
+
+    a {
+    }
+}
+
+.sticker-inline {
+    max-height: 24px !important;
+    vertical-align: middle !important;
+}
+
+.sticker {
+    max-width: 68px !important;
+    max-height: 51px !important;
+    vertical-align: baseline !important;
+}

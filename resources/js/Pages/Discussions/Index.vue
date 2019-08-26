@@ -45,9 +45,6 @@
               <span v-else class="md:block">
                 {{ discussion.replies }} réponses<span class="md:hidden">,</span>
               </span>
-              <!-- <i class="fas fw-fw ml-1"
-                :class="{'fa-comments' : (discussion.replies > 1), 'fa-comment' : (discussion.replies <= 1)}"></i><br> -->
-              <!-- 0 <i class="fas fw-fw ml-1 fa-eye"></i> -->
               0 vues
           </div>
         </div>
@@ -73,9 +70,7 @@
 import Layout from "@/Shared/Layout";
 
 export default {
-  components: {
-    Layout
-  },
+  components: { Layout },
   props:[ "categories", "discussions", "user_has_read"],
   methods : {
     visit($inertia, url, $event) {

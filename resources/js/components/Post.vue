@@ -53,12 +53,12 @@
         </a>
         <small>@{{ post.user.name }}</small>
 
-        <span v-if="post.user.id === post.discussion.user_id" 
-            class="badge badge-full-height badge-op align-middle" 
+        <span v-if="post.user.id === post.discussion.user_id"
+            class="badge badge-full-height badge-op align-middle"
             :title="post.user.display_name + ' est l\'auteur de ce topic.'"><i class="fas fa-crown"></i></span>
 
-        <span v-if="post.user.is_birthday" 
-            class="badge badge-full-height badge-danger align-middle" 
+        <span v-if="post.user.is_birthday"
+            class="badge badge-full-height badge-danger align-middle"
             :title="'C\'est l\'anniversaire de ' + post.user.display_name + ', aujourd\'hui.'"><i class="fas fa-birthday-cake"></i></span>
 
         <br>
@@ -71,18 +71,18 @@
 
         <div class="post-content">
             <div v-if="post.deleted_at" class="text-danger mb-3">
-                <i class="fas fa-times"></i> Message supprimé 
-                <span v-if="auth_user_can('read deleted posts')" 
+                <i class="fas fa-times"></i> Message supprimé
+                <span v-if="auth_user_can('read deleted posts')"
                     @click="onToggle"
                     style="cursor: pointer;"
-                    class="text-muted" 
+                    class="text-muted"
                     v-b-toggle="'dm-' + post.id">({{ this.hidden ? 'afficher quand même' : 'cacher' }})</span>
             </div>
-            
-            <b-collapse 
-                v-if="post.deleted_at && auth_user_can('read deleted posts')" 
-                class="deleted-message" 
-                v-html="post.presented_body" 
+
+            <b-collapse
+                v-if="post.deleted_at && auth_user_can('read deleted posts')"
+                class="deleted-message"
+                v-html="post.presented_body"
                 :id="'dm-' + post.id">
             </b-collapse>
 

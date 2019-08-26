@@ -181,6 +181,7 @@ class DiscussionController extends Controller
     public function show($id, $slug) // Ne pas utiliser Discussion $discussion (pour laisser possible le 410)
     {
         $discussion = Discussion::query()
+            ->with('user')
             ->findOrFail($id);
 
         if (null !== $discussion->category && !in_array($discussion->category->id, Category::viewables()->pluck('id')->toArray())) {
@@ -225,11 +226,10 @@ class DiscussionController extends Controller
         $posts = $discussion
             ->posts()
             ->with('user')
-            ->with('discussion')
             ->paginate(10);
 
         $posts->getCollection()->transform(function ($post) {
-            return $post->append('presented_body');
+            return $post->makeVisible(['created_at', 'updated_at', 'deleted_at'])->append(['presented_body']);
         });
 
         // Invalidation des notifications qui font référence à ces posts pour l'utilisateur connecté
@@ -251,7 +251,11 @@ class DiscussionController extends Controller
 
         $discussion->has_read()->attach(user());
 
-        return view('discussion.show', compact('discussion', 'posts'));
+        if (request('legacy', false)) {
+            return view('discussion.show', compact('discussion', 'posts'));
+        } else {
+            return Inertia::render('Discussions/Show', compact('discussion', 'posts'));
+        }
     }
 
     public function update(Discussion $discussion, $slug)

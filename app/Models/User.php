@@ -54,6 +54,8 @@ class User extends Authenticatable implements ReactsInterface, BannableContract
         'deleted_at',
         'last_activity',
         'shown_role',
+        'roles',
+        'permissions',
     ];
 
     protected static $logAttributes = ['name', 'display_name', 'shown_role', 'email', 'avatar', 'settings'];

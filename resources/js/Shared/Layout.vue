@@ -6,6 +6,23 @@
           <inertia-link :href="route('home')"><img src="/img/4sucres_white.png" class="h-6" /></inertia-link>
           <div class="ml-auto">
               <template v-if="$page.auth.user">
+                <div class="nav-fa-stack fa-stack">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-bell fa-stack-1x fa-sm"></i>
+                </div>
+
+                <div class="nav-fa-stack fa-stack">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-lightbulb fa-stack-1x fa-sm"></i>
+                </div>
+
+                <inertia-link v-if="$page.auth.user.roles.includes('admin') || $page.auth.user.roles.includes('moderator')" :href="route('admin.index')">
+                  <div class="nav-fa-stack fa-stack" :class="{ active: route().current('admin.index') }">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-lock fa-stack-1x fa-sm"></i>
+                  </div>
+                </inertia-link>
+
                 <inertia-link :href="route('profile')" class="mx-2 nav-link" :class="{ active: route().current('profile') }">
                   <img :src="$page.auth.user.avatar_link" :alt="'Avatar de' + $page.auth.user.display_name" class="wh-6 inline rounded mr-1">
                   {{ $page.auth.user.display_name }}
@@ -26,6 +43,7 @@
         <div class="flex flex-wrap items-center">
           <inertia-link :href="route('home')" class="mx-2 nav-link flex-none" :class="{ active: route().current('home') }">Accueil</inertia-link>
           <inertia-link :href="route('search.query')" class="mx-2 nav-link flex-none" :class="{ active: route().current('search.query') }">Recherche</inertia-link>
+          <inertia-link :href="route('private_discussions.index')" class="mx-2 nav-link flex-none" :class="{ active: route().current('private_discussions.index') }">Messagerie</inertia-link>
           <a href="https://vocabank.org" class="mx-2 nav-link flex-none" target="_blank">VocaBank</a>
         </div>
       </div>

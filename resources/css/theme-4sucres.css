@@ -68,6 +68,28 @@ body.theme-4sucres {
         box-shadow: 0 -4px 10px #29d, 0 -1px 5px #29d;
     }
 
+    .nav-fa-stack {
+        :first-child::before {
+            color: #323747;
+        }
+
+        :last-child::before {
+            @apply text-gray-500;
+        }
+    }
+
+    .nav-fa-stack:hover, .nav-fa-stack:focus, .nav-fa-stack.active {
+        :last-child::before {
+            @apply text-white;
+        }
+    }
+
+    .nav-fa-stack.active {
+        :first-child::before {
+            background: #29d;
+        }
+    }
+
     .btn {
         @apply text-gray-700;
     }
