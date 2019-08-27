@@ -1,15 +1,13 @@
 import Vue from 'vue'
+import _ from 'lodash';
+import moment from 'moment';
 import { InertiaApp } from '@inertiajs/inertia-vue'
 
-import moment from 'moment';
 moment.locale('fr');
 
-Vue.mixin({
-    methods: {
-        route: route,
-        moment: moment,
-    }
-});
+Object.defineProperty(Vue.prototype, 'route', { value: route });
+Object.defineProperty(Vue.prototype, 'moment', { value: moment });
+Object.defineProperty(Vue.prototype, '_', { value: _ });
 
 Vue.use(InertiaApp)
 

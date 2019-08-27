@@ -41,13 +41,15 @@ body.theme-4sucres {
     }
 
     header {
-        background: linear-gradient(90deg, #3F4450 0%, #434E61 50%, #454D61 100%);
+        /* background: linear-gradient(90deg, #3F4450 0%, #434E61 50%, #454D61 100%); */
+        @apply bg-gray-800;
     }
 
     nav {
         /* @apply pb-4; */
-        border-top: 1px solid #4A5566;
-        background: linear-gradient(90deg, #323747 0%, #454C5F 100%);
+        @apply border-t border-gray-700;
+        /* background: linear-gradient(90deg, #323747 0%, #454C5F 100%); */
+        @apply bg-gray-900;
     }
 
     .form-control {
@@ -133,7 +135,7 @@ body.theme-4sucres {
     }
 
     .cards {
-        @apply shadow;
+        @apply shadow rounded;
 
         .card {
             @apply rounded-none shadow-none border-b border-gray-300;

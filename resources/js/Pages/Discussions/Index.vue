@@ -1,23 +1,10 @@
 <template>
   <layout>
-    <div class="flex items-center mb-6">
-      <div class="mr-auto">
-        <template v-if="discussions.current_page > 1">
-          <inertia-link preserve-scroll :href="discussions.first_page_url"><i class="fas fa-angle-double-left"></i></inertia-link>
-          <inertia-link preserve-scroll :href="discussions.prev_page_url"><i class="fas fa-angle-left"></i></inertia-link>
-        </template>
-      </div>
-      <div class="text-xs">
-        {{ discussions.current_page }}/{{ discussions.last_page }}
-      </div>
-      <div class="ml-auto">
-        <template v-if="discussions.current_page < discussions.last_page">
-          <inertia-link preserve-scroll :href="discussions.next_page_url"><i class="fas fa-angle-right"></i></inertia-link>
-          <inertia-link preserve-scroll :href="discussions.last_page_url"><i class="fas fa-angle-double-right"></i></inertia-link>
-        </template>
-      </div>
+    <div class="card p-4">
+      <paginator :paginator="_.omit(discussions, 'data')"></paginator>
     </div>
-    <div class="cards">
+
+    <div class="cards my-6">
       <div class="card hoverable py-2 px-4" v-for="discussion in discussions.data" :key="discussion.id" v-on:click="visit($inertia, route('discussions.show', [discussion.id, discussion.slug]), $event)">
         <div class="flex items-center">
           <div class="mr-4 flex-none text-muted">
@@ -65,15 +52,20 @@
         </div>
       </div>
     </div>
+
+    <div class="card p-4">
+      <paginator :paginator="_.omit(discussions, 'data')"></paginator>
+    </div>
   </layout>
 </template>
 
 <script>
 import Layout from "@/Shared/Layout";
+import Paginator from '@/Shared/Components/Paginator';
 
 export default {
-  components: { Layout },
-  props:[ "categories", "discussions", "user_has_read"],
+  components: { Layout, Paginator },
+  props:[ "categories", "discussions", "user_has_read" ],
   methods : {
     visit($inertia, url, $event) {
       if (!$event.srcElement.matches('a')) $inertia.visit(url);

@@ -1,23 +1,10 @@
 <template>
   <layout>
-    <div class="flex items-center mb-6">
-      <div class="mr-auto">
-        <template v-if="posts.current_page > 1">
-          <inertia-link preserve-scroll :href="posts.first_page_url"><i class="fas fa-angle-double-left"></i></inertia-link>
-          <inertia-link preserve-scroll :href="posts.prev_page_url"><i class="fas fa-angle-left"></i></inertia-link>
-        </template>
-      </div>
-      <div class="text-xs">
-        {{ posts.current_page }}/{{ posts.last_page }}
-      </div>
-      <div class="ml-auto">
-        <template v-if="posts.current_page < posts.last_page">
-          <inertia-link preserve-scroll :href="posts.next_page_url"><i class="fas fa-angle-right"></i></inertia-link>
-          <inertia-link preserve-scroll :href="posts.last_page_url"><i class="fas fa-angle-double-right"></i></inertia-link>
-        </template>
-      </div>
+    <div class="card p-4">
+      <paginator :paginator="_.omit(posts, 'data')"></paginator>
     </div>
-    <div class="cards">
+
+    <div class="cards my-6">
       <div class="card p-4" v-for="post in posts.data" :key="post.id">
         <div class="flex items-center">
           <div class="flex-none mr-4">
@@ -51,14 +38,20 @@
         <div v-html="post.presented_body" class="post"></div>
       </div>
     </div>
+
+    <div class="card p-4">
+      <paginator :paginator="_.omit(posts, 'data')"></paginator>
+    </div>
+
   </layout>
 </template>
 
 <script>
 import Layout from "@/Shared/Layout";
+import Paginator from '@/Shared/Components/Paginator';
 
 export default {
-  components: { Layout },
+  components: { Layout, Paginator },
   props:[ "discussion", "posts" ],
 };
 </script>
