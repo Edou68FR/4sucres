@@ -1,9 +1,5 @@
 <template>
   <layout>
-    <div class="card p-4">
-      <paginator :paginator="_.omit(discussions, 'data')"></paginator>
-    </div>
-
     <div class="cards my-6">
       <div class="card hoverable py-2 px-4" v-for="discussion in discussions.data" :key="discussion.id" v-on:click="visit($inertia, route('discussions.show', [discussion.id, discussion.slug]), $event)">
         <div class="flex items-center">

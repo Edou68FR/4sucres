@@ -23,29 +23,29 @@
                   </div>
                 </inertia-link>
 
-                <inertia-link :href="route('profile')" class="mx-2 nav-link" :class="{ active: route().current('profile') }">
-                  <img :src="$page.auth.user.avatar_link" :alt="'Avatar de' + $page.auth.user.display_name" class="wh-6 inline rounded mr-1">
-                  {{ $page.auth.user.display_name }}
-                </inertia-link>
-                <inertia-link :href="route('logout')" class="mx-2 nav-link" method="post"><i class="fas fa-power-off mr-1"></i> Déconnexion</inertia-link>
-              </template>
-              <template v-else>
-                <inertia-link :href="route('register')" class="mx-2 nav-link" :class="{ active: route().current('register') }"><i class="fas fa-user-plus mr-1"></i> Inscription</inertia-link>
-                <inertia-link :href="route('login')" class="mx-2 nav-link" :class="{ active: route().current('login') }"><i class="fas fa-power-off mr-1"></i> Connexion</inertia-link>
+                <div class="inline-block md:hidden nav-fa-stack fa-stack" v-on:click="toggleNavigation()" id="nav-toggler">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-bars fa-stack-1x fa-sm"></i>
+                </div>
               </template>
           </div>
         </div>
       </div>
     </header>
 
-    <nav>
+    <nav class="hidden md:block" id="nav-content">
       <div class="container mx-auto px-4">
         <div class="flex flex-wrap items-center">
             <inertia-link :href="route('home')" class="mx-2 nav-link w-full sm:w-auto" :class="{ active: route().current('home') }">Accueil</inertia-link>
             <inertia-link :href="route('search.query')" class="mx-2 nav-link w-full sm:w-auto" :class="{ active: route().current('search.query') }">Recherche</inertia-link>
             <inertia-link :href="route('private_discussions.index')" class="mx-2 nav-link w-full sm:w-auto" :class="{ active: route().current('private_discussions.index') }">Messagerie</inertia-link>
             <a href="https://vocabank.org" class="mx-2 nav-link w-full sm:w-auto" target="_blank">VocaBank</a>
-            <inertia-link href="#" class="mx-2 sm:ml-auto nav-link w-full sm:w-auto"><i class="fas fa-circle text-xs text-green-600"></i> En ligne : {{ $page.app.presence }}</inertia-link>
+
+            <inertia-link v-if="$page.auth.user" :href="route('profile')" class="mx-2 sm:ml-auto nav-link w-full sm:w-auto" :class="{ active: route().current('profile') }">{{ $page.auth.user.display_name }}</inertia-link>
+            <inertia-link v-if="$page.auth.user" :href="route('logout')" class="mx-2 nav-link w-full sm:w-auto" method="post">Déconnexion</inertia-link>
+
+            <inertia-link v-if="!$page.auth.user" :href="route('register')" class="mx-2 sm:ml-auto nav-link w-full sm:w-auto" :class="{ active: route().current('register') }">Inscription</inertia-link>
+            <inertia-link v-if="!$page.auth.user" :href="route('login')" class="mx-2 nav-link w-full sm:w-auto" :class="{ active: route().current('login') }">Connexion</inertia-link>
         </div>
       </div>
     </nav>
@@ -56,7 +56,7 @@
 
     <footer class="container text-muted mx-auto px-4 mb-6">
         <img src="/img/4sucres_alt_glitched.png" class="mx-auto h-6">
-        4sucres.org {{ $page.app.version }} &copy; 2019<br>
+        {{ $page.app.name }} {{ $page.app.version }} &copy; 2019<br>
         <br>
         <span class="mx-1">&mdash;</span> Temps d'exécution : <span :title="$page.app.real_runtime + 's'">{{ $page.app.runtime }}s</span><br>
         <a :href="route('terms')">Conditions générales d'utilisation</a> <span class="mx-1">&mdash;</span>
@@ -66,3 +66,14 @@
     </footer>
   </main>
 </template>
+
+<script>
+export default {
+  methods: {
+    toggleNavigation: () => {
+      document.getElementById("nav-content").classList.toggle("hidden");
+      document.getElementById("nav-toggler").classList.toggle("active");
+    }
+  }
+}
+</script>

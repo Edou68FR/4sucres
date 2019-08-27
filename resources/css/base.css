@@ -10,6 +10,16 @@ nav {
     @apply w-full py-2;
 }
 
+.nav-link {
+    @apply mb-1;
+}
+
+@screen sm {
+    .nav-link {
+        @apply mb-0;
+    }
+}
+
 .form-control {
     @apply rounded px-2 py-1
 }

@@ -102,7 +102,7 @@ body.theme-4sucres {
 
     .nav-fa-stack.active {
         :first-child::before {
-            background: #29d;
+            color: #29d;
         }
     }
 

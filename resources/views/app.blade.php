@@ -12,9 +12,9 @@
 
     <title>
         @hasSection ('title')
-            @yield('title') - 4sucres.org
+            @yield('title') - {{  config('app.name') }}
         @else
-            4sucres.org
+            {{  config('app.name') }}
         @endif
     </title>
     <meta name="description" content="Et vous, combien de sucres vous prenez dans votre café ?">
