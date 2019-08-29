@@ -50,17 +50,17 @@
     </div>
 
     <div class="card p-4">
-      <paginator :paginator="_.omit(discussions, 'data')"></paginator>
+      <SimplePaginator :paginator="_.omit(discussions, 'data')"></SimplePaginator>
     </div>
   </layout>
 </template>
 
 <script>
 import Layout from "@/Shared/Layout";
-import Paginator from '@/Shared/Components/Paginator';
+import SimplePaginator from '@/Shared/Components/SimplePaginator';
 
 export default {
-  components: { Layout, Paginator },
+  components: { Layout, SimplePaginator },
   props:[ "categories", "discussions", "user_has_read" ],
   methods : {
     visit($inertia, url, $event) {
