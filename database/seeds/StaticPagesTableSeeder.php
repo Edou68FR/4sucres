@@ -63,5 +63,14 @@ class StaticPagesTableSeeder extends Seeder
             'type'      => StaticPage::TYPE_REDIRECT_BLANK,
             'position'  => StaticPage::POSITION_FOOTER,
         ]);
+
+        StaticPage::firstOrCreate([
+            'slug' => 'discord',
+        ], [
+            'name'      => 'Discord',
+            'content'   => 'https://discord.gg/4sucres',
+            'type'      => StaticPage::TYPE_REDIRECT_BLANK,
+            'position'  => StaticPage::POSITION_FOOTER,
+        ]);
     }
 }
