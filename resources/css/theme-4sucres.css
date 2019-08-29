@@ -41,15 +41,12 @@ body.theme-4sucres {
     }
 
     header {
-        /* background: linear-gradient(90deg, #3F4450 0%, #434E61 50%, #454D61 100%); */
-        @apply bg-gray-800;
+        background: #2C3E50;
     }
 
     nav {
-        /* @apply pb-4; */
         @apply border-t border-gray-700;
-        /* background: linear-gradient(90deg, #323747 0%, #454C5F 100%); */
-        @apply bg-gray-900;
+        background: #34495E;
     }
 
     .form-control {
@@ -72,7 +69,7 @@ body.theme-4sucres {
         @apply text-white;
     }
 
-    @screen sm {
+    @screen md {
         .nav-link.active::after {
             @apply absolute;
             background: #29d;
@@ -86,11 +83,11 @@ body.theme-4sucres {
 
     .nav-fa-stack {
         :first-child::before {
-            color: #323747;
+            color: #34495E;
         }
 
         :last-child::before {
-            @apply text-gray-500;
+            @apply text-gray-300;
         }
     }
 

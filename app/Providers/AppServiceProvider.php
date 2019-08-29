@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\StaticPage;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
@@ -38,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
 
             $view
                 ->with('presence_counter', User::online()->pluck('name')->toArray())
+                ->with('static_pages', StaticPage::where('position', '!=', StaticPage::POSITION_HIDDEN)->get())
                 ->with('body_classes', 'theme-4sucres');
 
             return $view;
@@ -50,6 +52,7 @@ class AppServiceProvider extends ServiceProvider
                 'runtime'          => round((microtime(true) - LARAVEL_START), 3),
                 'real_runtime'     => function () { return round((microtime(true) - LARAVEL_START), 3); },
                 'presence'         => function () { return User::online()->pluck('name')->toArray(); },
+                'static_pages'     => function () { return StaticPage::where('position', '!=', StaticPage::POSITION_HIDDEN)->get(); },
             ],
             'auth' => function () {
                 return [

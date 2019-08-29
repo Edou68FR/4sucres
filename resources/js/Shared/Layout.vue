@@ -22,12 +22,12 @@
                     <i class="fas fa-lock fa-stack-1x fa-sm"></i>
                   </div>
                 </inertia-link>
+              </template>
 
-                <div class="inline-block md:hidden nav-fa-stack fa-stack" v-on:click="toggleNavigation()" id="nav-toggler">
+              <div class="inline-block md:hidden nav-fa-stack fa-stack" v-on:click="toggleNavigation()" id="nav-toggler">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fas fa-bars fa-stack-1x fa-sm"></i>
-                </div>
-              </template>
+              </div>
           </div>
         </div>
       </div>
@@ -36,16 +36,18 @@
     <nav class="hidden md:block" id="nav-content">
       <div class="container mx-auto px-4">
         <div class="flex flex-wrap items-center">
-            <inertia-link :href="route('home')" class="mx-2 nav-link w-full sm:w-auto" :class="{ active: route().current('home') }">Accueil</inertia-link>
-            <inertia-link :href="route('search.query')" class="mx-2 nav-link w-full sm:w-auto" :class="{ active: route().current('search.query') }">Recherche</inertia-link>
-            <inertia-link :href="route('private_discussions.index')" class="mx-2 nav-link w-full sm:w-auto" :class="{ active: route().current('private_discussions.index') }">Messagerie</inertia-link>
-            <a href="https://vocabank.org" class="mx-2 nav-link w-full sm:w-auto" target="_blank">VocaBank</a>
+            <inertia-link :href="route('home')" class="mx-2 nav-link w-full md:w-auto" :class="{ active: route().current('home') }">Accueil</inertia-link>
+            <inertia-link :href="route('discussions.index')" class="mx-2 nav-link w-full md:w-auto" :class="{ active: route().current('discussions*') }">Discussions</inertia-link>
+            <inertia-link :href="route('search.query')" class="mx-2 nav-link w-full md:w-auto" :class="{ active: route().current('search.query') }">Recherche</inertia-link>
+            <template v-for="static_page in $page.app.static_pages.filter(page => page.position == 1)">
+              <StaticPageLink :static_page="static_page" class='mx-2 nav-link w-full md:w-auto'></StaticPageLink>
+            </template>
 
-            <inertia-link v-if="$page.auth.user" :href="route('profile')" class="mx-2 sm:ml-auto nav-link w-full sm:w-auto" :class="{ active: route().current('profile') }">{{ $page.auth.user.display_name }}</inertia-link>
-            <inertia-link v-if="$page.auth.user" :href="route('logout')" class="mx-2 nav-link w-full sm:w-auto" method="post">Déconnexion</inertia-link>
+            <inertia-link v-if="$page.auth.user" :href="route('profile')" class="mx-2 md:ml-auto nav-link w-full md:w-auto" :class="{ active: route().current('profile') }">{{ $page.auth.user.display_name }}</inertia-link>
+            <inertia-link v-if="$page.auth.user" :href="route('logout')" class="mx-2 nav-link w-full md:w-auto" method="post">Déconnexion</inertia-link>
 
-            <inertia-link v-if="!$page.auth.user" :href="route('register')" class="mx-2 sm:ml-auto nav-link w-full sm:w-auto" :class="{ active: route().current('register') }">Inscription</inertia-link>
-            <inertia-link v-if="!$page.auth.user" :href="route('login')" class="mx-2 nav-link w-full sm:w-auto" :class="{ active: route().current('login') }">Connexion</inertia-link>
+            <inertia-link v-if="!$page.auth.user" :href="route('register')" class="mx-2 md:ml-auto nav-link w-full md:w-auto" :class="{ active: route().current('register') }">Inscription</inertia-link>
+            <inertia-link v-if="!$page.auth.user" :href="route('login')" class="mx-2 nav-link w-full md:w-auto" :class="{ active: route().current('login') }">Connexion</inertia-link>
         </div>
       </div>
     </nav>
@@ -58,17 +60,21 @@
         <img src="/img/4sucres_alt_glitched.png" class="mx-auto h-6">
         {{ $page.app.name }} {{ $page.app.version }} &copy; 2019<br>
         <br>
-        <span class="mx-1">&mdash;</span> Temps d'exécution : <span :title="$page.app.real_runtime + 's'">{{ $page.app.runtime }}s</span><br>
-        <a :href="route('terms')">Conditions générales d'utilisation</a> <span class="mx-1">&mdash;</span>
-        <a :href="route('charter')">Charte d'utilisation</a> <span class="mx-1">&mdash;</span>
-        <a href="https://vocabank.org" target="_blank">VocaBank</a><span class="mx-1">&mdash;</span>
-        <a href="https://github.com/4sucres/board" target="_blank">GitHub</a>
+        Temps d'exécution : <span :title="$page.app.real_runtime + 's'">{{ $page.app.runtime }}s</span><br>
+        <template v-for="(static_page, key) in footer_pages = $page.app.static_pages.filter(page => page.position == 3)">
+          <StaticPageLink :static_page="static_page"></StaticPageLink>
+          <span v-if="key != footer_pages.length -1" class="mx-1">&mdash;</span>
+        </template>
+
     </footer>
   </main>
 </template>
 
 <script>
+import StaticPageLink from '@/Shared/Components/StaticPageLink';
+
 export default {
+  components: { StaticPageLink },
   methods: {
     toggleNavigation: () => {
       document.getElementById("nav-content").classList.toggle("hidden");

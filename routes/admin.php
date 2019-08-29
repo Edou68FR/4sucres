@@ -13,4 +13,5 @@ Route::get('/activity/data', 'ActivityController@data')->name('activity.data');
 Route::group(['middleware' => 'role:admin'], function () {
     Route::get('/console', 'ConsoleController@index')->name('console.index');
     Route::get('/console/run/{command}', 'ConsoleController@run')->name('console.run');
+    Route::resource('/static-pages', 'StaticPageController');
 });

@@ -218,10 +218,20 @@
             <strong>4sucres.org</strong>, parce qu'à 2 on était pas assez.<br>
             <span title="{{ implode($presence, ', ') }}">{{ count($presence) }} {{ str_plural('membre', count($presence)) }} {{ str_plural('actif', count($presence)) }}</span> <span class="mx-1">&mdash;</span>
             Temps d'exécution : {{ round((microtime(true) - LARAVEL_START), 3) }} s<br>
-            <a href="{{ route('terms') }}">Conditions générales d'utilisation</a> <span class="mx-1">&mdash;</span>
-            <a href="{{ route('charter') }}">Charte d'utilisation</a> <span class="mx-1">&mdash;</span>
-            <a href="https://vocabank.org" target="_blank">VocaBank</a><span class="mx-1">&mdash;</span>
-            <a href="https://github.com/4sucres/board" target="_blank">GitHub</a>
+            @foreach ($static_pages->where('position', \App\Models\StaticPage::POSITION_FOOTER) as $static_page)
+                @switch($static_page->type)
+                    @case (\App\Models\StaticPage::TYPE_CONTENT)
+                        <a href="{{ route('static_pages.show', $static_page->slug) }}">{{ $static_page->name }}</a>
+                    @break
+                    @case (\App\Models\StaticPage::TYPE_REDIRECT)
+                        <a href="{{ $static_page->href }}">{{ $static_page->name }}</a>
+                    @break
+                    @case (\App\Models\StaticPage::TYPE_REDIRECT_BLANK)
+                        <a href="{{ $static_page->href }}" target="_blank">{{ $static_page->name }}</a>
+                    @break
+                @endswitch
+                @if (!$loop->last) <span class="mx-1">&mdash;</span> @endif
+            @endforeach
         </footer>
     </div>
 

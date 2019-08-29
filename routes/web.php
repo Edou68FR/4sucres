@@ -1,7 +1,5 @@
 <?php
 
-use Inertia\Inertia;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,11 +11,10 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/inertia', function () {
-    return Inertia::render('Inertia');
-})->name('inertia');
+Route::get('/', 'StaticPageController@home')->name('home');
+Route::get('/pages/{slug}', 'StaticPageController@show')->name('static_pages.show');
 
-Route::get('/', 'DiscussionController@index')->name('home');
+Route::get('/discussions', 'DiscussionController@index')->name('discussions.index');
 
 Route::get('/register', 'Auth\RegisterController@register')->name('register');
 Route::post('/register', 'Auth\RegisterController@submit');
@@ -38,9 +35,6 @@ Route::get('/search', 'SearchController@query')->name('search.query');
 
 Route::get('d/{id}-{slug}', 'DiscussionController@show')->name('discussions.show');
 Route::get('/u/{nameOrId}', 'UserController@show')->name('user.show');
-
-Route::get('/terms', 'HomeController@terms')->name('terms');
-Route::get('/charter', 'HomeController@charter')->name('charter');
 Route::get('/leaderboard', 'HomeController@leaderboard')->name('leaderboard');
 
 Route::get('/p/{id}', 'PostController@show')->name('posts.show');
