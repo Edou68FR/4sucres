@@ -54,5 +54,14 @@ class StaticPagesTableSeeder extends Seeder
             'type'      => StaticPage::TYPE_REDIRECT_BLANK,
             'position'  => StaticPage::POSITION_FOOTER,
         ]);
+
+        StaticPage::firstOrCreate([
+            'slug' => 'tipeee',
+        ], [
+            'name'      => 'Tipeee',
+            'content'   => 'https://fr.tipeee.com/4sucres',
+            'type'      => StaticPage::TYPE_REDIRECT_BLANK,
+            'position'  => StaticPage::POSITION_FOOTER,
+        ]);
     }
 }

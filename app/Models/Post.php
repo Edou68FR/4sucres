@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Shortlink;
 use App\Helpers\SucresHelper;
 use App\Helpers\SucresParser;
 use App\Notifications\MentionnedInPost;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Notification;
 use Qirolab\Laravel\Reactions\Contracts\ReactableInterface;
 use Qirolab\Laravel\Reactions\Traits\Reactable;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Vinkla\Hashids\Facades\Hashids;
 
 class Post extends Model implements ReactableInterface
 {
@@ -27,6 +29,10 @@ class Post extends Model implements ReactableInterface
         'body',
         'discussion_id',
         'user_id',
+    ];
+
+    protected $appends = [
+        'shortlink_url',
     ];
 
     protected static $logAttributes = ['body', 'deleted_at'];
@@ -85,7 +91,7 @@ class Post extends Model implements ReactableInterface
 
     public function getPresentedBodyAttribute()
     {
-        return (new SucresParser($this))->render();
+        return (!$this->deleted_at) ? (new SucresParser($this))->render() : '';
     }
 
     public function getPresentedLightBodyAttribute()
@@ -116,5 +122,10 @@ class Post extends Model implements ReactableInterface
     public function scopeNotTrashed($query)
     {
         return $query->where('deleted_at', null);
+    }
+
+    public function getShortlinkUrlAttribute()
+    {
+        return config('app.shortlink_url') . '/' . Hashids::encode(Shortlink::MODEL_POST . $this->id);
     }
 }

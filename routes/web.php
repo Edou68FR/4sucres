@@ -14,8 +14,6 @@
 Route::get('/', 'StaticPageController@home')->name('home');
 Route::get('/pages/{slug}', 'StaticPageController@show')->name('static_pages.show');
 
-Route::get('/discussions', 'DiscussionController@index')->name('discussions.index');
-
 Route::get('/register', 'Auth\RegisterController@register')->name('register');
 Route::post('/register', 'Auth\RegisterController@submit');
 Route::get('/auth/verify_email/{token}', 'Auth\RegisterController@verify')->name('auth.verify_email');
@@ -28,7 +26,8 @@ Route::post('/password/reset/{token}', 'Auth\ResetPasswordController@reset')->na
 Route::get('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/login', 'Auth\LoginController@submit');
 
-Route::get('/d', 'DiscussionController@index')->name('discussions.index');
+Route::permanentRedirect('/d', '/discussions');
+Route::get('/discussions', 'DiscussionController@index')->name('discussions.index');
 Route::get('/d/c/{category}-{slug}', 'DiscussionController@index')->name('discussions.categories.index');
 
 Route::get('/search', 'SearchController@query')->name('search.query');
@@ -103,3 +102,5 @@ Route::view('/errors/410', 'errors/410');
 Route::view('/errors/429', 'errors/429');
 Route::view('/errors/500', 'errors/500');
 Route::view('/errors/503', 'errors/503');
+
+Route::get('shortlink/{hashId?}', 'ShortlinkController');

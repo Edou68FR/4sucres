@@ -55,6 +55,8 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'shortlink_url' => env('SHORTLINK_URL', env('APP_URL', 'http://localhost') . '/shortlink'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -224,5 +226,6 @@ return [
         'View'         => Illuminate\Support\Facades\View::class,
         'Imgur'        => Yish\Imgur\Facades\Upload::class,
         'NoCaptcha'    => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
+        'Hashids'      => Vinkla\Hashids\Facades\Hashids::class,
     ],
 ];

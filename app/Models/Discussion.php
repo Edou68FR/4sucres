@@ -166,7 +166,7 @@ class Discussion extends Model
         $post_position = array_search($post->id, $post->discussion->posts->pluck('id')->toArray()) + 1;
         $guessed_page = ceil($post_position / $pagniator);
 
-        return $post->discussion->link . '?page=' . $guessed_page . '#p' . $post->id;
+        return route('discussions.show', [$post->discussion->id, $post->discussion->slug]) . '?page=' . $guessed_page . '#p' . $post->id;
     }
 
     public function getTitleAttribute()
