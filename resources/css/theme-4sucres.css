@@ -108,11 +108,13 @@ body.theme-4sucres {
     }
 
     .btn-primary {
-        @apply bg-teal-500 text-white;
+        @apply text-white;
+        background: #29d;
     }
 
     .btn-primary:hover {
-        @apply bg-teal-600 text-white;
+        @apply text-white;
+        background: #2ad;
     }
 
     .btn-secondary {
@@ -129,6 +131,10 @@ body.theme-4sucres {
 
     .btn-tertiary:hover {
         @apply bg-blue-100 text-blue-600;
+    }
+
+    .btn-tertiary.disabled, .btn-tertiary.disabled:hover {
+        @apply cursor-not-allowed text-gray-500 bg-white;
     }
 
     .card {
@@ -168,10 +174,14 @@ body.theme-4sucres {
     }
 
     .badge-primary {
-        background-color: #5f82aa;
+        background-color: #29d;
     }
 
     blockquote {
         @apply bg-white shadow border border-gray-300;
+    }
+
+    .text-base-folder {
+        color: #FBC02D;
     }
 }

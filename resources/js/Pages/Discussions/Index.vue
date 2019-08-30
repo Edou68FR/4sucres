@@ -1,13 +1,21 @@
 <template>
   <layout>
+    <div class="flex items-center justify-center">
+      <SimplePaginator class="text-center" :paginator="_.omit(discussions, 'data')"></SimplePaginator>
+    </div>
+
+    <inertia-link class="btn btn-primary" v-if="$page.auth.user && $page.auth.user.permissions.includes('create discussions')" :href="route('discussions.create')">
+      <i class="fas fa-plus mr-1"></i> Nouvelle discussion
+    </inertia-link>
+
     <div class="cards my-6">
       <div class="card hoverable py-2 px-4" v-for="discussion in discussions.data" :key="discussion.id" v-on:click="visit($inertia, route('discussions.show', [discussion.id, discussion.slug]), $event)">
         <div class="flex items-center">
-          <div class="mr-4 flex-none text-muted">
+          <div class="mr-4 flex-none text-base-folder">
               <i class="fas fa-folder"
                 :class="{
                   'text-red-600' : (discussion.replies >= 10),
-                  'fa-lock text-yellow-600' : (discussion.locked),
+                  'fa-lock text-gray-600' : (discussion.locked),
                   'fa-thumbtack text-green-600' : (discussion.sticky),
                   'fa-shield-alt' : (discussion.private),
                 }"></i>
@@ -19,7 +27,9 @@
               </div>
               <div class="text-xs">
                 par
-                <inertia-link :href="route('user.show', discussion.user.name)">{{ discussion.user.display_name }}</inertia-link>, {{ moment(discussion.created_at).calendar() }}
+                <inertia-link :href="route('user.show', discussion.user.name)">{{ discussion.user.display_name }}</inertia-link>,
+                {{ moment(discussion.created_at).calendar() }},
+                <inertia-link :href="route('discussions.categories.index', [discussion.category.id, discussion.category.slug])">{{ discussion.category.name }}</inertia-link>
               </div>
             </div>
             <div class="ml-auto flex-none w-full md:w-auto md:mr-4 md:text-right text-xs">
@@ -49,9 +59,7 @@
       </div>
     </div>
 
-    <div class="card p-4">
-      <SimplePaginator :paginator="_.omit(discussions, 'data')"></SimplePaginator>
-    </div>
+    <SimplePaginator class="text-center" :paginator="_.omit(discussions, 'data')"></SimplePaginator>
   </layout>
 </template>
 

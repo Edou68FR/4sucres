@@ -24,7 +24,6 @@
                             </span>
                         @endif
                     </div>
-                    <div class="card-footer">
                         <div class="float-left">
                             <a href="{{ route('password.request') }}">Mot de passe oublié</a>
                         </div>

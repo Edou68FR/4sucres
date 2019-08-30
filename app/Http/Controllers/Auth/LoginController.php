@@ -6,26 +6,27 @@ use App\Http\Controllers\Controller;
 use App\Rules\Throttle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Inertia\Inertia;
 
 class LoginController extends Controller
 {
     public function login()
     {
-        return view('auth.login');
+        return Inertia::render('Auth/Login');
     }
 
     public function submit(Request $request)
     {
         $validator = Validator::make($request->input(), [
-            'email'                => ['required', 'email', new Throttle(__METHOD__, 3, 1)],
+            'email'                => ['required', 'email', new Throttle(__METHOD__, 5, 1)],
             'password'             => 'required',
-            'g-recaptcha-response' => ['required', 'captcha'],
+            // 'g-recaptcha-response' => ['required', 'captcha'],
         ]);
         $validator->validate();
 
         $remember = $request->remember ?? false;
 
-        if (auth()->attempt([
+        if (auth()->once([
             'email' => request()->email,
             'password' => request()->password,
         ], $remember) && !user()->deleted_at) {
@@ -38,10 +39,34 @@ class LoginController extends Controller
 
                 $validator->errors()->add('password', $error);
 
-                auth()->logout();
-
-                return redirect(route('login'))->withErrors($validator)->withInput($request->input());
+                return response(['errors' => $validator->errors()], 422);
             }
+
+            if (user()->getSetting('google_2fa.enabled', false)) {
+                $validator = Validator::make($request->input(), ['one_time_password' => 'required']);
+                $validator->validate();
+
+                $google2fa = app('pragmarx.google2fa');
+
+                if (!$google2fa->verifyKey(
+                    decrypt(user()->getSetting('google_2fa.secret')),
+                    request()->one_time_password
+                )) {
+                    $validator->errors()->add('one_time_password', 'Le code OTP est incorrect.');
+
+                    activity()
+                        ->causedBy(user())
+                        ->withProperties([
+                            'level'  => 'warning',
+                            'method' => __METHOD__,
+                        ])
+                        ->log('LoginOTPFailed');
+
+                    return response(['errors' => $validator->errors()], 422);
+                }
+            }
+
+            auth()->loginUsingId(user()->id);
 
             activity()
                 ->causedBy(user())
@@ -51,11 +76,9 @@ class LoginController extends Controller
                 ])
                 ->log('LoginSuccessful');
 
-            return redirect()->intended();
+            return response()->json(['intended_url' => session()->pull('url.intended', route('home'))]);
         } else {
-            auth()->logout();
-
-            $validator->errors()->add('password', 'Le mot de passe est incorrect');
+            $validator->errors()->add('password', 'Le mot de passe est incorrect.');
 
             activity()
                 ->withProperties([
@@ -65,7 +88,7 @@ class LoginController extends Controller
                 ])
                 ->log('LoginFailed');
 
-            return redirect(route('login'))->withErrors($validator)->withInput($request->input());
+            return response(['errors' => $validator->errors()], 422);
         }
     }
 

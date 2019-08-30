@@ -52,7 +52,7 @@
       </div>
     </nav>
 
-    <div class="container mx-auto px-4 my-6">
+    <div class="container mx-auto p-4 md:py-6">
       <slot />
     </div>
 
@@ -61,10 +61,10 @@
         {{ $page.app.name }} {{ $page.app.version }} &copy; 2019<br>
         <br>
         Temps d'exécution : <span :title="$page.app.real_runtime + 's'">{{ $page.app.runtime }}s</span><br>
-        <template v-for="(static_page, key) in footer_pages = $page.app.static_pages.filter(page => page.position == 3)">
+        <span v-for="(static_page, key) in footer_pages = $page.app.static_pages.filter(page => page.position == 3)" v-bind:key="static_page.slug">
           <StaticPageLink :static_page="static_page"></StaticPageLink>
-          <span v-if="key != footer_pages.length -1" class="mx-1">&mdash;</span>
-        </template>
+          <span v-if="key != footer_pages.length - 1" class="mx-1">&mdash;</span>
+        </span>
 
     </footer>
   </main>

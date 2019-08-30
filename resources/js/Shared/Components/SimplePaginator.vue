@@ -1,16 +1,26 @@
 <template>
-    <div class="flex items-center mx-auto">
-        <template v-if="paginator.current_page > 1">
-            <!-- <inertia-link preserve-scroll :href="paginator.first_page_url"><i class="mr-2 fas fa-angle-double-left"></i></inertia-link> -->
-            <inertia-link preserve-scroll :href="paginator.prev_page_url" class="btn btn-tertiary"><i class="fas fa-chevron-left"></i></inertia-link>
-        </template>
-        <div class="mx-auto text-xs">
-            {{ paginator.current_page }} / {{ paginator.last_page }}
+    <div>
+        <div class="card inline-block rounded-full px-3 py-1">
+            <template v-if="paginator.current_page > 1">
+                <inertia-link preserve-scroll :href="paginator.first_page_url" class="btn btn-tertiary"><i class="fas fa-angle-double-left"></i></inertia-link>
+                <inertia-link preserve-scroll :href="paginator.prev_page_url" class="btn btn-tertiary"><i class="fas fa-angle-left"></i></inertia-link>
+            </template>
+            <template v-else>
+                <span class="btn btn-tertiary disabled" disabled><i class="fas fa-angle-double-left"></i></span>
+                <span class="btn btn-tertiary disabled" disabled><i class="fas fa-angle-left"></i></span>
+            </template>
+            <!-- <div class="mx-auto text-xs">
+                {{ paginator.current_page }} / {{ paginator.last_page }}
+            </div> -->
+            <template v-if="paginator.current_page < paginator.last_page">
+                <inertia-link preserve-scroll :href="paginator.next_page_url" class="btn btn-tertiary"><i class="fas fa-angle-right"></i></inertia-link>
+                <inertia-link preserve-scroll :href="paginator.last_page_url" class="btn btn-tertiary"><i class="fas fa-angle-double-right"></i></inertia-link>
+            </template>
+            <template v-else>
+                <span class="btn btn-tertiary disabled" disabled><i class="fas fa-angle-right"></i></span>
+                <span class="btn btn-tertiary disabled" disabled><i class="fas fa-angle-double-right"></i></span>
+            </template>
         </div>
-        <template v-if="paginator.current_page < paginator.last_page">
-            <inertia-link preserve-scroll :href="paginator.next_page_url" class="btn btn-tertiary"><i class="fas fa-chevron-right"></i></inertia-link>
-            <!-- <inertia-link preserve-scroll :href="paginator.last_page_url"><i class="ml-2 fas fa-angle-double-right"></i></inertia-link> -->
-        </template>
     </div>
 </template>
 

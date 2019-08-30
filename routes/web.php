@@ -49,6 +49,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/settings/account/email', 'UserSettingsController@accountEmail')->name('user.settings.account.email');
     Route::put('/settings/account/email', 'UserSettingsController@updateAccountEmail');
     Route::get('/settings/account/password', 'UserSettingsController@accountPassword')->name('user.settings.account.password');
+    Route::get('/settings/account/security/2fa/enable', 'UserSettingsController@enableAccount2FA')->name('user.settings.account.security.2fa.enable');
+    Route::get('/settings/account/security/2fa/disable', 'UserSettingsController@disableAccount2FA')->name('user.settings.account.security.2fa.disable');
+    Route::get('/settings/account/password', 'UserSettingsController@accountPassword')->name('user.settings.account.password');
     Route::put('/settings/account/password', 'UserSettingsController@updateAccountPassword');
     Route::get('/settings/layout', 'UserSettingsController@layout')->name('user.settings.layout');
     Route::put('/settings/layout', 'UserSettingsController@updateLayout');

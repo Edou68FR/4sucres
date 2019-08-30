@@ -1,14 +1,21 @@
 import Vue from 'vue'
+
 import _ from 'lodash';
-import moment from 'moment';
-import { InertiaApp } from '@inertiajs/inertia-vue'
-
-moment.locale('fr');
-
-Object.defineProperty(Vue.prototype, 'route', { value: route });
-Object.defineProperty(Vue.prototype, 'moment', { value: moment });
 Object.defineProperty(Vue.prototype, '_', { value: _ });
 
+import moment from 'moment';
+moment.locale('fr');
+Object.defineProperty(Vue.prototype, 'moment', { value: moment });
+
+import axios from 'axios';
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+let token = document.head.querySelector('meta[name="csrf-token"]');
+if (token) axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+Object.defineProperty(Vue.prototype, 'axios', { value: axios });
+
+Object.defineProperty(Vue.prototype, 'route', { value: route });
+
+import { InertiaApp } from '@inertiajs/inertia-vue'
 Vue.use(InertiaApp)
 
 const app = document.getElementById('app')

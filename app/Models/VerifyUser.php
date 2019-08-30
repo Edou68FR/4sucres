@@ -10,6 +10,7 @@ class VerifyUser extends Model
 
     const SCOPE_VERIFY_EMAIL = 1;
     const SCOPE_RESET_PASSWORD = 2;
+    const SCOPE_GOOGLE_2FA = 3;
 
     public function user()
     {
