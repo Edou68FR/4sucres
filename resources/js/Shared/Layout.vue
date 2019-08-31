@@ -43,11 +43,15 @@
               <StaticPageLink :static_page="static_page" class='mx-2 nav-link w-full md:w-auto'></StaticPageLink>
             </span>
 
-            <inertia-link v-if="$page.auth.user" :href="route('users.me')" class="mx-2 md:ml-auto nav-link w-full md:w-auto" :class="{ active: route().current('users.me') }">{{ $page.auth.user.display_name }}</inertia-link>
-            <inertia-link v-if="$page.auth.user" :href="route('logout')" class="mx-2 nav-link w-full md:w-auto" method="post">Déconnexion</inertia-link>
-
-            <inertia-link v-if="!$page.auth.user" :href="route('register')" class="mx-2 md:ml-auto nav-link w-full md:w-auto" :class="{ active: route().current('register') }">Inscription</inertia-link>
-            <inertia-link v-if="!$page.auth.user" :href="route('login')" class="mx-2 nav-link w-full md:w-auto" :class="{ active: route().current('login') }">Connexion</inertia-link>
+            <template v-if="$page.auth.user">
+              <inertia-link :href="route('users.me')" class="mx-2 md:ml-auto nav-link w-full md:w-auto" :class="{ active: route().current('users.me') }">{{ $page.auth.user.display_name }}</inertia-link>
+              <inertia-link :href="route('user.settings.profile')" class="mx-2 nav-link w-full md:w-auto" method="post">Paramètres</inertia-link>
+              <inertia-link :href="route('logout')" class="mx-2 nav-link w-full md:w-auto" method="post">Déconnexion</inertia-link>
+            </template>
+            <template v-else>
+              <inertia-link :href="route('register')" class="mx-2 md:ml-auto nav-link w-full md:w-auto" :class="{ active: route().current('register') }">Inscription</inertia-link>
+              <inertia-link :href="route('login')" class="mx-2 nav-link w-full md:w-auto" :class="{ active: route().current('login') }">Connexion</inertia-link>
+            </template>
         </div>
       </div>
     </nav>

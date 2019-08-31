@@ -1,6 +1,6 @@
 <template>
   <layout>
-    <div class="card markdown p-4 pt-1" v-html="static_page.parsed_content"></div>
+    <div class="card flex-1 markdown p-4 pt-1" v-html="static_page.parsed_content"></div>
   </layout>
 </template>
 

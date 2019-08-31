@@ -8,17 +8,17 @@ Route::get('/pages/{slug}', 'StaticPageController@show')->name('static_pages.sho
  */
 
 Route::group(['namespace' => 'Auth', 'middleware' => 'guest'], function () {
-    Route::get('/register', 'Auth\RegisterController@register')->name('register');
-    Route::post('/register', 'Auth\RegisterController@submit');
-    Route::get('/auth/verify-email/{token}', 'Auth\RegisterController@verify')->name('auth.verify-email');
+    Route::get('/register', 'RegisterController@register')->name('register');
+    Route::post('/register', 'RegisterController@submit');
+    Route::get('/auth/verify-email/{token}', 'RegisterController@verify')->name('auth.verify-email');
 
-    Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-    Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-    Route::post('/password/reset/{token}', 'Auth\ResetPasswordController@reset')->name('password.update');
+    Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('/password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('/password/reset/{token}', 'ResetPasswordController@reset')->name('password.update');
 
-    Route::get('/login', 'Auth\LoginController@login')->name('login');
-    Route::post('/login', 'Auth\LoginController@submit');
+    Route::get('/login', 'LoginController@login')->name('login');
+    Route::post('/login', 'LoginController@submit');
 });
 
 /*

@@ -1,6 +1,5 @@
 <template>
   <layout>
-
     <div class="card p-4 mb-6">
       <div class="flex flex-wrap justify-center items-center">
         <img :src="user.avatar_url" class="rounded wh-24 mb-4 sm:mb-0">
@@ -46,6 +45,13 @@
         </div>
       </div>
     </div>
+
+      <div class="text-right" v-if="$page.auth.user">
+          <a v-if="user.id == $page.auth.user.id" :href="route('user.settings.profile')" class="btn btn-tertiary">Paramètres</a>
+          <a v-if="user.id != $page.auth.user.id" :href="route('private_discussions.create', [user.id, user.name])" class="btn btn-tertiary">Envoyer un message privé</a>
+          <a v-if="$page.auth.user.permissions.includes('impersonate users')" :href="route('user.delete', user.name)" class="btn btn-tertiary">Imiter</a>
+          <a v-if="$page.auth.user.permissions.includes('delete users')" :href="route('user.delete', user.name)" class="btn btn-tertiary">Supprimer l'utilisateur</a>
+      </div>
   </layout>
 </template>
 
