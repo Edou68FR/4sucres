@@ -134,11 +134,7 @@ class DiscussionController extends Controller
             $user_has_read = [];
         }
 
-        if (request('legacy', false)) {
-            return view('welcome', compact('categories', 'discussions', 'user_has_read'));
-        } else {
-            return Inertia::render('Discussions/Index', compact('categories', 'discussions', 'user_has_read'));
-        }
+        return Inertia::render('Discussions/Index', compact('categories', 'discussions', 'user_has_read'));
     }
 
     public function subscriptions()
@@ -251,11 +247,7 @@ class DiscussionController extends Controller
 
         $discussion->has_read()->attach(user());
 
-        if (request('legacy', false)) {
-            return view('discussion.show', compact('discussion', 'posts'));
-        } else {
-            return Inertia::render('Discussions/Show', compact('discussion', 'posts'));
-        }
+        return Inertia::render('Discussions/Show', compact('discussion', 'posts'));
     }
 
     public function update(Discussion $discussion, $slug)

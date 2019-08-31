@@ -12,4 +12,9 @@ class Achievement extends Model
     {
         return $this->belongsToMany(User::class, 'user_achievement')->withPivot('unlocked_at');
     }
+
+    public function getImageUrlAttribute()
+    {
+        return url('/img/achievements/' . $this->image);
+    }
 }

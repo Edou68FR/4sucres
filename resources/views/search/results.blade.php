@@ -32,7 +32,7 @@
 								<small class="text-theme-tertiary">{!! $post->trimmed_body !!}</small>
 								<hr class="my-2">
 								<div class="text-muted">
-									<a href="{{ $post->user->link }}"><img src="{{ $post->user->avatar_link }}" class="rounded" height="14px"></a>
+									<a href="{{ $post->user->link }}"><img src="{{ $post->user->avatar_url }}" class="rounded" height="14px"></a>
 									<a href="{{ $post->user->link }}"><strong>{{ $post->user->display_name }}</strong></a>
 									{{ $post->presented_date }}
 								</div>
@@ -64,7 +64,7 @@
 								<br>
 								<hr class="my-2">
 								<div class="text-muted">
-									<a href="{{ $discussion->user->link }}"><img src="{{ $discussion->user->avatar_link }}" class="rounded" height="14px"></a>
+									<a href="{{ $discussion->user->link }}"><img src="{{ $discussion->user->avatar_url }}" class="rounded" height="14px"></a>
 									<a href="{{ $discussion->user->link }}"><strong>{{ $discussion->user->display_name }}</strong></a>
 									le {{ $discussion->created_at->format('d/m/Y à H:i:s') }}
 								</div>
@@ -90,7 +90,7 @@
 							<div>
 								<div class="row align-items-center">
 									<div class="col-auto pr-0">
-										<a href="{{ $user->link }}"><img src="{{ $user->avatar_link }}" class="rounded" height="32px"></a>
+										<a href="{{ $user->link }}"><img src="{{ $user->avatar_url }}" class="rounded" height="32px"></a>
 									</div>
 									<div class="col">
 										<div class="d-flex flex-column">

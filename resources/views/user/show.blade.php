@@ -11,7 +11,7 @@
         <div class="col-md-6">
             <div class="card rounded" style="margin-top: 50px">
                 <div class="text-center">
-                    <img src="{{ $user->avatar_link }}" class="img-fluid rounded mb-3" width="100" style="margin-top: -45px;">
+                    <img src="{{ $user->avatar_url }}" class="img-fluid rounded mb-3" width="100" style="margin-top: -45px;">
                     <div>
                         <strong>
                             <big>

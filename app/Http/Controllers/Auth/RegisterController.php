@@ -44,7 +44,7 @@ class RegisterController extends Controller
         $user = User::create([
             'name'         => request()->name,
             'display_name' => request()->name,
-            'shown_role'   => (request()->gender == 'M') ? 'Sucros' : 'Sucrette',
+            'shown_role'   => (request()->gender == 'M') ? 'Double Sucros' : 'Double Sucrette',
             'email'        => request()->email,
             'password'     => Hash::make(request()->password),
             'gender'       => request()->gender,

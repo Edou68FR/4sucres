@@ -119,14 +119,14 @@
                             <div class="row no-gutters account-block mb-3 mb-lg-0">
                                 <div class="col account-details rounded text-lg-right">
                                     <span class="account-username">
-                                        <a href="{{ route('profile') }}">{{ user()->display_name }}</a>
+                                        <a href="{{ route('users.me') }}">{{ user()->display_name }}</a>
                                     </span>
                                     <br>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-power-off mr-2"></i>Déconnexion</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
                                 </div>
                                 <div class="col-auto account-image">
-                                    <img src="{{ user()->avatar_link }}" class="img-fluid rounded">
+                                    <img src="{{ user()->avatar_url }}" class="img-fluid rounded">
                                 </div>
                             </div>
                         @endguest

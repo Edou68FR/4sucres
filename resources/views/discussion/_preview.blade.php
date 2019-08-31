@@ -17,7 +17,7 @@
 
     @if (!$discussion->private)
         <div class="d-none d-lg-block col-auto px-0">
-            <img src="{{ $discussion->user->avatar_link }}" class="rounded" style="width: 50px;">
+            <img src="{{ $discussion->user->avatar_url }}" class="rounded" style="width: 50px;">
         </div>
     @endif
 
@@ -38,7 +38,7 @@
         <div class="col-auto text-small">
             @foreach($discussion->members as $user)
                 @if ($user->id != user()->id)
-                    <a href="{{ $user->link }}"><img src="{{ $user->avatar_link }}" class="img-fluid rounded mr-1" width="16"></a>
+                    <a href="{{ $user->link }}"><img src="{{ $user->avatar_url }}" class="img-fluid rounded mr-1" width="16"></a>
                     <a href="{{ $user->link }}">{{ $user->display_name }}</a>
                 @endif
             @endforeach
@@ -53,7 +53,7 @@
                     <div class="d-none d-lg-block mb-lg-1"><a href="{{ $discussion->latestPost->link }}">{{ $discussion->presented_last_reply_at }}</a></div>
                     <div class="d-inline d-lg-none"><a href="{{ $discussion->latestPost->link }}">{{ $discussion->last_reply_at->diffForHumans() }}</a> par</div>
                     <div class="d-inline d-lg-block">
-                        <a href="{{ $discussion->latestPost->user->link }}"><img src="{{ $discussion->latestPost->user->avatar_link }}" class="img-fluid rounded mr-1" width="16"></a>
+                        <a href="{{ $discussion->latestPost->user->link }}"><img src="{{ $discussion->latestPost->user->avatar_url }}" class="img-fluid rounded mr-1" width="16"></a>
                         <a href="{{ $discussion->latestPost->user->link }}">{{ $discussion->latestPost->user->display_name }}</a>
                     </div>
                 </div>

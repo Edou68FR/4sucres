@@ -36,7 +36,7 @@ class User extends Authenticatable implements ReactsInterface, BannableContract
     protected $guarded = [];
 
     protected $appends = [
-        'avatar_link',
+        'avatar_url',
         'is_birthday',
     ];
 
@@ -82,12 +82,12 @@ class User extends Authenticatable implements ReactsInterface, BannableContract
         return $this->hasOne(VerifyUser::class);
     }
 
-    public function getLinkAttribute()
-    {
-        return route('users.show', $this->name);
-    }
+    // public function getLinkAttribute()
+    // {
+    //     return route('users.show', $this->name);
+    // }
 
-    public function getAvatarLinkAttribute()
+    public function getAvatarUrlAttribute()
     {
         if (config('app.env') === 'local') {
             return url('/img/guest.png');

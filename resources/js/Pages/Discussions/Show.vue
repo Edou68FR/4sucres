@@ -10,7 +10,7 @@
       <div class="flex items-center">
         <div class="flex-none mr-4">
           <inertia-link :href="route('users.show', post.user.name)">
-            <img :src="post.user.avatar_link" :alt="'Avatar de ' + post.user.display_name" class="rounded wh-12">
+            <img :src="post.user.avatar_url" :alt="'Avatar de ' + post.user.display_name" class="rounded wh-12">
           </inertia-link>
         </div>
         <div>

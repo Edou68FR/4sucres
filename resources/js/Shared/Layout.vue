@@ -39,11 +39,11 @@
             <inertia-link :href="route('home')" class="mx-2 nav-link w-full md:w-auto" :class="{ active: route().current('home') }">Accueil</inertia-link>
             <inertia-link :href="route('discussions.index')" class="mx-2 nav-link w-full md:w-auto" :class="{ active: route().current('discussions*') }">Discussions</inertia-link>
             <inertia-link :href="route('search.query')" class="mx-2 nav-link w-full md:w-auto" :class="{ active: route().current('search.query') }">Recherche</inertia-link>
-            <template v-for="static_page in $page.app.static_pages.filter(page => page.position == 1)">
+            <span v-for="static_page in $page.app.static_pages.filter(page => page.position == 1)" v-bind:key="static_page.slug">
               <StaticPageLink :static_page="static_page" class='mx-2 nav-link w-full md:w-auto'></StaticPageLink>
-            </template>
+            </span>
 
-            <inertia-link v-if="$page.auth.user" :href="route('profile')" class="mx-2 md:ml-auto nav-link w-full md:w-auto" :class="{ active: route().current('profile') }">{{ $page.auth.user.display_name }}</inertia-link>
+            <inertia-link v-if="$page.auth.user" :href="route('users.me')" class="mx-2 md:ml-auto nav-link w-full md:w-auto" :class="{ active: route().current('users.me') }">{{ $page.auth.user.display_name }}</inertia-link>
             <inertia-link v-if="$page.auth.user" :href="route('logout')" class="mx-2 nav-link w-full md:w-auto" method="post">Déconnexion</inertia-link>
 
             <inertia-link v-if="!$page.auth.user" :href="route('register')" class="mx-2 md:ml-auto nav-link w-full md:w-auto" :class="{ active: route().current('register') }">Inscription</inertia-link>

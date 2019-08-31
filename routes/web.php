@@ -35,8 +35,11 @@ Route::get('/search', 'SearchController@query')->name('search.query');
 Route::group(['middleware' => 'auth'], function () {
     Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
-    Route::get('/profile', 'UserController@profile')->name('profile');
+    /*
+     * Authenticated
+     */
 
+    Route::get('/me', 'UserController@me')->name('users.me');
     Route::get('/settings', 'UserSettingsController@index')->name('user.settings');
     Route::get('/settings/profile/{name?}', 'UserSettingsController@profile')->name('user.settings.profile');
     Route::put('/settings/profile/{name?}', 'UserSettingsController@updateProfile');
