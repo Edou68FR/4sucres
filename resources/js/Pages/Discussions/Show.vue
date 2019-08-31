@@ -9,14 +9,14 @@
     <div class="card p-4 mb-6" v-for="post in posts.data" :key="post.id">
       <div class="flex items-center">
         <div class="flex-none mr-4">
-          <inertia-link :href="route('user.show', post.user.name)">
+          <inertia-link :href="route('users.show', post.user.name)">
             <img :src="post.user.avatar_link" :alt="'Avatar de ' + post.user.display_name" class="rounded wh-12">
           </inertia-link>
         </div>
         <div>
             <i v-if="post.user.id === discussion.user.id" class="fas fa-crown text-muted" :title="post.user.display_name + ' est l\'auteur de ce topic.'"></i>
             <i v-if="post.user.is_birthday" class="fas fa-birthday-cake text-muted" :title="'C\'est l\'anniversaire de ' + post.user.display_name + ', aujourd\'hui.'"></i>
-            <inertia-link :href="route('user.show', post.user.name)">
+            <inertia-link :href="route('users.show', post.user.name)">
               <strong>{{ post.user.display_name }}</strong>
             </inertia-link>
             <span v-if="post.user.display_name != post.user.name">@{{ post.user.name }}</span>

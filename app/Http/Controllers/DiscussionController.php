@@ -178,7 +178,7 @@ class DiscussionController extends Controller
         return view('welcome', compact('categories', 'sticky_discussions', 'discussions', 'user_has_read'));
     }
 
-    public function show($id, $slug) // Ne pas utiliser Discussion $discussion (pour laisser possible le 410)
+    public function show($id, $slug = null) // Ne pas utiliser Discussion $discussion (pour laisser possible le 410)
     {
         $discussion = Discussion::query()
             ->with('user')

@@ -1,12 +1,15 @@
 <template>
   <layout>
-    <div class="flex items-center justify-center">
-      <SimplePaginator class="text-center" :paginator="_.omit(discussions, 'data')"></SimplePaginator>
-    </div>
 
-    <inertia-link class="btn btn-primary" v-if="$page.auth.user && $page.auth.user.permissions.includes('create discussions')" :href="route('discussions.create')">
-      <i class="fas fa-plus mr-1"></i> Nouvelle discussion
-    </inertia-link>
+    <div>
+        <inertia-link class="float-left btn btn-primary rounded-full px-3 py-2 shadow" v-if="$page.auth.user && $page.auth.user.permissions.includes('create discussions')" :href="route('discussions.create')">
+          <i class="fas fa-plus"></i><span class="hidden ml-1 sm:inline">Nouveau sujet</span>
+        </inertia-link>
+        <inertia-link class="float-right btn btn-tertiary rounded-full px-3 py-2 shadow" v-if="$page.auth.user && $page.auth.user.permissions.includes('create discussions')" :href="route('discussions.create')">
+          <i class="fas fa-sync"></i><span class="hidden ml-1 sm:inline">Actualiser</span>
+        </inertia-link>
+        <SimplePaginator class="text-center" :paginator="_.omit(discussions, 'data')"></SimplePaginator>
+    </div>
 
     <div class="cards my-6">
       <div class="card hoverable py-2 px-4" v-for="discussion in discussions.data" :key="discussion.id" v-on:click="visit($inertia, route('discussions.show', [discussion.id, discussion.slug]), $event)">
@@ -27,7 +30,7 @@
               </div>
               <div class="text-xs">
                 par
-                <inertia-link :href="route('user.show', discussion.user.name)">{{ discussion.user.display_name }}</inertia-link>,
+                <inertia-link :href="route('users.show', discussion.user.name)">{{ discussion.user.display_name }}</inertia-link>,
                 {{ moment(discussion.created_at).calendar() }},
                 <inertia-link :href="route('discussions.categories.index', [discussion.category.id, discussion.category.slug])">{{ discussion.category.name }}</inertia-link>
               </div>
@@ -47,7 +50,7 @@
               <img :src="discussion.latest_post.user.avatar_link" :alt="'Avatar de ' + discussion.latest_post.user.display_name" class="rounded wh-8">
             </div>
             <div class="w-full md:flex-1 truncate">
-              <inertia-link :href="route('user.show', discussion.latest_post.user.name)" class="hidden md:inline">{{ discussion.latest_post.user.display_name }}</inertia-link>
+              <inertia-link :href="route('users.show', discussion.latest_post.user.name)" class="hidden md:inline">{{ discussion.latest_post.user.display_name }}</inertia-link>
               <br class="hidden md:block">
               <inertia-link :href="route('posts.show', discussion.latest_post.id)">
                 <span class="hidden md:inline">il y a</span>

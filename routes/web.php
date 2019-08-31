@@ -1,42 +1,36 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', 'StaticPageController@home')->name('home');
 Route::get('/pages/{slug}', 'StaticPageController@show')->name('static_pages.show');
 
-Route::get('/register', 'Auth\RegisterController@register')->name('register');
-Route::post('/register', 'Auth\RegisterController@submit');
-Route::get('/auth/verify_email/{token}', 'Auth\RegisterController@verify')->name('auth.verify_email');
+/*
+ * Auth
+ */
 
-Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('/password/reset/{token}', 'Auth\ResetPasswordController@reset')->name('password.update');
+Route::group(['namespace' => 'Auth', 'middleware' => 'guest'], function () {
+    Route::get('/register', 'Auth\RegisterController@register')->name('register');
+    Route::post('/register', 'Auth\RegisterController@submit');
+    Route::get('/auth/verify-email/{token}', 'Auth\RegisterController@verify')->name('auth.verify-email');
 
-Route::get('/login', 'Auth\LoginController@login')->name('login');
-Route::post('/login', 'Auth\LoginController@submit');
+    Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('/password/reset/{token}', 'Auth\ResetPasswordController@reset')->name('password.update');
 
-Route::permanentRedirect('/d', '/discussions');
+    Route::get('/login', 'Auth\LoginController@login')->name('login');
+    Route::post('/login', 'Auth\LoginController@submit');
+});
+
+/*
+ * Application
+ */
+
 Route::get('/discussions', 'DiscussionController@index')->name('discussions.index');
-Route::get('/d/c/{category}-{slug}', 'DiscussionController@index')->name('discussions.categories.index');
-
+Route::get('/discussions/category/{category}/{slug?}', 'DiscussionController@index')->name('discussions.categories.index');
+Route::get('/discussions/{id}/{slug?}', 'DiscussionController@show')->name('discussions.show');
+Route::get('/users/{nameOrId}', 'UserController@show')->name('users.show');
+Route::get('/posts/{id}', 'PostController@show')->name('posts.show');
 Route::get('/search', 'SearchController@query')->name('search.query');
-
-Route::get('d/{id}-{slug}', 'DiscussionController@show')->name('discussions.show');
-Route::get('/u/{nameOrId}', 'UserController@show')->name('user.show');
-Route::get('/leaderboard', 'HomeController@leaderboard')->name('leaderboard');
-
-Route::get('/p/{id}', 'PostController@show')->name('posts.show');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
@@ -99,6 +93,10 @@ Route::group(['prefix' => '/api/v0'], function () {
     Route::get('/discussions/{discussion}', 'Api\DiscussionController@show');
 });
 
+/*
+ * Errors
+ */
+
 Route::view('/errors/403', 'errors/403');
 Route::view('/errors/404', 'errors/404');
 Route::view('/errors/410', 'errors/410');
@@ -106,4 +104,18 @@ Route::view('/errors/429', 'errors/429');
 Route::view('/errors/500', 'errors/500');
 Route::view('/errors/503', 'errors/503');
 
+/*
+ * Shortlinks
+ */
+
 Route::get('shortlink/{hashId?}', 'ShortlinkController');
+
+/*
+ * Redirections
+ */
+
+Route::permanentRedirect('/d', '/discussions');
+Route::get('/d/c/{category}-{slug}', 'LegacyRedirectController@discussionCategoryIndex');
+Route::get('d/{id}-{slug}', 'LegacyRedirectController@discussionShow');
+Route::get('/u/{nameOrId}', 'LegacyRedirectController@userShow');
+Route::get('/p/{id}', 'LegacyRedirectController@postShow');

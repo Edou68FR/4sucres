@@ -126,7 +126,7 @@ body.theme-4sucres {
     }
 
     .btn-tertiary {
-        @apply text-blue-600;
+        @apply text-blue-600 bg-white;
     }
 
     .btn-tertiary:hover {
