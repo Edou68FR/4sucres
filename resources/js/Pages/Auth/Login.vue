@@ -1,25 +1,28 @@
 <template>
   <layout>
     <div class="card mx-auto w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4">
-      <div class="mb-3">
-          <div class="text-xs mb-1">
-              Adresse e-mail <span class="text-red-500">*</span>
-          </div>
-          <input type="email" class="form-control w-full" v-model="form.email" :disabled="loading || need_otp" />
-          <div class="text-red-500 mt-1 text-xs font-bold" v-if="errors && errors.email !== undefined">
-              {{ errors.email[0] }}
-          </div>
-      </div>
-      <div class="mb-3">
-          <div class="text-xs mb-1">
-              Mot de passe <span class="text-red-500">*</span>
-          </div>
-          <input type="password" class="form-control w-full" v-model="form.password" :disabled="loading || need_otp" />
-          <div class="text-red-500 mt-1 text-xs font-bold" v-if="errors && errors.password !== undefined">
-              {{ errors.password[0] }}
-          </div>
+      <div v-if="!need_otp">
+        <div class="mb-3">
+            <div class="text-xs mb-1">
+                Adresse e-mail <span class="text-red-500">*</span>
+            </div>
+            <input type="email" class="form-control w-full" v-model="form.email" :disabled="loading" />
+            <div class="text-red-500 mt-1 text-xs font-bold" v-if="errors && errors.email !== undefined">
+                {{ errors.email[0] }}
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="text-xs mb-1">
+                Mot de passe <span class="text-red-500">*</span>
+            </div>
+            <input type="password" class="form-control w-full" v-model="form.password" :disabled="loading" />
+            <div class="text-red-500 mt-1 text-xs font-bold" v-if="errors && errors.password !== undefined">
+                {{ errors.password[0] }}
+            </div>
+        </div>
       </div>
       <div class="mb-3" v-if="need_otp">
+          <img class="mx-auto" src="/img/settings/google_2fa.png">
           <div class="text-xs mb-1">
               OTP <span class="text-red-500">*</span>
           </div>

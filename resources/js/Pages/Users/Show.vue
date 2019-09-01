@@ -3,7 +3,7 @@
     <div class="card p-4 mb-6">
       <div class="flex flex-wrap justify-center items-center">
         <img :src="user.avatar_url" class="rounded wh-24 mb-4 sm:mb-0">
-        <div class="w-full text-center sm:text-left sm:flex-1 sm:ml-5">
+        <div class="w-full text-center sm:text-left sm:w-auto sm:ml-5">
           <div class="mb-2">
             <span class="font-bold">{{ user.display_name }}</span>
             <span v-if="user.display_name != user.name">@{{ user.name }}</span>
@@ -21,18 +21,20 @@
         </div>
       </div>
 
+      <hr>
+
       <div v-if="bans.length">
-        <hr>
         <div class="font-bold mb-2">Sanctions :</div>
-        <div class="card p-2" v-for="ban in bans">
-          <span class="font-bold text-red-600">Bannissement {{ ban.expired_at ? 'définitif' : 'temporaire' }}</span><br>
+        <div class="card p-2 mb-1" v-for="ban in bans">
+          <span v-if="ban.created_at == ban.expired_at" class="font-bold text-yellow-600">Avertissement</span>
+          <span v-else class="font-bold text-red-600">Bannissement {{ ban.expired_at ? 'temporaire' : 'définitif' }}</span>
+          <br>
           <span v-if="ban.comment">{{ ban.comment }}</span><br>
           <span class="text-xs text-muted">Sanctionné le {{ moment(ban.created_at).format('L') }}</span>
         </div>
       </div>
 
       <div v-if="achievements.length">
-        <hr>
         <div class="font-bold mb-2">Succès :</div>
         <div class="flex flex-wrap -m-1">
           <div class="card w-full sm:w-auto p-2 m-1" v-for="achievement in achievements" :title="achievement.name + ' : ' + achievement.description + ' (' + moment(achievement.unlocked_at).format('L') + ')'">

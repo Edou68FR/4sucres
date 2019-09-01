@@ -57,7 +57,7 @@
                                         <strong class="text-danger">Tu dois configurer ton application Google Authenticator maintenant avant de continuer, <span class="spoiler">sinon tu ne pourras plus te connecter gros singe</span>.</strong><br>
                                     </p>
                                 </div>
-                                <div class="d-none d-md-flex col-md-4 pr-1">
+                                <div class="col-md-4 pr-1">
                                     <img src="{{ $google_2fa['qr_image'] }}" class="img-fluid img-thumbnail"><br>
                                 </div>
                             </div>
