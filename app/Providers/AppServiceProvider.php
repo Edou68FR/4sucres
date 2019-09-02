@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
             }
 
             $view
-                ->with('presence_counter', User::online()->pluck('name')->toArray())
+                ->with('presence', User::online()->pluck('name')->toArray())
                 ->with('static_pages', StaticPage::where('position', '!=', StaticPage::POSITION_HIDDEN)->get())
                 ->with('body_classes', 'theme-4sucres');
 
@@ -59,7 +59,7 @@ class AppServiceProvider extends ServiceProvider
                     'user' => user() ? [
                         'id'            => user()->id,
                         'display_name'  => user()->display_name,
-                        'avatar_url'   => user()->avatar_url,
+                        'avatar_url'    => user()->avatar_url,
                         'roles'         => user()->roles->pluck('name'), // TODO: Cache
                         'permissions'   => user()->getPermissionsViaRoles()->pluck('name'), // TODO: Cache
                     ] : null,

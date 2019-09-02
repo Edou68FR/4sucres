@@ -9,9 +9,9 @@
                 <span class="btn btn-tertiary disabled" disabled><i class="fas fa-angle-double-left"></i></span>
                 <span class="btn btn-tertiary disabled" disabled><i class="fas fa-angle-left"></i></span>
             </template>
-            <!-- <div class="mx-auto text-xs">
+            <span class="mx-2 text-xs text-muted">
                 {{ paginator.current_page }} / {{ paginator.last_page }}
-            </div> -->
+            </span>
             <template v-if="paginator.current_page < paginator.last_page">
                 <inertia-link preserve-scroll :href="paginator.next_page_url" class="btn btn-tertiary"><i class="fas fa-angle-right"></i></inertia-link>
                 <inertia-link preserve-scroll :href="paginator.last_page_url" class="btn btn-tertiary"><i class="fas fa-angle-double-right"></i></inertia-link>

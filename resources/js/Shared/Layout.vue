@@ -3,7 +3,7 @@
     <header>
       <div class="container mx-auto px-4">
         <div class="flex flex-wrap items-center justify-between">
-          <inertia-link :href="route('home')"><img src="/img/4sucres_white.png" class="h-6" /></inertia-link>
+          <inertia-link :href="route('discussions.index')"><img src="/img/4sucres_white.png" class="h-6" /></inertia-link>
           <div class="ml-auto">
               <template v-if="$page.auth.user">
                 <div class="nav-fa-stack fa-stack">

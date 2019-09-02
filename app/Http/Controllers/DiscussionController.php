@@ -93,9 +93,7 @@ class DiscussionController extends Controller
     {
         $categories = Category::viewables();
 
-        if ($category && !in_array($category->id, $categories->pluck('id')->toArray())) {
-            return abort(403);
-        }
+        abort_if($category && !in_array($category->id, $categories->pluck('id')->toArray()), 403);
 
         $discussions = Discussion::query()
             ->whereIn('category_id', $categories->pluck('id'))
@@ -134,7 +132,7 @@ class DiscussionController extends Controller
             $user_has_read = [];
         }
 
-        return Inertia::render('Discussions/Index', compact('categories', 'discussions', 'user_has_read'));
+        return Inertia::render('Discussions/Index', compact('categories', 'category', 'discussions', 'user_has_read'));
     }
 
     public function subscriptions()

@@ -1,13 +1,34 @@
 <template>
   <layout>
-    <div class="card p-4 mb-6">
-      <span class="font-bold">{{ discussion.title }}</span>
-      <hr>
-      <paginator class="mx-auto" :paginator="_.omit(posts, 'data')"></paginator>
+    <div class="flex items-center mb-6">
+      <div class="card border py-1 px-2">
+          <inertia-link :href="route('discussions.index')">
+            Discussions
+          </inertia-link>
+          <span class="text-xs text-muted mx-1">/</span>
+          <inertia-link :href="route('discussions.categories.index', [discussion.category.id, discussion.category.slug])">
+            {{ discussion.category.name }}
+          </inertia-link>
+          <span class="text-xs text-muted mx-1">/</span>
+          <span>{{ discussion.title }}</span>
+      </div>
+
+      <div class="ml-auto">
+        <template v-if="$page.auth.user">
+          <button class="mx-1 btn btn-secondary" v-on:click="reload">
+            <i class="far fa-star"></i>
+          </button>
+        </template>
+        <button class="mx-1 btn btn-secondary" v-on:click="reload">
+          <i class="fas fa-sync"></i>
+        </button>
+      </div>
     </div>
 
-    <div class="card p-4 mb-6" v-for="post in posts.data" :key="post.id">
-      <div class="flex items-center">
+    <simple-paginator class="text-center my-6" :paginator="_.omit(posts, 'data')"></simple-paginator>
+
+    <div class="card mb-6" v-for="post in posts.data" :key="post.id">
+      <div class="flex items-center p-2">
         <div class="flex-none mr-4">
           <inertia-link :href="route('users.show', post.user.name)">
             <img :src="post.user.avatar_url" :alt="'Avatar de ' + post.user.display_name" class="rounded wh-12">
@@ -35,23 +56,26 @@
           </template>
         </div>
       </div>
-      <hr>
-      <div v-html="post.presented_body" class="post"></div>
+      <hr class="m-0">
+      <div v-html="post.presented_body" class="post p-4"></div>
     </div>
 
-  <div class="card p-4 mb-6">
-    <paginator class="mx-auto" :paginator="_.omit(posts, 'data')"></paginator>
-  </div>
-
+    <simple-paginator class="text-center" :paginator="_.omit(posts, 'data')"></simple-paginator>
   </layout>
 </template>
 
 <script>
 import Layout from "@/Shared/Layout";
 import Paginator from '@/Shared/Components/Paginator';
+import SimplePaginator from '@/Shared/Components/SimplePaginator';
 
 export default {
-  components: { Layout, Paginator },
-  props:[ "discussion", "posts" ],
+  components: { Layout, Paginator, SimplePaginator },
+  props: [ "discussion", "posts" ],
+  methods: {
+    reload() {
+      this.$inertia.reload({ preserveScroll: true });
+    }
+  }
 };
 </script>

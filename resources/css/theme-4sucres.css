@@ -29,7 +29,7 @@ body.theme-4sucres {
     }
 
     a.accent:visited {
-        @apply text-blue-600 font-mono;
+        /* @apply line-through; */
     }
 
     .text-muted a {
@@ -72,12 +72,12 @@ body.theme-4sucres {
     @screen md {
         .nav-link.active::after {
             @apply absolute;
-            background: #29d;
+            background: #1890ff;
             left: 0; right: 0;
             bottom: -8px;
             height: 2px;
             content: '';
-            box-shadow: 0 -4px 10px #29d, 0 -1px 5px #29d;
+            box-shadow: 0 -4px 10px #1890ff, 0 -1px 5px #1890ff;
         }
     }
 
@@ -99,38 +99,44 @@ body.theme-4sucres {
 
     .nav-fa-stack.active {
         :first-child::before {
-            color: #29d;
+            color: #1890ff;
         }
     }
 
     .btn {
-        @apply text-gray-700;
+        @apply text-gray-700 rounded;
     }
 
     .btn-primary {
-        @apply text-white;
-        background: #29d;
+        @apply text-white border shadow;
+        background: #1890ff;
+        border-color: #1890ff;
     }
 
     .btn-primary:hover {
-        @apply text-white;
-        background: #2ad;
+        @apply text-white border;
+        background: #40a9ff;
+        border-color: #40a9ff;
     }
 
     .btn-secondary {
-        @apply bg-blue-100 text-blue-600;
+        @apply bg-white border border-gray-200 shadow;
     }
 
     .btn-secondary:hover {
-        @apply bg-blue-200 text-blue-600;
+        @apply;
+        color: #1890ff;
+        border-color: #1890ff;
     }
 
     .btn-tertiary {
-        @apply text-blue-600 bg-white;
+        @apply bg-white;
+        color: #1890ff;
     }
 
     .btn-tertiary:hover {
-        @apply bg-blue-100 text-blue-600;
+        @apply bg-blue-100;
+        color: #1890ff;
     }
 
     .btn-tertiary.disabled, .btn-tertiary.disabled:hover {
@@ -174,7 +180,7 @@ body.theme-4sucres {
     }
 
     .badge-primary {
-        background-color: #29d;
+        background-color: #1890ff;
     }
 
     blockquote {

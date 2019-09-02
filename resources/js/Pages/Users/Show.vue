@@ -1,5 +1,19 @@
 <template>
   <layout>
+    <div class="flex items-center mb-6">
+      <div class="card border py-1 px-2">
+          <span>Membres</span>
+          <span class="text-xs text-muted mx-1">/</span>
+          <span>{{ user.name }}</span>
+      </div>
+      <div class="ml-auto" v-if="$page.auth.user">
+        <inertia-link v-if="user.id != $page.auth.user.id" :href="route('private_discussions.create', [user.id, user.name])" class="btn btn-primary">Envoyer un message privé</inertia-link>
+        <inertia-link v-if="user.id == $page.auth.user.id" :href="route('user.settings.profile')" class="btn btn-secondary">Paramètres</inertia-link>
+          <!-- <inertia-link v-if="$page.auth.user.permissions.includes('impersonate users')" :href="route('user.delete', user.name)" class="btn btn-secondary">Imiter</inertia-link>
+          <inertia-link v-if="$page.auth.user.permissions.includes('delete users')" :href="route('user.delete', user.name)" class="btn btn-secondary">Supprimer l'utilisateur</inertia-link>  -->
+      </div>
+    </div>
+
     <div class="card p-4 mb-6">
       <div class="flex flex-wrap justify-center items-center">
         <img :src="user.avatar_url" class="rounded wh-24 mb-4 sm:mb-0">
@@ -47,13 +61,6 @@
         </div>
       </div>
     </div>
-
-      <div class="text-right" v-if="$page.auth.user">
-          <a v-if="user.id == $page.auth.user.id" :href="route('user.settings.profile')" class="btn btn-tertiary">Paramètres</a>
-          <a v-if="user.id != $page.auth.user.id" :href="route('private_discussions.create', [user.id, user.name])" class="btn btn-tertiary">Envoyer un message privé</a>
-          <a v-if="$page.auth.user.permissions.includes('impersonate users')" :href="route('user.delete', user.name)" class="btn btn-tertiary">Imiter</a>
-          <a v-if="$page.auth.user.permissions.includes('delete users')" :href="route('user.delete', user.name)" class="btn btn-tertiary">Supprimer l'utilisateur</a>
-      </div>
   </layout>
 </template>
 

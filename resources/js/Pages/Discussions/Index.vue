@@ -1,18 +1,28 @@
 <template>
   <layout>
-
-    <div>
-        <inertia-link class="float-left btn btn-primary rounded-full px-3 py-2 shadow" v-if="$page.auth.user && $page.auth.user.permissions.includes('create discussions')" :href="route('discussions.create')">
+    <div class="flex items-center mb-6">
+      <div class="card border py-1 px-2">
+        <template v-if="category">
+          <inertia-link :href="route('discussions.index')">
+            Discussions
+          </inertia-link>
+          <span class="text-xs text-muted mx-1">/</span>
+          <span>{{ category.name }}</span>
+        </template>
+        <span v-else>Discussions</span>
+      </div>
+      <div class="ml-auto">
+        <inertia-link class="mx-1 btn btn-primary" v-if="$page.auth.user && $page.auth.user.permissions.includes('create discussions')" :href="route('discussions.create')">
           <i class="fas fa-plus"></i><span class="hidden ml-1 sm:inline">Nouveau sujet</span>
         </inertia-link>
-        <inertia-link class="float-right btn btn-tertiary rounded-full px-3 py-2 shadow" v-if="$page.auth.user && $page.auth.user.permissions.includes('create discussions')" :href="route('discussions.create')">
-          <i class="fas fa-sync"></i><span class="hidden ml-1 sm:inline">Actualiser</span>
-        </inertia-link>
-        <SimplePaginator class="text-center" :paginator="_.omit(discussions, 'data')"></SimplePaginator>
+        <button class="mx-1 btn btn-secondary" v-on:click="reload">
+          <i class="fas fa-sync"></i>
+        </button>
+      </div>
     </div>
 
     <div class="cards my-6">
-      <div class="card hoverable py-2 px-4" v-for="discussion in discussions.data" :key="discussion.id" v-on:click="visit($inertia, route('discussions.show', [discussion.id, discussion.slug]), $event)">
+      <div class="card hoverable py-2 px-4" v-for="discussion in discussions.data" :key="discussion.id" v-on:click="visit(route('discussions.show', [discussion.id, discussion.slug]), $event)">
         <div class="flex items-center">
           <div class="mr-4 flex-none text-base-folder">
               <i class="fas fa-folder"
@@ -72,10 +82,13 @@ import SimplePaginator from '@/Shared/Components/SimplePaginator';
 
 export default {
   components: { Layout, SimplePaginator },
-  props:[ "categories", "discussions", "user_has_read" ],
-  methods : {
-    visit($inertia, url, $event) {
-      if (!$event.srcElement.matches('a')) $inertia.visit(url);
+  props: [ "categories", "category", "discussions", "user_has_read" ],
+  methods: {
+    visit(url, $event) {
+      if (!$event.srcElement.matches('a')) this.$inertia.visit(url);
+    },
+    reload() {
+      this.$inertia.reload({ preserveScroll: true });
     }
   }
 };
