@@ -184,7 +184,7 @@ body.theme-4sucres {
     }
 
     blockquote {
-        @apply bg-white shadow border border-gray-300;
+        @apply bg-white shadow border border-gray-300 p-2 mb-1;
     }
 
     .text-base-folder {
