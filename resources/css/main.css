@@ -3,6 +3,8 @@
 
 @import 'overlayscrollbars/css/OverlayScrollbars.css';
 @import 'nprogress';
+@import 'animate.css';
+@import 'vue-popperjs/dist/vue-popper.css';
 
 @import 'fonts';
 @import 'base';

@@ -850,9 +850,10 @@ alphanum-sort@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
 
-animate.css@^3.7.0, animate.css@latest:
+animate.css@^3.7.2, animate.css@latest:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.7.2.tgz#e73e0d50e92cb1cfef1597d9b38a9481020e08ea"
+  integrity sha512-0bE8zYo7C0KvgOYrSVfrzkbYk6IOTVPNqkiHg2cbyF4Pq/PXzilz4BRWA3hwEUBoMp5VBgrC29lQIZyhRWdBTw==
 
 ansi-colors@^3.0.0:
   version "3.2.4"
@@ -6139,6 +6140,13 @@ vue-loader@^15.4.2:
     loader-utils "^1.1.0"
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
+
+vue-popperjs@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/vue-popperjs/-/vue-popperjs-2.1.0.tgz#5dbf5eb053c754c8c9b11a31261aa0e0006b2bd4"
+  integrity sha512-LfcMfndjzDBHUaQhXpck1qlhXgsz8EpE56SHBQOVkeia2xFyxv7opoGzvxdcZKhfb9viZFj58oGWzE76yX73QA==
+  dependencies:
+    popper.js "^1.15.0"
 
 vue-style-loader@^4.1.0:
   version "4.1.2"

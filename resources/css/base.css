@@ -1,5 +1,25 @@
-hr {
-    @apply my-4;
+body {
+    @apply ml-16;
+}
+
+aside {
+    @apply -ml-16 w-16 min-h-screen fixed top-0 py-2;
+}
+
+.aside-brand {
+    @apply text-center px-1 py-4;
+}
+
+.aside-nav {
+    @apply text-center px-1 py-2;
+}
+
+.aside-nav > li {
+    @apply block text-center;
+}
+
+.aside-nav > li > a, .aside-nav > li button {
+    @apply block px-1 py-2;
 }
 
 header {
@@ -77,6 +97,7 @@ footer {
     border-radius: .25rem;
     -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    @apply bg-gray-500;
 }
 
 .sticker-inline {
@@ -103,7 +124,11 @@ blockquote,
 }
 
 * {
-    transition: all ease-in-out .2s;
+    /* transition: all ease-in-out .2s;
     transition-delay: 0ms;
-    transition-property: background, color, text-shadow, shadow, border-color;
+    transition-property: background, color, text-shadow, shadow, border-color; */
+}
+
+.popper__arrow {
+    transition: none !important;
 }

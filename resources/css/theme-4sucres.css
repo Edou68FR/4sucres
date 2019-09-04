@@ -1,8 +1,36 @@
 body.theme-4sucres {
-    @apply bg-gray-200 text-gray-700;
+    @apply text-gray-700;
 }
 
 .theme-4sucres {
+    aside {
+        background: #1F2531;
+    }
+
+    .aside-nav {
+        @apply text-center py-2 px-0;
+    }
+
+    .aside-nav > li {
+        @apply block text-center;
+    }
+
+    .aside-nav > li > a, .aside-nav > li button {
+        @apply block text-center w-full;
+        color: #BBC9D9;
+    }
+
+    .aside-nav > li > a:hover, .aside-nav > li button:hover {
+        color: #EEF4FE;
+        background: rgba(0, 0, 0, .5);
+    }
+
+    .aside-nav > li > a.active, .aside-nav > li button.active,
+    .aside-nav > li > a:focus, .aside-nav > li button:focus {
+        color: #EEF4FE;
+        background: rgba(0, 0, 0, .5);
+    }
+
     hr {
         @apply bg-gray-300;
         height: 1px;
@@ -189,5 +217,22 @@ body.theme-4sucres {
 
     .text-base-folder {
         color: #FBC02D;
+    }
+
+    .popper {
+        @apply rounded shadow-lg w-64 p-0 text-left;
+        background-color: rgb(255, 255, 255);
+    }
+
+    .popper ul {
+        @apply m-4;
+    }
+
+    .popper ul>li {
+        @apply w-full mb-2;
+    }
+
+    .popper ul>li>a {
+        @apply block w-full;
     }
 }

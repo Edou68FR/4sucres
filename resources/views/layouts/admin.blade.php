@@ -188,21 +188,6 @@
             @version('compact') &copy; 2019<br>
             <br>
             <strong>4sucres.org</strong>, parce qu'à 2 on était pas assez.<br>
-            {{ $presence_counter }} {{ str_plural('membre', $presence_counter) }} {{ str_plural('actif', $presence_counter) }} <span class="mx-1">&mdash;</span> Temps d'exécution : {{ round((microtime(true) - LARAVEL_START), 3) }} s<br>
-            @foreach ($static_pages->where('position', \App\Models\StaticPage::POSITION_FOOTER) as $static_page)
-                @switch($static_page->type)
-                    @case (\App\Models\StaticPage::TYPE_CONTENT)
-                        <a href="{{ route('static_pages.show', $static_page->slug) }}">{{ $static_page->name }}</a>
-                    @break
-                    @case (\App\Models\StaticPage::TYPE_REDIRECT)
-                        <a href="{{ $static_page->href }}">{{ $static_page->name }}</a>
-                    @break
-                    @case (\App\Models\StaticPage::TYPE_REDIRECT_BLANK)
-                        <a href="{{ $static_page->href }}" target="_blank">{{ $static_page->name }}</a>
-                    @break
-                @endswitch
-                @if (!$loop->last) <span class="mx-1">&mdash;</span> @endif
-            @endforeach
         </footer>
     </div>
 

@@ -60,6 +60,7 @@ class AppServiceProvider extends ServiceProvider
                         'id'            => user()->id,
                         'display_name'  => user()->display_name,
                         'avatar_url'    => user()->avatar_url,
+                        'email'         => user()->email,
                         'roles'         => user()->roles->pluck('name'), // TODO: Cache
                         'permissions'   => user()->getPermissionsViaRoles()->pluck('name'), // TODO: Cache
                     ] : null,

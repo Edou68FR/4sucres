@@ -15,10 +15,14 @@ Object.defineProperty(Vue.prototype, 'axios', { value: axios });
 
 Object.defineProperty(Vue.prototype, 'route', { value: route });
 
+Vue.prototype.asideAnimation = { value: true };
+
 import { InertiaApp } from '@inertiajs/inertia-vue'
 Vue.use(InertiaApp)
 
 const app = document.getElementById('app')
+
+
 
 new Vue({
   render: h => h(InertiaApp, {
