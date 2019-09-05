@@ -62,7 +62,7 @@
                 <div class="popper">
                   <template v-if="$page.auth.user">
                     <div class="flex items-center px-4 py-4">
-                      <img :src="$page.auth.user.avatar_url" :alt="'Avatar de ' + $page.auth.user.name" class="rounded-full h-10 shadow-lg">
+                      <img :src="$page.auth.user.avatar_url" :alt="'Avatar de ' + $page.auth.user.name" class="rounded wh-8 shadow-lg">
                       <div class="ml-2 flex-1">
                         <span class="font-bold">{{ $page.auth.user.display_name }}</span><br>
                         <span class="text-xs text-muted">{{ $page.auth.user.email }}</span>
@@ -83,8 +83,8 @@
                   </template>
                 </div>
                 <button slot="reference">
-                  <img v-if="$page.auth.user" :src="$page.auth.user.avatar_url" :alt="'Avatar de ' + $page.auth.user.name" class="mx-auto rounded-full h-8">
-                  <img v-else src="/img/guest.png" alt="Avatar Invité" class="mx-auto rounded-full h-8">
+                  <img v-if="$page.auth.user" :src="$page.auth.user.avatar_url" :alt="'Avatar de ' + $page.auth.user.name" class="mx-auto rounded wh-8">
+                  <img v-else src="/img/guest.png" alt="Avatar Invité" class="mx-auto rounded wh-8">
                 </button>
               </popper>
             </li>

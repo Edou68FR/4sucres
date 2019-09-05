@@ -31,11 +31,6 @@ body.theme-4sucres {
         background: rgba(0, 0, 0, .5);
     }
 
-    hr {
-        @apply bg-gray-300;
-        height: 1px;
-    }
-
     .text-muted {
         @apply text-gray-500;
     }
@@ -133,28 +128,27 @@ body.theme-4sucres {
 
     .btn {
         @apply text-gray-700 rounded;
+        transition: all .2s ease 0s;
     }
 
     .btn-primary {
-        @apply text-white border shadow;
-        background: #1890ff;
-        border-color: #1890ff;
+        @apply text-white shadow-md;
+        background: #3D81FC;
     }
 
     .btn-primary:hover {
-        @apply text-white border;
-        background: #40a9ff;
-        border-color: #40a9ff;
+        @apply text-white shadow-lg;
+        background: rgb(87, 148, 255);
     }
 
     .btn-secondary {
-        @apply bg-white border border-gray-200 shadow;
+        @apply bg-white shadow-md;
+        color: rgb(56, 128, 255);
     }
 
     .btn-secondary:hover {
-        @apply;
-        color: #1890ff;
-        border-color: #1890ff;
+        @apply shadow-lg;
+        color: rgb(97, 154, 255);
     }
 
     .btn-tertiary {
@@ -176,27 +170,23 @@ body.theme-4sucres {
     }
 
     .cards {
-        @apply shadow rounded;
-
         .card {
-            @apply rounded-none shadow-none border-b border-gray-300;
-        }
-
-        .card:first-child {
-            @apply rounded-t;
+            @apply rounded-none shadow-none border-b;
+            border-color: #EBEDF3;
         }
 
         .card:last-child {
-            @apply rounded-b border-b-0;
-        }
-
-        .card:nth-child(even) {
-            @apply bg-gray-100;
+            @apply border-b-0;
         }
     }
 
+    .hoverable {
+        transition: all .2s ease 0s;
+    }
+
     .hoverable:hover {
-        @apply bg-gray-200 !important;
+        @apply bg-gray-100;
+        transform: scale(1.01);
     }
 
     .badge {

@@ -1,19 +1,19 @@
 <template>
   <layout>
-    <div class="flex items-center mb-6">
-      <div class="card border py-1 px-2">
+    <div class="flex mb-6">
+      <div class="flex-grow m-w-0 page-title">
         <template v-if="category">
           <inertia-link :href="route('discussions.index')">
             Discussions
           </inertia-link>
-          <span class="text-xs text-muted mx-1">/</span>
+          <span class="text-muted mx-2">/</span>
           <span>{{ category.name }}</span>
         </template>
         <span v-else>Discussions</span>
       </div>
-      <div class="ml-auto">
+      <div class="flex-none">
         <inertia-link class="mx-1 btn btn-primary" v-if="$page.auth.user && $page.auth.user.permissions.includes('create discussions')" :href="route('discussions.create')">
-          <i class="fas fa-plus"></i><span class="hidden ml-1 sm:inline">Nouveau sujet</span>
+          <i class="inline-block sm:hidden fas fa-plus"></i><span class="hidden sm:inline">Nouvelle discussion</span>
         </inertia-link>
         <button class="mx-1 btn btn-secondary" v-on:click="reload">
           <i class="fas fa-sync"></i>
@@ -21,8 +21,15 @@
       </div>
     </div>
 
-    <div class="cards my-6">
-      <div class="card hoverable py-2 px-4" v-for="discussion in discussions.data" :key="discussion.id" v-on:click="visit(route('discussions.show', [discussion.id, discussion.slug]), $event)">
+    <ul class="tablike-nav">
+      <li class="active">Tout voir</li>
+      <li>Catégorie <i class="ml-1 fas fa-caret-down"></i></li>
+      <li>Mes discussions</li>
+      <li>Suivies</li>
+    </ul>
+
+    <div class="cards mb-6 -mx-6 sm:mx-auto">
+      <div class="card hoverable px-4 py-2" v-for="discussion in discussions.data" :key="discussion.id" v-on:click="visit(route('discussions.show', [discussion.id, discussion.slug]), $event)">
         <div class="flex items-center">
           <div class="mr-4 flex-none text-base-folder">
               <i class="fas fa-folder"

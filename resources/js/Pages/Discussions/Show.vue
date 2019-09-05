@@ -1,23 +1,25 @@
 <template>
   <layout>
-    <div class="flex items-center mb-6">
-      <div class="card border py-1 px-2">
-          <inertia-link :href="route('discussions.index')">
-            Discussions
-          </inertia-link>
-          <span class="text-xs text-muted mx-1">/</span>
-          <inertia-link :href="route('discussions.categories.index', [discussion.category.id, discussion.category.slug])">
-            {{ discussion.category.name }}
-          </inertia-link>
-          <span class="text-xs text-muted mx-1">/</span>
-          <span>{{ discussion.title }}</span>
+    <div class="flex justify-center flex-wrap sm:flex-no-wrap mb-6">
+      <div class="flex-grow m-w-0 page-title mb-3">
+        <inertia-link :href="route('discussions.index')">
+          Discussions
+        </inertia-link>
+        <span class="text-xs text-muted mx-1">/</span>
+        <inertia-link :href="route('discussions.categories.index', [discussion.category.id, discussion.category.slug])">
+          {{ discussion.category.name }}
+        </inertia-link>
+        <span class="text-xs text-muted mx-1">/</span>
+        <span>{{ discussion.title }}</span>
       </div>
-
-      <div class="ml-auto">
+      <div class="flex-none">
         <template v-if="$page.auth.user">
-          <button class="mx-1 btn btn-secondary" v-on:click="reload">
+          <inertia-link class="mx-1 btn btn-primary" href="#">
+            <i class="inline-block sm:hidden fas fa-plus"></i><span class="hidden sm:inline">Répondre</span>
+          </inertia-link>
+          <inertia-link class="mx-1 btn btn-secondary" :href="route('discussions.unsubscribe', [discussion.id, discussion.slug])">
             <i class="far fa-star"></i>
-          </button>
+          </inertia-link>
         </template>
         <button class="mx-1 btn btn-secondary" v-on:click="reload">
           <i class="fas fa-sync"></i>
@@ -25,19 +27,25 @@
       </div>
     </div>
 
+    <hr>
+
     <simple-paginator class="text-center my-6" :paginator="_.omit(posts, 'data')"></simple-paginator>
 
-    <div class="cards my-6">
+    <div class="cards my-6 -mx-6 sm:mx-auto">
       <div class="card" v-for="post in posts.data" :key="post.id">
         <div class="flex p-4">
-          <div class="flex-none mr-4">
+          <div class="hidden sm:block flex-none mr-4">
             <inertia-link :href="route('users.show', post.user.name)">
               <img :src="post.user.avatar_url" :alt="'Avatar de ' + post.user.display_name" class="rounded wh-10 mt-1">
             </inertia-link>
           </div>
-          <div class="flex-1">
+          <div class="flex-1 m-w-0">
             <div class="flex mb-4">
                 <div>
+                  <inertia-link :href="route('users.show', post.user.name)">
+                    <img :src="post.user.avatar_url" :alt="'Avatar de ' + post.user.display_name" class="rounded inline sm:hidden wh-6 mt-1">
+                  </inertia-link>
+
                   <i v-if="post.user.id === discussion.user.id" class="fas fa-crown text-muted" :title="post.user.display_name + ' est l\'auteur de ce topic.'"></i>
                   <i v-if="post.user.is_birthday" class="fas fa-birthday-cake text-muted" :title="'C\'est l\'anniversaire de ' + post.user.display_name + ', aujourd\'hui.'"></i>
                   <inertia-link :href="route('users.show', post.user.name)">

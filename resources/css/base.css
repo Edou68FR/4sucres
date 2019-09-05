@@ -3,7 +3,7 @@ body {
 }
 
 aside {
-    @apply -ml-16 w-16 min-h-screen fixed top-0 py-2;
+    @apply -ml-16 w-16 fixed top-0 bottom-0 py-2;
 }
 
 .aside-brand {
@@ -76,7 +76,7 @@ footer {
     word-break: break-word;
 
     img {
-        max-width: 300px;
+        max-width: 270px;
         max-height: 200px;
         vertical-align: baseline;
         display: inline;
@@ -131,4 +131,40 @@ blockquote,
 
 .popper__arrow {
     transition: none !important;
+}
+
+.page-title {
+    @apply font-bold text-xl;
+}
+
+.tablike-nav {
+    @apply -mx-1 mb-2 relative;
+
+    > li {
+        @apply mx-1 relative;
+        display: inline;
+        color: #9D9BB1;
+    }
+
+    > li.active {
+        color: #272A2F;
+    }
+
+    > li.active::after {
+        @apply absolute z-10;
+        background: #272A2F;
+        left: 0; right: 0;
+        bottom: -8px;
+        height: 2px;
+        content: '';
+    }
+}
+
+.tablike-nav::after {
+    @apply absolute;
+    background: #E8EBF1;
+    left: 0.25rem; right: 0.25rem;
+    bottom: -6px;
+    height: 1px;
+    content: '';
 }
