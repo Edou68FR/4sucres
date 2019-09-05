@@ -186,7 +186,7 @@ body.theme-4sucres {
 
     .hoverable:hover {
         @apply bg-gray-100;
-        transform: scale(1.01);
+        /* transform: scale(1.01); */
     }
 
     .badge {
@@ -201,6 +201,10 @@ body.theme-4sucres {
         background-color: #1890ff;
     }
 
+    .badge-danger {
+        background-color: #F45454;
+    }
+
     blockquote {
         @apply bg-white shadow border border-gray-300 p-2 mb-1;
     }
@@ -210,7 +214,7 @@ body.theme-4sucres {
     }
 
     .popper {
-        @apply rounded shadow-lg w-64 p-0 text-left;
+        @apply rounded shadow-xl w-64 p-0 text-left;
         background-color: rgb(255, 255, 255);
     }
 

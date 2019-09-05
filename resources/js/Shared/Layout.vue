@@ -4,7 +4,7 @@
       <div class="flex-start flex-grow">
         <div class="aside-brand">
           <inertia-link :href="route('discussions.index')">
-            <img src="/img/4sucres_alt_glitched.png" alt="Logo 4sucres.org" class="mx-auto h-6">
+            <img src="/img/icons/apple-touch-icon-120x120.png" alt="Logo 4sucres.org" class="mx-auto h-10">
           </inertia-link>
         </div>
         <ul class="aside-nav">
@@ -16,8 +16,44 @@
       <div class="flex-end">
         <ul class="aside-nav">
           <template v-if="$page.auth.user">
-            <li><inertia-link :href="route('home')" :class="{ active: route().current('notifications') }"><i class="fas fa-bell"></i></inertia-link></li>
-            <li><inertia-link :href="route('home')"><i class="fas fa-envelope"></i></inertia-link></li>
+            <li>
+              <popper
+              trigger="click"
+              :options="{ placement: 'right-end', modifiers: {preventOverflow :{ boundariesElement: 'window'  }}}">
+              <div class="popper">
+                <template v-if="$page.auth.user.notifications.length">
+                  <ul>
+                    <li v-for="(notification) in $page.auth.user.notifications.slice(0, 7)" v-bind:key="notification.id">
+                      <inertia-link :href="route('notifications.show', notification.id)">
+                        <div v-html="notification.data.html"></div>
+                        <span class="text-xs text-muted">{{ moment(notification.created_at).calendar() }}</span>
+                      </inertia-link>
+                    </li>
+                  </ul>
+                  <hr>
+                  <ul>
+                    <li><inertia-link :href="route('notifications.index')">Voir tout</inertia-link></li>
+                    <li><inertia-link :href="route('notifications.clear')">Tout marquer comme lu</inertia-link></li>
+                  </ul>
+                </template>
+                <div class="p-4 text-center" v-else>
+                  <img src="/svg/sucre_sad.svg" class="mx-auto h-24 mb-4">
+                  Aucune notification
+                </div>
+              </div>
+              <button class="relative" slot="reference">
+                <i class="fas fa-bell"></i>
+                <span v-if="$page.auth.user.notifications.length" class="absolute badge badge-danger" style="bottom: .25rem; right: .75rem;">{{ $page.auth.user.notifications.length }}</span>
+              </button>
+            </popper>
+
+            </li>
+            <li>
+              <inertia-link :href="route('home')" class="relative">
+                <i class="fas fa-envelope"></i>
+                <span v-if="$page.auth.user.private_unread_count" class="absolute badge badge-primary" style="bottom: .25rem; right: .75rem;">{{ $page.auth.user.private_unread_count }}</span>
+              </inertia-link>
+            </li>
             <li><button><i class="fas fa-lightbulb"></i></button></li>
             <li v-if="$page.auth.user.roles.includes('admin') || $page.auth.user.roles.includes('moderator')">
               <inertia-link :href="route('admin.index')" :class="{ active: route().current('admin.index') }"><i class="fas fa-lock"></i></inertia-link>
@@ -62,8 +98,8 @@
                 <div class="popper">
                   <template v-if="$page.auth.user">
                     <div class="flex items-center px-4 py-4">
-                      <img :src="$page.auth.user.avatar_url" :alt="'Avatar de ' + $page.auth.user.name" class="rounded wh-8 shadow-lg">
-                      <div class="ml-2 flex-1">
+                      <img :src="$page.auth.user.avatar_url" :alt="'Avatar de ' + $page.auth.user.name" class="rounded wh-8 shadow">
+                      <div class="ml-2 flex-1" style="line-height: 1.1em;">
                         <span class="font-bold">{{ $page.auth.user.display_name }}</span><br>
                         <span class="text-xs text-muted">{{ $page.auth.user.email }}</span>
                       </div>
