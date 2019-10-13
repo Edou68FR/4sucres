@@ -5,12 +5,12 @@
         <inertia-link :href="route('discussions.index')">
           Discussions
         </inertia-link>
-        <span class="text-xs text-muted mx-1">/</span>
+        <span class="text-muted mx-2">/</span>
         <inertia-link :href="route('discussions.categories.index', [discussion.category.id, discussion.category.slug])">
           {{ discussion.category.name }}
         </inertia-link>
-        <span class="text-xs text-muted mx-1">/</span>
-        <span>{{ discussion.title }}</span>
+        <span class="text-muted mx-2">/</span>
+        <span v-html="discussion.title"></span>
       </div>
       <div class="flex-none">
         <template v-if="$page.auth.user">

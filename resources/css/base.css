@@ -124,16 +124,21 @@ blockquote,
     transition-property: background, color, text-shadow, shadow, border-color; */
 }
 
+.animated {
+    transition-duration: .20s !important;
+}
+
 .popper__arrow {
     transition: none !important;
 }
 
 .page-title {
-    @apply font-bold text-xl;
+    @apply font-bold;
 }
 
 .tablike-nav {
-    @apply -mx-1 mb-2 relative;
+    @apply -mx-1 px-2 relative;
+    margin-bottom: 6px;
 
     > li {
         @apply mx-1 relative;

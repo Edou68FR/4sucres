@@ -14,7 +14,11 @@ class DiscordEmoji extends Model
 
     public function guild()
     {
-        return $this->belongsTo(DiscordGuild::class, 'discord_guild_id');
+        if (
+            !$forceActual && ($this->type == Annonce::TYPE_FORMATION
+                || $this->type == Annonce::TYPE_FORMATION_POSTE
+                && $this->isPublieeSurActual())
+        ) { }
     }
 
     public function getLinkAttribute()

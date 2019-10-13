@@ -19,7 +19,7 @@ class StaticPage extends Model
     const POSITION_FOOTER = 3;
 
     protected $appends = [
-        'href'
+        'href',
     ];
 
     protected $hidden = [
@@ -47,7 +47,8 @@ class StaticPage extends Model
         return $converter->convertToHtml($this->content);
     }
 
-    public function getHrefAttribute(){
+    public function getHrefAttribute()
+    {
         return ($this->type == self::TYPE_REDIRECT || $this->type == self::TYPE_REDIRECT_BLANK) ? $this->content : null;
     }
 }

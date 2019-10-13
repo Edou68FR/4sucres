@@ -9,6 +9,7 @@
 @import 'fonts';
 @import 'base';
 @import 'theme-4sucres';
+@import 'theme-4sucres-dark';
 /* @import 'theme-legacy'; */
 @import "tailwindcss/utilities";
 

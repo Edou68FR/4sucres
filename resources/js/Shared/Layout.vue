@@ -1,13 +1,13 @@
 <template>
   <main>
-    <aside :class="{'animated slideInLeft faster': asideAnimation.value}" class="flex flex-col">
+    <aside :class="{'animated slideInLeft': asideAnimation.value}" class="flex flex-col">
       <div class="flex-start flex-grow">
         <div class="aside-brand">
           <inertia-link :href="route('discussions.index')">
-            <img src="/img/icons/apple-touch-icon-120x120.png" alt="Logo 4sucres.org" class="mx-auto h-10">
+            <img src="/img/4sucres_sidebar.png" alt="Logo 4sucres.org" class="mx-auto w-10">
           </inertia-link>
         </div>
-        <ul class="aside-nav">
+        <ul class="aside-nav animated-group">
           <li><inertia-link :href="route('home')" :class="{ active: route().current('home') }"><i class="fas fa-home"></i></inertia-link></li>
           <li><inertia-link :href="route('discussions.index')" :class="{ active: route().current('discussions*') }"><i class="fas fa-folder"></i></inertia-link></li>
           <li><inertia-link :href="route('search.query')" :class="{ active: route().current('search.query') }"><i class="fas fa-search"></i></inertia-link></li>
@@ -65,7 +65,12 @@
               trigger="click"
               :options="{ placement: 'right-end', modifiers: {preventOverflow :{ boundariesElement: 'window'  }}}">
               <div class="popper">
-                <div class="p-4">
+                <ul>
+                  <li v-for="(static_page) in footer_pages = $page.app.static_pages.filter(page => page.position == 3)" v-bind:key="static_page.slug">
+                    <StaticPageLink :static_page="static_page"></StaticPageLink>
+                  </li>
+                </ul>
+                <div class="p-4 bg-accent">
                   <div class="font-bold">
                     {{ $page.app.name }} <span class="badge">{{ $page.app.version }}</span>
                   </div>
@@ -77,12 +82,6 @@
                     Temps d'exécution : <span :title="$page.app.real_runtime + 's'">{{ $page.app.runtime }}s</span>
                   </div>
                 </div>
-                <hr>
-                <ul>
-                  <li v-for="(static_page) in footer_pages = $page.app.static_pages.filter(page => page.position == 3)" v-bind:key="static_page.slug">
-                    <StaticPageLink :static_page="static_page"></StaticPageLink>
-                  </li>
-                </ul>
               </div>
               <button slot="reference">
                 <i class="fas fa-question-circle"></i>
@@ -97,19 +96,18 @@
                 :options="{ placement: 'right-end' }">
                 <div class="popper">
                   <template v-if="$page.auth.user">
-                    <div class="flex items-center px-4 py-4">
+                    <ul>
+                      <li><inertia-link :href="route('users.me')">Profil</inertia-link></li>
+                      <li><inertia-link :href="route('user.settings.profile')">Paramètres</inertia-link></li>
+                      <li><inertia-link :href="route('logout')" method="post">Déconnexion</inertia-link></li>
+                    </ul>
+                    <div class="flex items-center px-4 py-4 bg-accent">
                       <img :src="$page.auth.user.avatar_url" :alt="'Avatar de ' + $page.auth.user.name" class="rounded wh-8 shadow">
                       <div class="ml-2 flex-1" style="line-height: 1.1em;">
                         <span class="font-bold">{{ $page.auth.user.display_name }}</span><br>
                         <span class="text-xs text-muted">{{ $page.auth.user.email }}</span>
                       </div>
                     </div>
-                    <hr>
-                    <ul>
-                      <li><inertia-link :href="route('users.me')">Profil</inertia-link></li>
-                      <li><inertia-link :href="route('user.settings.profile')">Paramètres</inertia-link></li>
-                      <li><inertia-link :href="route('logout')" method="post">Déconnexion</inertia-link></li>
-                    </ul>
                   </template>
                   <template v-else>
                     <ul>
@@ -133,7 +131,7 @@
       <StaticPageLink :static_page="static_page" class='mx-2 nav-link w-full md:w-auto'></StaticPageLink>
     </span> -->
 
-    <div class="container mx-auto p-6">
+    <div class="p-6">
       <slot />
     </div>
   </main>

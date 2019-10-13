@@ -1,6 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+@import url('https://rsms.me/inter/inter.css');
 
-body {
-    font-family: 'Lato', sans-serif;
-    @apply text-sm;
+html {
+    @apply
+        text-base
+        subpixel-antialiased
+        tracking-tight;
+
+    font-family: 'Inter', sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+    html { font-family: 'Inter var', sans-serif; }
 }

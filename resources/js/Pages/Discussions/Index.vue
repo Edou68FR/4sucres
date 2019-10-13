@@ -45,14 +45,14 @@
               <div class="truncate">
                 <inertia-link :href="route('discussions.show', [discussion.id, discussion.slug])" class="font-bold accent" v-html="discussion.title"></inertia-link>
               </div>
-              <div class="text-xs">
+              <div class="text-sm">
                 par
                 <inertia-link :href="route('users.show', discussion.user.name)">{{ discussion.user.display_name }}</inertia-link>,
                 {{ moment(discussion.created_at).calendar() }},
                 <inertia-link :href="route('discussions.categories.index', [discussion.category.id, discussion.category.slug])">{{ discussion.category.name }}</inertia-link>
               </div>
             </div>
-            <div class="ml-auto flex-none w-full md:w-auto md:mr-4 md:text-right text-xs">
+            <div class="ml-auto flex-none w-full md:w-auto md:mr-4 md:text-right text-sm">
                 <span v-if="$page.auth.user && !user_has_read.includes(discussion.id)" class="font-bold text-red-600 md:block">
                   {{ discussion.replies }} réponses<span class="md:hidden">,</span>
                 </span>
@@ -62,7 +62,7 @@
                 0 vues
             </div>
           </div>
-          <div class="w-12 md:w-40 ml-auto flex-none flex flex-wrap items-center text-xs text-center md:text-left m-w-0">
+          <div class="w-12 md:w-40 ml-auto flex-none flex flex-wrap items-center text-sm text-center md:text-left m-w-0">
             <div class="mx-auto md:ml-0 md:mr-4">
               <img :src="discussion.latest_post.user.avatar_url" :alt="'Avatar de ' + discussion.latest_post.user.display_name" class="rounded wh-8">
             </div>

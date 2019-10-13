@@ -30,6 +30,7 @@
     <meta name="theme-color" content="#3b4252">
     <meta name="msapplication-TileColor" content="#3b4252">
     <meta name="msapplication-TileImage" content="{{ url('/img/icons/mstile-144x144.png') }}">
+    <meta name="mobile-web-app-capable" content="yes">
 
     @routes
     <script src="{{ mix('/js/app.js') }}" defer></script>
