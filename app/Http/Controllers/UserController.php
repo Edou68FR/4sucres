@@ -17,7 +17,7 @@ class UserController extends Controller
     public function show($nameOrId)
     {
         $user = User::where('name', $nameOrId)->first() ?? User::findOrFail($nameOrId);
-        abort_if($user->deleted_at || (user() && !user()->can('bypass users guard')), 410);
+        abort_if($user->deleted_at && (user() && !user()->can('bypass users guard')), 410);
 
         $user
             ->append(['discussions_count', 'replies_count'])
@@ -33,7 +33,8 @@ class UserController extends Controller
                 $achievement
                     ->append(['image_url'])
                     ->only(['name', 'description', 'image_url']),
-                ['unlocked_at' => $achievement->pivot->unlocked_at]);
+                ['unlocked_at' => $achievement->pivot->unlocked_at]
+            );
         });
 
         if ($user->created_at->isToday()) {

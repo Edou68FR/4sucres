@@ -8,7 +8,7 @@ body.theme-4sucres {
     --bg-aside: theme('colors.blue.500');
     --brand-primary: #3D81FC;
 
-    aside {
+    /* aside {
         @apply bg-gray-900;
     }
 
@@ -51,7 +51,7 @@ body.theme-4sucres {
     .aside-nav > li > a.active, .aside-nav > li button.active,
     {
         color: #EEF4FE;
-    }
+    } */
 
     /* .aside-nav > li > a.active::after, .aside-nav > li button.active::after,
     {
@@ -94,10 +94,10 @@ body.theme-4sucres {
         background: #2C3E50;
     }
 
-    nav {
+    /* nav {
         @apply border-t border-gray-700;
         background: #34495E;
-    }
+    } */
 
     .form-control {
         @apply border border-gray-300;
@@ -107,7 +107,7 @@ body.theme-4sucres {
         @apply border-0 bg-gray-700 text-white;
     }
 
-    .nav-link {
+    /* .nav-link {
         @apply text-gray-500 relative;
     }
 
@@ -117,9 +117,9 @@ body.theme-4sucres {
 
     .nav-link.active {
         @apply text-white;
-    }
+    } */
 
-    @screen md {
+    /* @screen md {
         .nav-link.active::after {
             @apply absolute;
             background: #1890ff;
@@ -151,16 +151,16 @@ body.theme-4sucres {
         :first-child::before {
             color: #1890ff;
         }
-    }
+    } */
 
     .btn {
-        @apply text-gray-700 rounded;
+        @apply text-gray-700;
         transition: all .2s ease 0s;
     }
 
     .btn-primary {
         @apply text-white shadow-md;
-        background: #3D81FC;
+        background: #0D67B6;
     }
 
     .btn-primary:hover {

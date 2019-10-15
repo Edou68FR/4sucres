@@ -1,69 +1,74 @@
 <template>
   <main>
-    <aside :class="{'animated slideInLeft': asideAnimation.value}" class="flex flex-col">
-      <div class="flex-start flex-grow">
-        <div class="aside-brand">
-          <inertia-link :href="route('discussions.index')">
-            <img src="/img/4sucres_sidebar.png" alt="Logo 4sucres.org" class="mx-auto w-10">
-          </inertia-link>
-        </div>
-        <ul class="aside-nav animated-group">
-          <li><inertia-link :href="route('home')" :class="{ active: route().current('home') }"><i class="fas fa-home"></i></inertia-link></li>
-          <li><inertia-link :href="route('discussions.index')" :class="{ active: route().current('discussions*') }"><i class="fas fa-folder"></i></inertia-link></li>
-          <li><inertia-link :href="route('search.query')" :class="{ active: route().current('search.query') }"><i class="fas fa-search"></i></inertia-link></li>
-        </ul>
-      </div>
-      <div class="flex-end">
-        <ul class="aside-nav">
-          <template v-if="$page.auth.user">
-            <li>
-              <popper
-              trigger="click"
-              :options="{ placement: 'right-end', modifiers: {preventOverflow :{ boundariesElement: 'window'  }}}">
-              <div class="popper">
-                <template v-if="$page.auth.user.notifications.length">
-                  <ul>
-                    <li v-for="(notification) in $page.auth.user.notifications.slice(0, 7)" v-bind:key="notification.id">
-                      <inertia-link :href="route('notifications.show', notification.id)">
-                        <div v-html="notification.data.html"></div>
-                        <span class="text-xs text-muted">{{ moment(notification.created_at).calendar() }}</span>
-                      </inertia-link>
-                    </li>
-                  </ul>
-                  <hr>
-                  <ul>
-                    <li><inertia-link :href="route('notifications.index')">Voir tout</inertia-link></li>
-                    <li><inertia-link :href="route('notifications.clear')">Tout marquer comme lu</inertia-link></li>
-                  </ul>
-                </template>
-                <div class="p-4 text-center" v-else>
-                  <img src="/svg/sucre_sad.svg" class="mx-auto h-24 mb-4">
-                  Aucune notification
-                </div>
-              </div>
-              <button class="relative" slot="reference">
-                <i class="fas fa-bell"></i>
-                <span v-if="$page.auth.user.notifications.length" class="absolute badge badge-danger" style="bottom: .25rem; right: .75rem;">{{ $page.auth.user.notifications.length }}</span>
-              </button>
-            </popper>
+    <nav>
+      <div class="container mx-auto">
+        <div class="flex flex-row items-center">
+            <!-- Left -->
+            <inertia-link class="nav-link" :href="route('discussions.index')">
+              <img src="/img/4sucres_sidebar.png" alt="Logo 4sucres.org" class="mx-auto w-10">
+            </inertia-link>
+            <inertia-link :href="route('home')" class="nav-link" :class="{ active: route().current('home') }">Accueil</inertia-link>
+            <inertia-link :href="route('discussions.index')" class="nav-link" :class="{ active: route().current('discussions*') }">Forum</inertia-link>
 
-            </li>
-            <li>
-              <inertia-link :href="route('home')" class="relative">
+            <span v-for="static_page in $page.app.static_pages.filter(page => page.position == 1)" v-bind:key="static_page.slug">
+              <StaticPageLink :static_page="static_page" class='nav-link'></StaticPageLink>
+            </span>
+
+            <inertia-link :href="route('search.query')" class="nav-link push-right" :class="{ active: route().current('search.query') }">Recherche</inertia-link>
+
+            <!-- Right -->
+            <template v-if="$page.auth.user">
+              <popper
+                trigger="click"
+                :options="{ placement: 'left-end', modifiers: {preventOverflow :{ boundariesElement: 'window'  }}}">
+                <div class="popper">
+                  <template v-if="$page.auth.user.notifications.length">
+                    <ul>
+                      <li v-for="(notification) in $page.auth.user.notifications.slice(0, 7)" v-bind:key="notification.id">
+                        <inertia-link :href="route('notifications.show', notification.id)">
+                          <div v-html="notification.data.html"></div>
+                          <span class="text-xs text-muted">{{ moment(notification.created_at).calendar() }}</span>
+                        </inertia-link>
+                      </li>
+                    </ul>
+                    <hr>
+                    <ul>
+                      <li><inertia-link :href="route('notifications.index')">Voir tout</inertia-link></li>
+                      <li><inertia-link :href="route('notifications.clear')">Tout marquer comme lu</inertia-link></li>
+                    </ul>
+                  </template>
+                  <div class="p-4 text-center" v-else>
+                    <img src="/svg/sucre_sad.svg" class="mx-auto h-24 mb-4">
+                    Aucune notification
+                  </div>
+                </div>
+                <button class="nav-link" slot="reference">
+                  <i class="fas fa-bell"></i>
+                  <span v-if="$page.auth.user.notifications.length" class="absolute badge badge-danger" style="bottom: .25rem; right: .75rem;">{{ $page.auth.user.notifications.length }}</span>
+                </button>
+              </popper>
+
+              <inertia-link :href="route('home')" class="nav-link">
                 <i class="fas fa-envelope"></i>
                 <span v-if="$page.auth.user.private_unread_count" class="absolute badge badge-primary" style="bottom: .25rem; right: .75rem;">{{ $page.auth.user.private_unread_count }}</span>
               </inertia-link>
-            </li>
-            <li><button><i class="fas fa-lightbulb"></i></button></li>
-            <li v-if="$page.auth.user.roles.includes('admin') || $page.auth.user.roles.includes('moderator')">
-              <inertia-link :href="route('admin.index')" :class="{ active: route().current('admin.index') }"><i class="fas fa-lock"></i></inertia-link>
-            </li>
-          </template>
 
-          <li>
+              <button class="nav-link">
+                <i class="fas fa-lightbulb"></i>
+              </button>
+
+              <inertia-link
+                v-if="$page.auth.user.roles.includes('admin') || $page.auth.user.roles.includes('moderator')"
+                :href="route('admin.index')"
+                class="nav-link"
+                :class="{ active: route().current('admin.index') }">
+                <i class="fas fa-lock"></i>
+              </inertia-link>
+            </template>
+
             <popper
               trigger="click"
-              :options="{ placement: 'right-end', modifiers: {preventOverflow :{ boundariesElement: 'window'  }}}">
+              :options="{ placement: 'left-end', modifiers: {preventOverflow :{ boundariesElement: 'window'  }}}">
               <div class="popper">
                 <ul>
                   <li v-for="(static_page) in footer_pages = $page.app.static_pages.filter(page => page.position == 3)" v-bind:key="static_page.slug">
@@ -83,17 +88,15 @@
                   </div>
                 </div>
               </div>
-              <button slot="reference">
+              <button class="nav-link" slot="reference">
                 <i class="fas fa-question-circle"></i>
               </button>
             </popper>
-          </li>
 
-          <template>
-            <li>
+            <div class="nav-link wh-10">
               <popper
                 trigger="click"
-                :options="{ placement: 'right-end' }">
+                :options="{ placement: 'left-end' }">
                 <div class="popper">
                   <template v-if="$page.auth.user">
                     <ul>
@@ -117,23 +120,16 @@
                   </template>
                 </div>
                 <button slot="reference">
-                  <img v-if="$page.auth.user" :src="$page.auth.user.avatar_url" :alt="'Avatar de ' + $page.auth.user.name" class="mx-auto rounded wh-8">
-                  <img v-else src="/img/guest.png" alt="Avatar Invité" class="mx-auto rounded wh-8">
+                  <img v-if="$page.auth.user" :src="$page.auth.user.avatar_url" :alt="'Avatar de ' + $page.auth.user.name" class="wh-10 rounded">
+                  <img v-else src="/img/guest.png" alt="Avatar Invité" class="wh-10 rounded">
                 </button>
               </popper>
-            </li>
-          </template>
-        </ul>
+            </div>
+        </div>
       </div>
-    </aside>
+    </nav>
 
-    <!-- <span v-for="static_page in $page.app.static_pages.filter(page => page.position == 1)" v-bind:key="static_page.slug">
-      <StaticPageLink :static_page="static_page" class='mx-2 nav-link w-full md:w-auto'></StaticPageLink>
-    </span> -->
-
-    <div class="p-6">
-      <slot />
-    </div>
+    <slot />
   </main>
 </template>
 
@@ -150,10 +146,6 @@ export default {
       document.getElementById("nav-toggler").classList.toggle("active");
     }
   },
-  mounted() {
-    setTimeout(() => {
-      this.asideAnimation.value = false;
-    }, 500);
-  }
+  mounted() {}
 }
 </script>

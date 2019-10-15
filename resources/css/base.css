@@ -1,8 +1,37 @@
-body {
-    @apply ml-16;
+nav {
+    @apply w-full py-2 mb-4;
+    background-color: #2C2C32;
 }
 
-aside {
+.subnav {
+    @apply w-full py-4 -mt-4 mb-4;
+    background-color: #25252B;
+    color: #fff;
+
+    .text-muted {
+        color: #ccc;
+    }
+
+    .btn-secondary {
+        color: #9E9E9E !important;
+        background-color: #3D3D42 !important;
+    }
+}
+
+nav .nav-link {
+    @apply mx-2 font-medium;
+    color: #A8A8A8!important;
+
+    &.active {
+        color: #fff;
+    }
+
+    &.push-right {
+        margin-right: auto !important;
+    }
+}
+
+/* aside {
     @apply -ml-16 w-16 fixed top-0 bottom-0 py-2;
 }
 
@@ -20,17 +49,17 @@ aside {
 
 .aside-nav > li > a, .aside-nav > li button {
     @apply block px-1 py-2;
-}
+} */
 
 header {
     @apply w-full py-4;
 }
 
-nav {
+/* nav {
     @apply w-full py-2;
-}
+} */
 
-.nav-link {
+/* .nav-link {
     @apply mb-1;
 }
 
@@ -38,7 +67,7 @@ nav {
     .nav-link {
         @apply mb-0;
     }
-}
+} */
 
 .form-control {
     @apply rounded px-2 py-1
@@ -49,7 +78,7 @@ nav {
 }
 
 .btn {
-    @apply inline-block px-2 py-1 font-bold text-center rounded;
+    @apply inline-block px-2 py-1 font-bold text-center;
 }
 
 .btn-lg {
