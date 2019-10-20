@@ -1,11 +1,11 @@
 <template>
   <main>
     <nav>
-      <div class="container mx-auto">
+      <div class="container mx-auto py-2">
         <div class="flex flex-row items-center">
             <!-- Left -->
             <inertia-link class="nav-link" :href="route('discussions.index')">
-              <img src="/img/4sucres_sidebar.png" alt="Logo 4sucres.org" class="mx-auto w-10">
+              <img src="/img/4sucres_sidebar.png" alt="Logo 4sucres.org" class="w-10 mr-3">
             </inertia-link>
             <inertia-link :href="route('home')" class="nav-link" :class="{ active: route().current('home') }">Accueil</inertia-link>
             <inertia-link :href="route('discussions.index')" class="nav-link" :class="{ active: route().current('discussions*') }">Forum</inertia-link>
@@ -14,7 +14,7 @@
               <StaticPageLink :static_page="static_page" class='nav-link'></StaticPageLink>
             </span>
 
-            <inertia-link :href="route('search.query')" class="nav-link push-right" :class="{ active: route().current('search.query') }">Recherche</inertia-link>
+            <inertia-link :href="route('search.query')" class="nav-link push" :class="{ active: route().current('search.query') }">Recherche</inertia-link>
 
             <!-- Right -->
             <template v-if="$page.auth.user">

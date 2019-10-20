@@ -1,6 +1,6 @@
 <template>
   <layout>
-    <div class="subnav">
+    <div class="header">
       <div class="container mx-auto">
         <div class="flex items-center justify-between">
           <div class="px-2">
@@ -12,12 +12,6 @@
               </template>
               <span v-else>Discussions</span>
             </div>
-            <!-- <ul class="tablike-nav">
-              <li class="active">Tout voir</li>
-              <li>Catégorie <i class="ml-1 fas fa-caret-down"></i></li>
-              <li>Mes discussions</li>
-              <li>Suivies</li>
-            </ul>-->
           </div>
           <div class="px-2">
             <inertia-link
@@ -39,7 +33,7 @@
     <div class="container mx-auto">
       <div class="cards mb-6 -mx-6 sm:mx-auto">
         <div
-          class="card hoverable px-4 py-2"
+          class="card hoverable px-4 py-3"
           v-for="discussion in discussions.data"
           :key="discussion.id"
           v-on:click="visit(route('discussions.show', [discussion.id, discussion.slug]), $event)"
@@ -89,12 +83,9 @@
                   {{ discussion.replies }} réponses
                   <span class="md:hidden">,</span>
                 </span>
-                0 vues
               </div>
             </div>
-            <div
-              class="w-12 md:w-40 ml-auto flex-none flex flex-wrap items-center text-sm text-center md:text-left m-w-0"
-            >
+            <div class="w-12 md:w-40 lg:w-48 ml-auto flex-none flex flex-wrap items-center text-sm text-center md:text-left m-w-0">
               <div class="mx-auto md:ml-0 md:mr-4">
                 <img
                   :src="discussion.latest_post.user.avatar_url"

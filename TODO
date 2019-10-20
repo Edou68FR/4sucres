@@ -1,0 +1,13 @@
+Transformer avec Inertia + Vue :
+    Discussions :
+        ✔ Index @done
+        ✔ Show @done
+        ☐ Create
+        ☐ Edit
+    User :
+        ✔ Show (Profil) @done
+        ☐ Paramètres
+
+Fonctionnalités :
+    Rétablissement de l'existant :
+        ☐ Affichage des posts supprimés pour les modérateurs
