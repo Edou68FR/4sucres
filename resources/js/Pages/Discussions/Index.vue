@@ -1,9 +1,9 @@
 <template>
   <layout>
-    <div class="header">
-      <div class="container mx-auto">
-        <div class="flex items-center justify-between">
-          <div class="px-2">
+    <div class="container mx-auto mb-6">
+      <div class="cards mb-6 sm:mx-auto">
+        <div class="card p-6">
+          <div class="flex items-center justify-between">
             <div class="page-title">
               <template v-if="category">
                 <inertia-link :href="route('discussions.index')">Discussions</inertia-link>
@@ -12,32 +12,27 @@
               </template>
               <span v-else>Discussions</span>
             </div>
+            <div>
+              <inertia-link
+                class="mx-1 btn btn-lg btn-primary"
+                v-if="$page.auth.user && $page.auth.user.permissions.includes('create discussions')"
+                :href="route('discussions.create')"
+              >
+                <i class="inline-block sm:hidden fas fa-plus"></i>
+                <span class="hidden sm:inline">Nouvelle discussion</span>
+              </inertia-link>
+              <button class="mx-1 btn btn-lg btn-secondary" v-on:click="reload">
+                <i class="fas fa-sync"></i>
+              </button>
+            </div>
           </div>
-          <div class="px-2">
-            <inertia-link
-              class="mx-1 btn btn-lg btn-primary"
-              v-if="$page.auth.user && $page.auth.user.permissions.includes('create discussions')"
-              :href="route('discussions.create')"
-            >
-              <i class="inline-block sm:hidden fas fa-plus"></i>
-              <span class="hidden sm:inline">Nouvelle discussion</span>
-            </inertia-link>
-            <button class="mx-1 btn btn-lg btn-secondary" v-on:click="reload">
-              <i class="fas fa-sync"></i>
-            </button>
-          </div>
+          <simple-paginator class="mt-6" :paginator="_.omit(discussions, 'data')"></simple-paginator>
         </div>
-      </div>
-    </div>
-
-    <div class="container mx-auto">
-      <div class="cards mb-6 -mx-6 sm:mx-auto">
         <div
           class="card hoverable px-4 py-3"
           v-for="discussion in discussions.data"
           :key="discussion.id"
-          v-on:click="visit(route('discussions.show', [discussion.id, discussion.slug]), $event)"
-        >
+          v-on:click="visit(route('discussions.show', [discussion.id, discussion.slug]), $event)">
           <div class="flex items-center">
             <div class="mr-4 flex-none text-base-folder">
               <i
@@ -107,9 +102,10 @@
             </div>
           </div>
         </div>
+        <div class="card p-6">
+          <simple-paginator class="text-center" :paginator="_.omit(discussions, 'data')"></simple-paginator>
+        </div>
       </div>
-
-      <SimplePaginator class="text-center" :paginator="_.omit(discussions, 'data')"></SimplePaginator>
     </div>
   </layout>
 </template>

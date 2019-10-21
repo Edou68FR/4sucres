@@ -1,6 +1,6 @@
 <template>
   <layout>
-    <div class="container mx-auto">
+    <div class="container mx-auto mb-6">
       <div class="cards">
         <div class="card p-6">
           <div class="flex items-center justify-between">
@@ -26,10 +26,10 @@
               </button>
             </div>
           </div>
-          <simple-paginator class="text-center my-2" :paginator="_.omit(posts, 'data')"></simple-paginator>
+          <simple-paginator class="mt-6" :paginator="_.omit(posts, 'data')"></simple-paginator>
         </div>
         <div v-for="post in posts.data" :key="post.id" class="card flex-1">
-          <div class="flex items-center p-6">
+          <div class="flex items-center px-6 py-4">
             <inertia-link :href="route('users.show', post.user.name)" class="hidden sm:block wh-10 mr-4">
               <img
                 :src="post.user.avatar_url"
@@ -42,7 +42,7 @@
               </inertia-link>
               <span v-if="post.user.display_name != post.user.name">@{{ post.user.name }}</span>
               <br>
-              <inertia-link :href="route('posts.show', post.id)" class="text-sm">
+              <inertia-link :href="post.shortlink_url" class="text-sm">
                 {{ moment(post.created_at).format('L') }} {{ moment(post.created_at).format('LTS') }}
                 <span
                   v-if="post.created_at != post.updated_at"
@@ -50,23 +50,20 @@
               </inertia-link>
             </div>
             <div class="ml-auto">
-              <inertia-link href="#" class="btn btn-tertiary">
-                <i class="fas fa-link"></i>
-              </inertia-link>
-              <inertia-link href="#" class="btn btn-tertiary">
+              <inertia-link href="#" class="btn btn-sm btn-tertiary">
                 <i class="fas fa-quote-right"></i>
               </inertia-link>
               <template v-if="$page.auth.user">
                 <inertia-link
                   v-if="$page.auth.user.id == post.user.id || $page.auth.user.permissions.includes('bypass discussions guard')"
                   :href="route('discussions.posts.edit', [discussion.id, discussion.slug, post.id])"
-                  class="btn btn-tertiary">
+                  class="btn btn-sm btn-tertiary">
                   <i class="fas fa-edit"></i>
                 </inertia-link>
                 <inertia-link
                   v-if="$page.auth.user.id == post.user.id || $page.auth.user.permissions.includes('bypass discussions guard')"
                   :href="route('discussions.posts.delete', [discussion.id, discussion.slug, post.id])"
-                  class="btn btn-tertiary">
+                  class="btn btn-sm btn-tertiary">
                   <i class="fas fa-trash"></i>
                 </inertia-link>
               </template>
@@ -80,11 +77,11 @@
             <i class="fas fa-times mr-1"></i> Ce message a été supprimé
           </div>
         </div>
+        <div class="card p-6">
+          <simple-paginator class="text-center" :paginator="_.omit(posts, 'data')"></simple-paginator>
+        </div>
       </div>
     </div>
-
-        <simple-paginator class="text-center" :paginator="_.omit(posts, 'data')"></simple-paginator>
-      </div>
   </layout>
 </template>
 
