@@ -6,6 +6,7 @@ Transformer avec Inertia + Vue :
         ☐ Edit
         ☐ Messagerie privée
     User :
+        ✔ Login @done(19-10-24 18:24)
         ✔ Show (Profil) @done
         ☐ Paramètres
 
@@ -13,6 +14,8 @@ Fonctionnalités :
     Rétablissement de l'existant :
         ☐ Affichage des posts supprimés pour les modérateurs
         ☐ Discussion/Show Icônes Crown (OP) / Cake (anniversaire)
+        ☐ Discussion/Show Lightbox
+        ☐ Responsive
     Nouvelles fonctionnalités :
         ☐ Barrer le pseudo des membres bannis dans les discussions
         ☐ Séparer la liste des topics avec la date dernier réup (https://i.imgur.com/bvKfmu7.png)

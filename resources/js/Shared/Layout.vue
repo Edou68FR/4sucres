@@ -102,7 +102,7 @@
     <footer>
       <div class="container mx-auto">
         <div class="mx-auto">
-          <img src="https://4sucres.org/img/4sucres_alt_glitched.png" width="70px" class="inline"> {{ $page.app.version }} &copy; 2019-2020<br><br>
+          <img src="/img/4sucres_alt_glitched.png" width="70px" class="inline"> {{ $page.app.version }} &copy; 2019-2020<br><br>
         </div>
 
         <strong>{{ $page.app.name }}</strong>, parce qu'à 2 on était pas assez.<br>

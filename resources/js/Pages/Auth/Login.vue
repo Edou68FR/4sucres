@@ -1,38 +1,41 @@
 <template>
   <layout>
-    <div class="card mx-auto w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4">
-      <div v-if="!need_otp">
-        <div class="mb-3">
-            <div class="text-xs mb-1">
-                Adresse e-mail <span class="text-red-500">*</span>
-            </div>
-            <input type="email" class="form-control w-full" v-model="form.email" :disabled="loading" />
-            <div class="text-red-500 mt-1 text-xs font-bold" v-if="errors && errors.email !== undefined">
-                {{ errors.email[0] }}
-            </div>
-        </div>
-        <div class="mb-3">
-            <div class="text-xs mb-1">
-                Mot de passe <span class="text-red-500">*</span>
-            </div>
-            <input type="password" class="form-control w-full" v-model="form.password" :disabled="loading" />
-            <div class="text-red-500 mt-1 text-xs font-bold" v-if="errors && errors.password !== undefined">
-                {{ errors.password[0] }}
-            </div>
-        </div>
-      </div>
-      <div class="mb-3" v-if="need_otp">
-          <img class="mx-auto" src="/img/settings/google_2fa.png">
-          <div class="text-xs mb-1">
-              OTP <span class="text-red-500">*</span>
+    <div class="container md:w-1/2 lg:w-1/3 xl:w-1/4 mx-auto">
+      <div class="cards">
+        <div class="card p-6">
+          <div class="page-title">
+            <span>Connexion</span>
           </div>
-          <input type="text" class="form-control w-full" v-model="form.one_time_password" :disabled="loading" />
-          <div class="text-red-500 mt-1 text-xs font-bold" v-if="errors && errors.one_time_password !== undefined">
-              {{ errors.one_time_password[0] }}
+        </div>
+        <div class="card p-6">
+          <div v-if="!need_otp">
+            <div class="form-group">
+                <label for="email">Adresse e-mail <span class="text-red-500">*</span></label>
+                <input type="email" class="form-control" v-model="form.email" :disabled="loading" name="email"/>
+                <div class="form-error" v-if="errors && errors.email !== undefined">
+                    {{ errors.email[0] }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe <span class="text-red-500">*</span></label>
+                <input type="password" class="form-control" v-model="form.password" :disabled="loading" name="password" />
+                <div class="form-error" v-if="errors && errors.password !== undefined">
+                    {{ errors.password[0] }}
+                </div>
+            </div>
           </div>
-      </div>
-      <div class="text-right mt-6">
+          <div class="form-group" v-if="need_otp">
+              <img class="mx-auto" src="/img/settings/google_2fa.png">
+              <label for="otp">OTP <span class="text-red-500">*</span></label>
+              <input type="text" class="form-control w-full" v-model="form.one_time_password" :disabled="loading" name="otp" />
+              <div class="form-error" v-if="errors && errors.one_time_password !== undefined">
+                  {{ errors.one_time_password[0] }}
+              </div>
+          </div>
+        </div>
+        <div class="card p-6 text-right">
           <button type="submit" class="btn btn-primary" v-on:click="submit()"><i class="fa fa-sign-in-alt mr-1"></i> Connexion</button>
+        </div>
       </div>
     </div>
   </layout>

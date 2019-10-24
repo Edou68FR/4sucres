@@ -111,12 +111,26 @@ header {
     }
 } */
 
+/* Forms */
+
+.form-group {
+    @apply mb-3;
+
+    label {
+        @apply text-sm block w-full mb-2;
+    }
+}
+
 .form-control {
-    @apply rounded px-2 py-1
+    @apply px-2 py-1 w-full;
 }
 
 .form-control:disabled {
     @apply cursor-not-allowed;
+}
+
+.form-error {
+    @apply text-red-500 mt-1 text-sm font-bold;
 }
 
 footer {
@@ -219,7 +233,7 @@ blockquote,
 /* Buttons */
 
 .btn {
-    @apply inline-block px-2 py-1 font-bold text-center rounded text-gray-700;
+    @apply inline-block px-4 py-2 font-bold text-center text-gray-700;
 
     transition: all .2s ease 0s;
     &:hover {
@@ -236,16 +250,14 @@ blockquote,
 }
 
 .btn-primary {
-    @apply text-white shadow;
-    background: #4299E1;
+    @apply text-white shadow bg-gray-600;
 
     &:hover {
-        @apply text-white shadow-md;
-        background: rgb(87, 148, 255);
+        @apply text-white shadow-md bg-gray-700;
     }
 
     &.active {
-        @apply text-blue-700;
+        @apply bg-gray-800;
     }
 }
 
