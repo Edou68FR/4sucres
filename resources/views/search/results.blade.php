@@ -10,9 +10,9 @@
 		<div class="col-lg-7 col-xl-8">
 			<div class="text-center font-weight-bold text-uppercase">Rechercher les :</div>
 			<ul class="nav nav-pills justify-content-center mt-2 mb-3">
-				<a href="{{ route('search.query') }}?query={{ $query }}&scope=posts" class="mx-2 nav-link {{ (($scope ?? 'posts') == 'posts' ? 'active' : '') }}">Posts</a>
-				<a href="{{ route('search.query') }}?query={{ $query }}&scope=discussions" class="mx-2 nav-link {{ (($scope ?? 'posts') == 'discussions' ? 'active' : '') }}">Discussions</a>
-				<a href="{{ route('search.query') }}?query={{ $query }}&scope=users" class="mx-2 nav-link {{ (($scope ?? 'posts') == 'users' ? 'active' : '') }}">Membres</a>
+				<a href="{{ route('search') }}?query={{ $query }}&scope=posts" class="mx-2 nav-link {{ (($scope ?? 'posts') == 'posts' ? 'active' : '') }}">Posts</a>
+				<a href="{{ route('search') }}?query={{ $query }}&scope=discussions" class="mx-2 nav-link {{ (($scope ?? 'posts') == 'discussions' ? 'active' : '') }}">Discussions</a>
+				<a href="{{ route('search') }}?query={{ $query }}&scope=users" class="mx-2 nav-link {{ (($scope ?? 'posts') == 'users' ? 'active' : '') }}">Membres</a>
 			</ul>
 
 			@isset ($posts)

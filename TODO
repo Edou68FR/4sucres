@@ -9,6 +9,8 @@ Transformer avec Inertia + Vue :
         ✔ Login @done(19-10-24 18:24)
         ✔ Show (Profil) @done
         ☐ Paramètres
+    Search :
+        ✔ Search @done(19-10-25 12:56)
 
 Fonctionnalités :
     Rétablissement de l'existant :
@@ -16,11 +18,13 @@ Fonctionnalités :
         ☐ Discussion/Show Icônes Crown (OP) / Cake (anniversaire)
         ☐ Discussion/Show Lightbox
         ☐ Responsive
+        ☐ Search/Query Pagination
     Nouvelles fonctionnalités :
         ☐ Barrer le pseudo des membres bannis dans les discussions
         ☐ Séparer la liste des topics avec la date dernier réup (https://i.imgur.com/bvKfmu7.png)
         ☐ Modèles de réponses
         ☐ Brouillons et discussions programmées
+        ☐ Posts épinglés au sein d'un topic (l'op et les admins peuvent épingler)
         Support des extensions et thèmes utilisateur:
             ☐ Support des extensions et thèmes
             ☐ Extension Blacklist

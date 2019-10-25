@@ -14,7 +14,7 @@
             <StaticPageLink :static_page="static_page" class='nav-link'></StaticPageLink>
           </span>
 
-          <inertia-link :href="route('search.query')" class="nav-link push" :class="{ active: route().current('search.query') }">Recherche</inertia-link>
+          <inertia-link :href="route('search')" class="nav-link push" :class="{ active: route().current('search.query') }">Recherche</inertia-link>
 
           <!-- Right -->
           <template v-if="$page.auth.user">
@@ -106,7 +106,6 @@
         </div>
 
         <strong>{{ $page.app.name }}</strong>, parce qu'à 2 on était pas assez.<br>
-
         Temps d'exécution : <span :title="$page.app.real_runtime + 's'">{{ $page.app.runtime }}s</span><br>
 
         <span v-for="(static_page) in footer_pages = $page.app.static_pages.filter(page => page.position == 3)" v-bind:key="static_page.slug">

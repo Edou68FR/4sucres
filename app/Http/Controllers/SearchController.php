@@ -2,54 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\SucresHelper;
-use App\Models\Category;
-use App\Models\Discussion;
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Support\Str;
+use Inertia\Inertia;
+use ForceUTF8\Encoding;
 use Spatie\Regex\Regex;
+use App\Models\Category;
+use App\Models\Discussion;
+use Illuminate\Support\Str;
+use App\Helpers\SucresHelper;
 
 class SearchController extends Controller
 {
-    public function query()
+    public function __invoke()
     {
-        $query = request()->input('query');
-        $scope = request()->input('scope', 'posts');
-        $return = view('search.results', compact('query', 'scope'));
+        $data = [
+            'q' => request()->input('q'),
+            'scope' => request()->input('scope', 'discussions'),
+        ];
 
         $categories = Category::viewables();
 
         SucresHelper::throttleOrFail(__METHOD__, 10, 1);
 
-        switch ($scope) {
+        switch ($data['scope']) {
             case 'discussions':
                 $discussions = Discussion::query()
                     ->public()
                     ->whereIn('category_id', $categories->pluck('id'))
-                    ->where('title', 'like', '%' . $query . '%')
+                    ->where('title', 'like', '%' . $data['q'] . '%')
                     ->orderBy('created_at', 'desc')
+                    ->with('user')
                     ->paginate(15);
 
-                $discussions
-                    ->getCollection()
-                    ->transform(function ($discussion) use ($query) {
-                        $discussion->title = Regex::replace('/(' . $query . ')/miu', '<u>$1</u>', $discussion->title)->result();
-
-                        return $discussion;
-                    });
-
-                return $return->with([
-                    'discussions' => $discussions,
-                ]);
-
+                $data['discussions'] = $discussions;
                 break;
             case 'posts':
                 $posts = Post::query()
                     ->notTrashed()
-                    ->where('body', 'like', '%' . $query . '%')
+                    ->where('body', 'like', '%' . $data['q'] . '%')
                     ->orderBy('created_at', 'desc')
                     ->with('discussion')
+                    ->with('user')
                     ->whereHas('discussion', function ($q) use ($categories) {
                         return $q->where('category_id', $categories->pluck('id'));
                     })
@@ -57,43 +51,33 @@ class SearchController extends Controller
 
                 $posts
                     ->getCollection()
-                    ->transform(function ($post) use ($query) {
-                        $post->body = e(implode(explode("\n", $post->body)));
-                        $before = Str::before(strtolower($post->body), strtolower($query));
+                    ->transform(function ($post) use ($data) {
+                        $post->body = str_replace(["\n", "\r"], [''], $post->body);
+
+                        $before = Str::before(strtolower($post->body), strtolower($data['q']));
                         $before = strrev((new \Delight\Str\Str(strrev($before)))->truncateSafely(20));
-                        $after = Str::after(strtolower($post->body), strtolower($query));
+                        $after = Str::after(strtolower($post->body), strtolower($data['q']));
                         $after = (new \Delight\Str\Str($after))->truncateSafely(50);
 
-                        $post->trimmed_body = $before . '<u>' . $query . '</u>' . $after;
+                        $post->trimmed_body = $before . $data['q'] . $after;
+                        $post->trimmed_body = Encoding::toUTF8($post->trimmed_body);
 
+                        unset($post->body);
                         return $post;
                     });
 
-                return $return->with([
-                    'posts' => $posts,
-                ]);
-
+                $data['posts'] = $posts;
                 break;
             case 'users':
                 $users = User::query()
-                    ->where('name', 'like', '%' . $query . '%')
-                    ->orWhere('display_name', 'like', '%' . $query . '%')
+                    ->where('name', 'like', '%' . $data['q'] . '%')
+                    ->orWhere('display_name', 'like', '%' . $data['q'] . '%')
                     ->paginate(10);
 
-                $users
-                    ->getCollection()
-                    ->transform(function ($user) use ($query) {
-                        $user->name_for_search = Regex::replace('/(' . $query . ')/miu', '<u>$1</u>', $user->name)->result();
-                        $user->display_name_for_search = Regex::replace('/(' . $query . ')/miu', '<u>$1</u>', $user->display_name)->result();
-
-                        return $user;
-                    });
-
-                return $return->with([
-                    'users' => $users,
-                ]);
+                $data['users'] = $users;
+                break;
         }
 
-        return $return;
+        return Inertia::render('Search/Query', $data);
     }
 }

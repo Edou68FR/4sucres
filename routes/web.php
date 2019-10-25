@@ -30,7 +30,7 @@ Route::get('/discussions/category/{category}/{slug?}', 'DiscussionController@ind
 Route::get('/discussions/{id}/{slug?}', 'DiscussionController@show')->name('discussions.show');
 Route::get('/users/{nameOrId}', 'UserController@show')->name('users.show');
 Route::get('/posts/{id}', 'PostController@show')->name('posts.show');
-Route::get('/search', 'SearchController@query')->name('search.query');
+Route::get('/search', 'SearchController')->name('search');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::post('/logout', 'Auth\LoginController@logout')->name('logout');

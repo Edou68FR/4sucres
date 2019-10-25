@@ -1,6 +1,8 @@
 <template>
   <layout>
-    <div class="card flex-1 markdown p-4 pt-1" v-html="static_page.parsed_content"></div>
+    <div class="container mx-auto">
+      <div class="card flex-1 markdown p-6 pt-1" v-html="static_page.parsed_content"></div>
+    </div>
   </layout>
 </template>
 

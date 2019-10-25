@@ -88,7 +88,7 @@
                     <div class="collapse navbar-collapse my-3 my-lg-3" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <form id="search" action="{{ route('search.query') }}">
+                                <form id="search" action="{{ route('search') }}">
                                     <div class="input-group mb-0">
                                         <input type="text" name="query" class="form-control input-header" value="{{ $query ?? null }}">
                                         <input type="hidden" name="scope" value="{{ $scope ?? 'posts' }}">
