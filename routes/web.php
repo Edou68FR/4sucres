@@ -25,9 +25,10 @@ Route::group(['namespace' => 'Auth', 'middleware' => 'guest'], function () {
  * Application
  */
 
+// Route::get('/discussions', 'DiscussionController@index')->name('discussions.index');
 Route::get('/discussions', 'DiscussionController@index')->name('discussions.index');
-Route::get('/discussions/category/{category}/{slug?}', 'DiscussionController@index')->name('discussions.categories.index');
-Route::get('/discussions/{id}/{slug?}', 'DiscussionController@show')->name('discussions.show');
+Route::get('/discussions/{discussionId}/{slug?}', 'DiscussionController@index')->name('discussions.show');
+
 Route::get('/users/{nameOrId}', 'UserController@show')->name('users.show');
 Route::get('/posts/{id}', 'PostController@show')->name('posts.show');
 Route::get('/search', 'SearchController')->name('search');

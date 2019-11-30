@@ -8,24 +8,148 @@ use App\Models\Category;
 use App\Models\Discussion;
 use App\Models\Notification as NotificationModel;
 use App\Models\Post;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class DiscussionController extends Controller
 {
+    public function index($discussionId = null)
+    {
+        $data = [];
+
+        if ($discussionId) {
+            // Guess page from $discussionId
+            $discussionPosition = array_search($discussionId, Discussion::ordered()->pluck('id')->toArray()) + 1;
+            $guessedPage = ceil($discussionPosition / 20);
+            request()->replace(
+                array_merge(request()->all() + ['browse' => $guessedPage])
+            );
+
+            $data['discussion'] = function () use ($discussionId) {
+                return $this->discussion($discussionId);
+            };
+        }
+
+        $data['discussions'] = function () {
+            return $this->discussions();
+        };
+
+        return Inertia::render('Discussions/Index', $data);
+    }
+
+    protected function discussions()
+    {
+        $sticky_discussions = collect();
+
+        $discussions = Discussion::query()
+            ->with('latestPost')
+            ->with('latestPost.user')
+            ->with('user');
+
+        if (request()->get('browse', 1) == 1) {
+            $sticky_discussions = (clone $discussions)
+                ->sticky()
+                ->get();
+        }
+
+        $discussions = $discussions
+            ->ordered()
+            ->paginate(20, ['*'], 'browse');
+
+        if ($sticky_discussions->count()) {
+            $discussions->setCollection(
+                $sticky_discussions->merge($discussions)
+            );
+        }
+
+        if (user()) {
+            $user_has_seen = DB::table('has_read_discussions_users')
+                ->select('discussion_id')
+                ->distinct('discussion_id')
+                ->where('user_id', user()->id)
+                ->whereIn('discussion_id', $discussions->pluck('id'))
+                ->pluck('discussion_id');
+
+            $discussions->transform(function ($discussion) use ($user_has_seen) {
+                $discussion->has_seen = $user_has_seen->has($discussion->id);
+                return $discussion;
+            });
+        }
+
+        return $discussions;
+    }
+
+    protected function discussion($discussionId)
+    {
+        $discussion = Discussion::query()
+            ->with('user')
+            ->findOrFail($discussionId);
+
+        abort_if($discussion->deleted_at, 410);
+        abort_if($discussion->private && (auth()->guest() || $discussion->members()->where('user_id', user()->id)->count() == 0), 403);
+
+        // if (request()->page == 'last') {
+        //     $post = $discussion
+        //         ->hasMany(Post::class)
+        //         ->orderBy('created_at', 'desc')
+        //         ->first();
+
+        //     return redirect(Discussion::link_to_post($post));
+        // }
+
+        $posts = $discussion
+            ->posts()
+            ->with('user')
+            ->paginate(10);
+
+        $posts->getCollection()->transform(function ($post) {
+            return $post
+                ->makeVisible(['created_at', 'updated_at', 'deleted_at'])
+                ->append(['presented_body']);
+        });
+
+        if (user()) {
+            // Invalidation des notifications qui font référence à cette discussion pour l'utilisateur connecté
+            NotificationModel::query()
+                ->where('read_at', null)
+                ->where('notifiable_id', user()->id)
+                ->whereIn('type', [
+                    \App\Notifications\NewPrivateDiscussion::class,
+                    \App\Notifications\RepliesInDiscussion::class,
+                    \App\Notifications\ReplyInDiscussion::class,
+                ])
+                ->where('data->discussion_id', $discussion->id)
+                ->update(['read_at' => now()]);
+
+            // Invalidation des notifications qui font référence à ces posts pour l'utilisateur connecté
+            NotificationModel::query()
+                ->where('read_at', null)
+                ->where('notifiable_id', user()->id)
+                ->whereIn('type', [
+                    \App\Notifications\MentionnedInPost::class,
+                    \App\Notifications\QuotedInPost::class,
+                ])
+                ->whereIn('data->post_id', $posts->pluck('id'))
+                ->update([
+                    'read_at' => now(),
+                ]);
+
+            $discussion->has_read()->attach(user());
+        }
+
+        $discussion->posts = $posts;
+
+        return $discussion;
+    }
+
     public function create()
     {
         if (user()->restricted) {
             return redirect()->route('home')->with('error', 'Tout doux bijou ! Tu dois vérifier ton adresse email avant créer un topic !');
         }
 
-        if (user()->cannot('create discussions')) {
-            return abort(403);
-        }
-
-        $categories = Category::postables()->pluck('name', 'id');
+        abort_if(user()->cannot('create discussions'), 403);
 
         return view('discussion.create', compact('categories'));
     }
@@ -89,52 +213,6 @@ class DiscussionController extends Controller
         return redirect($post->link);
     }
 
-    public function index(Category $category = null, $slug = null)
-    {
-        $categories = Category::viewables();
-
-        abort_if($category && !in_array($category->id, $categories->pluck('id')->toArray()), 403);
-
-        $discussions = Discussion::query()
-            ->whereIn('category_id', $categories->pluck('id'))
-            ->with('category')
-            ->with('latestPost')
-            ->with('latestPost.user')
-            ->with('user');
-
-        if ($category) {
-            $discussions = $discussions
-                ->where('category_id', $category->id);
-        } else {
-            $discussions = $discussions
-                ->where('category_id', '!=', Category::SHITPOST_CATEGORY_ID);
-        }
-
-        if (request()->input('page', 1) == 1) {
-            $sticky_discussions = clone $discussions;
-            $sticky_discussions = $sticky_discussions->sticky()->get();
-        }
-
-        $discussions = $discussions->ordered()->paginate(20);
-
-        if (request()->input('page', 1) == 1) {
-            $discussions->setCollection($sticky_discussions->merge($discussions));
-        }
-
-        if (user()) {
-            $user_has_read = DB::table('has_read_discussions_users')
-                ->select('discussion_id')
-                ->distinct('discussion_id')
-                ->where('user_id', user()->id)
-                ->whereIn('discussion_id', $discussions->pluck('id'))
-                ->pluck('discussion_id');
-        } else {
-            $user_has_read = [];
-        }
-
-        return Inertia::render('Discussions/Index', compact('categories', 'category', 'discussions', 'user_has_read'));
-    }
-
     public function subscriptions()
     {
         $categories = Category::viewables();
@@ -159,93 +237,17 @@ class DiscussionController extends Controller
         $discussions = $discussions->ordered()->paginate(20);
 
         if (user()) {
-            $user_has_read = DB::table('has_read_discussions_users')
+            $user_has_seen = DB::table('has_read_discussions_users')
                 ->select('discussion_id')
                 ->where('user_id', user()->id)
                 ->whereIn('discussion_id', array_merge($sticky_discussions->pluck('id')->toArray(), $discussions->pluck('id')->toArray()))
                 ->pluck('discussion_id')
                 ->toArray();
         } else {
-            $user_has_read = [];
+            $user_has_seen = [];
         }
 
-        return view('welcome', compact('categories', 'sticky_discussions', 'discussions', 'user_has_read'));
-    }
-
-    public function show($id, $slug = null) // Ne pas utiliser Discussion $discussion (pour laisser possible le 410)
-    {
-        $discussion = Discussion::query()
-            ->with('user')
-            ->findOrFail($id);
-
-        if (null !== $discussion->category && !in_array($discussion->category->id, Category::viewables()->pluck('id')->toArray())) {
-            return abort(403);
-        }
-
-        if ($discussion->deleted_at) {
-            return abort(410);
-        }
-
-        if ($discussion->private && (auth()->guest() || $discussion->members()->where('user_id', user()->id)->count() == 0)) {
-            return abort(403);
-        }
-
-        // Invalidation des notifications qui font référence à cette discussion pour l'utilisateur connecté
-        if (auth()->check()) {
-            $classes = [
-                \App\Notifications\NewPrivateDiscussion::class,
-                \App\Notifications\RepliesInDiscussion::class,
-                \App\Notifications\ReplyInDiscussion::class,
-            ];
-
-            NotificationModel::query()
-                ->where('read_at', null)
-                ->where('notifiable_id', user()->id)
-                ->whereIn('type', $classes)
-                ->where('data->discussion_id', $discussion->id)
-                ->update([
-                    'read_at' => now(),
-                ]);
-        }
-
-        if (request()->page == 'last') {
-            $post = $discussion
-                ->hasMany(Post::class)
-                ->orderBy('created_at', 'desc')
-                ->first();
-
-            return redirect(Discussion::link_to_post($post));
-        }
-
-        $posts = $discussion
-            ->posts()
-            ->with('user')
-            ->paginate(10);
-
-        $posts->getCollection()->transform(function ($post) {
-            return $post->makeVisible(['created_at', 'updated_at', 'deleted_at'])->append(['presented_body']);
-        });
-
-        // Invalidation des notifications qui font référence à ces posts pour l'utilisateur connecté
-        if (auth()->check()) {
-            $classes = [
-                \App\Notifications\MentionnedInPost::class,
-                \App\Notifications\QuotedInPost::class,
-            ];
-
-            NotificationModel::query()
-                ->where('read_at', null)
-                ->where('notifiable_id', user()->id)
-                ->whereIn('type', $classes)
-                ->whereIn('data->post_id', $posts->pluck('id'))
-                ->update([
-                    'read_at' => now(),
-                ]);
-        }
-
-        $discussion->has_read()->attach(user());
-
-        return Inertia::render('Discussions/Show', compact('discussion', 'posts'));
+        return view('welcome', compact('categories', 'sticky_discussions', 'discussions', 'user_has_seen'));
     }
 
     public function update(Discussion $discussion, $slug)

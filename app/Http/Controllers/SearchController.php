@@ -60,7 +60,7 @@ class SearchController extends Controller
                         $after = (new \Delight\Str\Str($after))->truncateSafely(50);
 
                         $post->trimmed_body = $before . $data['q'] . $after;
-                        $post->trimmed_body = Encoding::toUTF8($post->trimmed_body);
+                        $post->trimmed_body = $post->trimmed_body;
 
                         unset($post->body);
                         return $post;

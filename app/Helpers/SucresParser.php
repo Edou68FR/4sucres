@@ -68,7 +68,8 @@ class SucresParser
         $this
             ->performReplacements();
 
-        return Encoding::toUTF8($this->content);
+        return $this->content;
+        // return Encoding::toUTF8($this->content);
     }
 
     public function parse()
