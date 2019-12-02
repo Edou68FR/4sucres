@@ -1,0 +1,25 @@
+/* Popper */
+
+.popper {
+    @apply rounded p-0 text-left;
+    width: 270px;
+    background-color: #fff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.popper ul {
+    @apply m-4;
+}
+
+.popper ul>li>a {
+    @apply block w-full rounded p-3;
+
+    &:hover {
+        @apply no-underline;
+        background-color: #F4F6FA;
+    }
+}
+
+.popper__arrow {
+    transition: none !important;
+}

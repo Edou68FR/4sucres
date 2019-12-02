@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex flex-col h-screen">
-      <div class="flex-start border-b">
+      <div class="border-b flex-start">
         <div class="flex items-center justify-between p-6">
           <div class="page-title">
             <span>Discussions</span>

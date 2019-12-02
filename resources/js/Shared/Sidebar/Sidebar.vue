@@ -1,25 +1,25 @@
 <template>
-  <aside :class="{'animated slideInLeft faster': asideAnimation.value}" class="flex flex-col -ml-16 w-16 fixed top-0 bottom-0 border-r bg-gray-800">
-    <div class="flex-start flex-grow">
-      <div class="bg-gray-700 text-center px-1 py-4">
+  <aside :class="{'animated slideInLeft faster': asideAnimation.value}" class="fixed top-0 bottom-0 flex flex-col w-16 -ml-16 bg-navigation">
+    <div class="flex-grow text-center flex-start">
+      <div class="px-1 py-4">
         <inertia-link :href="route('discussions.index')">
-          <img src="/img/icons/apple-touch-icon-120x120.png" alt="Logo 4sucres.org" class="mx-auto h-10">
+          <img src="/img/icons/apple-touch-icon-120x120.png" alt="Logo 4sucres.org" class="h-10 mx-auto">
         </inertia-link>
       </div>
-      <ul class="text-center px-1">
+      <ul class="px-1">
         <li class="my-6">
-            <inertia-link :href="route('home')" class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded" :class="{ 'bg-gray-700': route().current('home') }"><i class="fas fa-home"></i></inertia-link>
-          </li>
+          <inertia-link :href="route('home')" class="px-3 py-2 rounded hover:bg-navigation-hover" :class="{ 'bg-navigation-active': route().current('home') }"><i class="fas fa-home"></i></inertia-link>
+        </li>
         <li class="my-6">
-            <inertia-link :href="route('discussions.index')" class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded" :class="{ 'bg-gray-700': route().current('discussions*') }"><i class="fas fa-folder"></i></inertia-link>
-          </li>
+          <inertia-link :href="route('discussions.index')" class="px-3 py-2 rounded hover:bg-navigation-hover" :class="{ 'bg-navigation-active': route().current('discussions*') }"><i class="fas fa-folder"></i></inertia-link>
+        </li>
         <li class="my-6">
-            <inertia-link :href="route('search')" class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded" :class="{ 'bg-gray-700': route().current('search') }"><i class="fas fa-search"></i></inertia-link>
-          </li>
+          <inertia-link :href="route('search')" class="px-3 py-2 rounded hover:bg-navigation-hover" :class="{ 'bg-navigation-active': route().current('search') }"><i class="fas fa-search"></i></inertia-link>
+        </li>
       </ul>
     </div>
     <div class="flex-end">
-      <ul class="text-center px-1">
+      <ul class="px-1">
         <template v-if="$page.auth.user">
           <li>
             <popper
@@ -41,8 +41,8 @@
                   <li><inertia-link :href="route('notifications.clear')">Tout marquer comme lu</inertia-link></li>
                 </ul>
               </template>
-              <div class="p-6 text-center" v-else>
-                <img src="/svg/sucre_sad.svg" class="mx-auto h-24 mb-4">
+              <div class="p-6" v-else>
+                <img src="/svg/sucre_sad.svg" class="h-24 mx-auto mb-4">
                 Aucune notification
               </div>
             </div>
@@ -103,8 +103,8 @@
               <div class="popper">
                 <template v-if="$page.auth.user">
                   <div class="flex items-center px-4 py-4">
-                    <img :src="$page.auth.user.avatar_url" :alt="'Avatar de ' + $page.auth.user.name" class="rounded wh-8 shadow">
-                    <div class="ml-2 flex-1" style="line-height: 1.1em;">
+                    <img :src="$page.auth.user.avatar_url" :alt="'Avatar de ' + $page.auth.user.name" class="rounded shadow wh-8">
+                    <div class="flex-1 ml-2" style="line-height: 1.1em;">
                       <span class="font-bold">{{ $page.auth.user.display_name }}</span><br>
                       <span class="text-xs text-muted">{{ $page.auth.user.email }}</span>
                     </div>

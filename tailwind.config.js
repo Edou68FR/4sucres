@@ -1,3 +1,5 @@
+const tailwind = require('tailwindcss/defaultTheme');
+
 module.exports = {
   theme: {
     container: {
@@ -19,6 +21,7 @@ module.exports = {
   variants: {
   },
   plugins: [
+    require('./theme.config.js'),
     require('@ky-is/tailwindcss-plugin-width-height')({ variants: ['responsive'] }),
   ],
 }

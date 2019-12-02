@@ -26,7 +26,7 @@
     <script src="{{ mix('/js/app.js') }}" defer></script>
 </head>
 
-<body class="{{ $body_classes }}">
+<body class="pl-16 bg-body text-on-body" class="{{ $body_classes }}">
     @inertia
 </body>
 

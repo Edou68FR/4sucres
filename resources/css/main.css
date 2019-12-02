@@ -7,11 +7,14 @@
 @import 'vue-popperjs/dist/vue-popper.css';
 
 @import 'fonts';
-@import 'base';
-@import 'theme-4sucres';
-@import 'theme-4sucres-dark';
-/* @import 'theme-legacy'; */
-@import "tailwindcss/utilities";
+@import 'popper';
 
+/* @import 'base'; */
+/* @import 'theme-4sucres';
+@import 'theme-4sucres-dark'; */
+/* @import 'theme-legacy'; */
+
+@import "tailwindcss/utilities";
 @import "utilities";
-@import "markdown";
+
+/* @import "markdown"; */

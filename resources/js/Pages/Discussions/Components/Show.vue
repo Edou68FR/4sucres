@@ -3,14 +3,14 @@
   <div class="flex flex-col h-screen">
     <div class="flex-start">
       <div class="flex items-center justify-between p-6">
+        <button class="lg:hidden mx-1 btn btn-primary" href="#" @click="unselect">
+          <i class="inline-block sm:hidden fas fa-plus"></i>
+          <span class="hidden sm:inline"><i class="fas fa-angle-left"></i></span>
+        </button>
         <div class="flex-grow m-w-0">
           <div class="page-title" v-html="discussion.title"></div>
         </div>
         <div class="flex-none">
-          <button class="mx-1 btn btn-primary" href="#" @click="unselect">
-            <i class="inline-block sm:hidden fas fa-plus"></i>
-            <span class="hidden sm:inline">Retour</span>
-          </button>
           <template v-if="$page.auth.user">
             <inertia-link class="mx-1 btn btn-primary" href="#">
               <i class="inline-block sm:hidden fas fa-plus"></i>
