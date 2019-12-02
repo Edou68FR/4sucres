@@ -2,7 +2,7 @@
   <layout>
     <div class="flex">
       <discussion-list
-        class="w-full lg:block lg:w-1/3 bg-surface text-on-surface"
+        class="w-full border-r lg:block lg:w-1/3 border-body-border"
         :class="{ hidden: selectedDiscussionId }"
         :discussions="discussions"
         :selected-discussion-id="selectedDiscussionId"

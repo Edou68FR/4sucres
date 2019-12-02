@@ -1,0 +1,16 @@
+/* Scrollbars */
+
+.overflow-y-auto::-webkit-scrollbar {
+    width: 10px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+    opacity: 0.5;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+    background: #D9DAE5;
+    background-clip: padding-box;
+    border: 3px solid transparent;
+    border-radius: 4px;
+}

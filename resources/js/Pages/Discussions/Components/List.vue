@@ -19,15 +19,13 @@
         </div>
       </div>
       <div class="flex-grow overflow-y-auto" scroll-region>
-        <div class="cards">
-          <discussion-list-element
-            v-for="discussion in discussions.data"
-            :key="discussion.id"
-            :class="{ selected: (selectedDiscussionId == discussion.id) }"
-            :discussion="discussion"
-            @click.native="select(discussion)">
-          </discussion-list-element>
-        </div>
+        <discussion-list-element
+          v-for="discussion in discussions.data"
+          :key="discussion.id"
+          :class="{ 'shadow-md': (selectedDiscussionId == discussion.id) }"
+          :discussion="discussion"
+          @click.native="select(discussion)">
+        </discussion-list-element>
       </div>
     </div>
   </div>

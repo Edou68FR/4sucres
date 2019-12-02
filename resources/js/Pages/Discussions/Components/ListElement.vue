@@ -1,5 +1,5 @@
 <template>
-  <div class="px-4 py-2 text-on-surface bg-surface hover:bg-surface-hover">
+  <div class="px-4 py-2 text-on-surface hover:bg-surface">
     <div class="flex items-center">
       <div class="flex-none mr-4">
         <div class="px-2 py-1 text-sm text-center rounded bg-discussion-icon text-on-discussion-icon"
