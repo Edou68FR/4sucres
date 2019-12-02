@@ -1,5 +1,3 @@
-# Charte d'utilisation des services
-
 La Charte d'utilisation des Services a pour objectif de garantir la sécurité et le respect à travers nos Services et cela pour chacun des membres de la communauté 4sucres.org.
 
 ## Bienvenue sur 4sucres.org

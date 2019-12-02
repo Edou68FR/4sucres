@@ -1,5 +1,3 @@
-# Conditions générales d'utilisation
-
 L'inscription et l'utilisation du site 4sucres.org et ses Services associés signifient que vous avez pris connaissance des Conditions générales d'utilisation, de la Politique de confidentialité, de la Charte d'utilisation des Services et Conseils de sécurité ET que vous acceptez d'en être lié.
 
 Les Conditions générales d'utilisation fixent l'ensemble des règles de la relation que vous menez avec nous. Nous pouvons apporter des changements à tout moment et de façon unilatérale. Toute inscription et utilisation de nos Services après la publication et l'entrée en vigueur des modifications apportées signifient que vous acceptez les nouvelles Conditions. Attention, si vous n'acceptez pas les Conditions générales d'utilisation, n'utilisez pas nos Services.

@@ -34,25 +34,6 @@ a.accent {
 
 /* Navigation */
 
-aside {
-    @apply -ml-16 w-16 fixed top-0 bottom-0 py-2;
-    @apply border-r;
-    background: #EDEEF5;
-    border-color: #D9DAE5;
-}
-
-.aside-brand {
-    @apply text-center px-1 py-4;
-}
-
-.aside-nav {
-    @apply text-center px-1 py-2;
-}
-
-.aside-nav > li > a, .aside-nav > li button {
-    @apply inline-block px-1 py-2 mx-auto;
-}
-
 header {
     @apply w-full py-4;
 }

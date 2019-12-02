@@ -32,7 +32,7 @@ class StaticPagesTableSeeder extends Seeder
         StaticPage::firstOrCreate([
             'slug' => 'charter',
         ], [
-            'name'      => 'Charte d\'utilisation',
+            'name'      => 'Charte d\'utilisation des services',
             'content'   => file_get_contents(database_path('seeds/charter.md')),
             'position'  => StaticPage::POSITION_FOOTER,
         ]);
