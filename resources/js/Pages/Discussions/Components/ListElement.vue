@@ -1,12 +1,12 @@
 <template>
-  <div class="card hoverable px-4 py-2">
+  <div class="px-4 py-2 text-on-surface bg-surface hover:bg-surface-hover">
     <div class="flex items-center">
-      <div class="mr-4 flex-none">
-        <div class="badge bg-gold-600"
+      <div class="flex-none mr-4">
+        <div class="px-2 py-1 text-sm text-center rounded bg-discussion-icon text-on-discussion-icon"
           :class="{
-            'bg-red-600' : (discussion.replies >= 10),
-            'bg-gray-600' : (discussion.locked),
-            'bg-green-600' : (discussion.sticky),
+            'bg-discussion-icon-hot' : (discussion.replies >= 10 && !discussion.sticky),
+            'bg-discussion-icon-locked' : (discussion.locked),
+            'bg-discussion-icon-pinned' : (discussion.sticky),
           }">
           <i
             class="fas fa-folder"
@@ -19,7 +19,7 @@
           ></i>
         </div>
       </div>
-      <div class="m-w-0 md:flex-1 flex flex-wrap md:flex-no-wrap items-center">
+      <div class="flex flex-wrap items-center m-w-0 md:flex-1 md:flex-no-wrap">
         <div class="m-w-0">
           <div class="truncate">
             <inertia-link
@@ -28,7 +28,7 @@
               v-html="discussion.title"
             ></inertia-link>
           </div>
-          <div class="truncate text-sm">
+          <div class="text-sm truncate">
             le {{ moment(discussion.created_at).calendar() }}
             par
             <inertia-link
@@ -37,8 +37,8 @@
           </div>
         </div>
       </div>
-      <div class="w-12 md:w-32 lg:w-40 ml-auto flex-none flex flex-wrap items-center text-sm text-center md:text-right m-w-0">
-        <div class="w-full md:flex-1 truncate md:ml-0 md:mr-4"
+      <div class="flex flex-wrap items-center flex-none w-12 ml-auto text-sm text-center md:w-32 lg:w-40 md:text-right m-w-0">
+        <div class="w-full truncate md:flex-1 md:ml-0 md:mr-4"
           :class="{'font-bold text-red-600': ($page.auth.user && !discussion.has_seen)}">
           <inertia-link
             :href="route('users.show', discussion.latest_post.user.name)"
@@ -54,7 +54,7 @@
           <img
             :src="discussion.latest_post.user.avatar_url"
             :alt="'Avatar de ' + discussion.latest_post.user.display_name"
-            class="rounded wh-10 shadow"
+            class="rounded shadow wh-10"
           />
         </div>
       </div>

@@ -1,16 +1,14 @@
 <template>
   <div>
     <div class="flex flex-col h-screen">
-      <div class="border-b flex-start">
+      <div class="border-b border-body-border flex-start">
         <div class="flex items-center justify-between p-6">
-          <div class="page-title">
-            <span>Discussions</span>
-          </div>
+          <h1 class="text-xl font-semibold">Discussions</h1>
           <div class="flex">
-            <simple-paginator :paginator="_.omit(discussions, 'data')" :only="['discussions']"></simple-paginator>
-            <button class="mx-1 btn btn-secondary" v-on:click="reload">
+            <simple-paginator :paginator="_.omit(discussions, 'data')" :only="['discussions']" />
+            <secondary-button v-on:click="reload">
               <i class="fas fa-sync"></i>
-            </button>
+            </secondary-button>
             <inertia-link
               class="btn btn-primary"
               v-if="$page.auth.user && $page.auth.user.permissions.includes('create discussions')"
@@ -38,9 +36,11 @@
 <script>
 import DiscussionListElement from "@/Pages/Discussions/Components/ListElement";
 import SimplePaginator from "@/Shared/Components/SimplePaginator";
+import SecondaryButton from "@/Shared/Components/SecondaryButton";
+import PrimaryButton from "@/Shared/Components/PrimaryButton";
 
 export default {
-  components: { SimplePaginator, DiscussionListElement },
+  components: { SimplePaginator, DiscussionListElement, SecondaryButton, PrimaryButton },
   props: ['discussions', 'selectedDiscussionId', 'selectParent'],
   methods: {
     select(discussion){
@@ -49,7 +49,6 @@ export default {
     reload() {
       this.$inertia.reload({ preserveScroll: true });
     },
-
   }
 }
 </script>

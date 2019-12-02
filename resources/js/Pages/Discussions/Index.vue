@@ -2,21 +2,21 @@
   <layout>
     <div class="flex">
       <discussion-list
-        class="w-full lg:block lg:w-1/3"
+        class="w-full lg:block lg:w-1/3 bg-surface text-on-surface"
         :class="{ hidden: selectedDiscussionId }"
         :discussions="discussions"
         :selected-discussion-id="selectedDiscussionId"
         :select-parent="select">
       </discussion-list>
       <discussion-show
-        class="w-full lg:block lg:w-2/3 content"
+        class="w-full lg:block lg:w-2/3"
         :class="{ hidden: !selectedDiscussionId }"
         :discussion="discussion"
         v-if="selectedDiscussionId"
         :unselect-parent="unselect">
       </discussion-show>
-      <div class="hidden lg:block w-2/3 content" v-else>
-        <div class="flex h-screen items-center justify-center">
+      <div class="hidden w-2/3 lg:block" v-else>
+        <div class="flex items-center justify-center h-screen">
           <img src="/img/4sucres_white_white.png" alt="Logo 4sucres">
         </div>
       </div>

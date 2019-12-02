@@ -1,6 +1,6 @@
 <template>
   <aside :class="{'animated slideInLeft faster': asideAnimation.value}" class="fixed top-0 bottom-0 flex flex-col w-16 -ml-16 bg-navigation">
-    <div class="flex-grow text-center flex-start">
+    <div class="flex-grow text-center flex-start text-on-navigation">
       <div class="px-1 py-4">
         <inertia-link :href="route('discussions.index')">
           <img src="/img/icons/apple-touch-icon-120x120.png" alt="Logo 4sucres.org" class="h-10 mx-auto">
@@ -24,7 +24,7 @@
           <li>
             <popper
             trigger="click"
-            :options="{ placement: 'right-end', modifiers: {preventOverflow :{ boundariesElement: 'window'  }}}">
+            :options="{ placement: 'right-end', modifiers: { preventOverflow : { boundariesElement: 'window' }}}">
             <div class="popper">
               <template v-if="$page.auth.user.notifications.length">
                 <ul>
