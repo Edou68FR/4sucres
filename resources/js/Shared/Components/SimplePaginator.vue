@@ -1,8 +1,8 @@
 <template>
     <div class="flex items-center justify-between">
         <template v-if="paginator.current_page > 1">
-            <!-- <primary-button @click.native="visit(paginator.first_page_url)" class="btn btn-secondary"><i class="fas fa-angle-double-left"></i></primary-button> -->
-            <primary-button @click.native="visit(paginator.prev_page_url)" class="btn btn-secondary"><i class="fas fa-angle-left"></i></primary-button>
+            <!-- <action-button @click.native="visit(paginator.first_page_url)" type="secondary"><i class="fas fa-angle-double-left"></i></action-button> -->
+            <action-button @click.native="visit(paginator.prev_page_url)" type="secondary"><i class="fas fa-angle-left"></i></action-button>
         </template>
         <template v-else>
             <!-- <span class="btn btn-secondary disabled" disabled><i class="fas fa-angle-double-left"></i></span> -->
@@ -12,8 +12,8 @@
             {{ paginator.current_page }} / {{ paginator.last_page }}
         </span>
         <template v-if="paginator.current_page < paginator.last_page">
-            <primary-button @click.native="visit(paginator.next_page_url)" class="btn btn-secondary"><i class="fas fa-angle-right"></i></primary-button>
-            <!-- <primary-button @click.native="visit(paginator.last_page_url)" class="btn btn-secondary"><i class="fas fa-angle-double-right"></i></primary-button> -->
+            <action-button @click.native="visit(paginator.next_page_url)" type="secondary"><i class="fas fa-angle-right"></i></action-button>
+            <!-- <action-button @click.native="visit(paginator.last_page_url)" type="secondary"><i class="fas fa-angle-double-right"></i></action-button> -->
         </template>
         <template v-else>
             <span class="btn btn-secondary disabled" disabled><i class="fas fa-angle-right"></i></span>
@@ -23,11 +23,11 @@
 </template>
 
 <script>
-import PrimaryButton from "@/Shared/Components/PrimaryButton";
+import ActionButton from "@/Shared/Components/ActionButton";
 
 export default {
     name: 'SimplePaginator',
-    components: { PrimaryButton },
+    components: { ActionButton },
     props:[ "paginator", "only" ],
     methods: {
         visit(url) {

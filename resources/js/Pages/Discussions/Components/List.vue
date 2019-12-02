@@ -6,9 +6,9 @@
           <h1 class="text-xl font-semibold">Discussions</h1>
           <div class="flex">
             <simple-paginator :paginator="_.omit(discussions, 'data')" :only="['discussions']" />
-            <secondary-button v-on:click="reload">
+            <action-button v-on:click="reload" type="secondary">
               <i class="fas fa-sync"></i>
-            </secondary-button>
+            </action-button>
             <inertia-link
               class="btn btn-primary"
               v-if="$page.auth.user && $page.auth.user.permissions.includes('create discussions')"
@@ -34,11 +34,10 @@
 <script>
 import DiscussionListElement from "@/Pages/Discussions/Components/ListElement";
 import SimplePaginator from "@/Shared/Components/SimplePaginator";
-import SecondaryButton from "@/Shared/Components/SecondaryButton";
-import PrimaryButton from "@/Shared/Components/PrimaryButton";
+import ActionButton from "@/Shared/Components/ActionButton";
 
 export default {
-  components: { SimplePaginator, DiscussionListElement, SecondaryButton, PrimaryButton },
+  components: { SimplePaginator, DiscussionListElement, ActionButton },
   props: ['discussions', 'selectedDiscussionId', 'selectParent'],
   methods: {
     select(discussion){
