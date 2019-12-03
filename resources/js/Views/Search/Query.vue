@@ -57,10 +57,10 @@
 </template>
 
 <script>
-import Layout from "@/Shared/Layout";
-import DiscussionResult from "@/Pages/Search/Components/DiscussionResult";
-import EntryResult from "@/Pages/Search/Components/EntryResult";
-import UserResult from "@/Pages/Search/Components/UserResult";
+import Layout from "@/Layouts/Default";
+import DiscussionResult from "@/Views/Search/Components/DiscussionResult";
+import EntryResult from "@/Views/Search/Components/EntryResult";
+import UserResult from "@/Views/Search/Components/UserResult";
 
 export default {
   components: { Layout, DiscussionResult, EntryResult, UserResult },

@@ -14,8 +14,6 @@ const path = require('path')
 
 mix
     .js('resources/js/app.js', 'public/js')
-    .js('resources/js/legacy-app.js', 'public/js')
-    .js('resources/js/admin.js', 'public/js')
     .js('resources/js/service-worker.js', 'public/js')
 
     .webpackConfig({
@@ -32,28 +30,12 @@ mix
         plugins: ['@babel/plugin-syntax-dynamic-import'],
     })
 
-    .sass('resources/sass/theme/dark/index.scss', 'public/css/theme-dark.css')
-    .sass('resources/sass/theme/light/index.scss', 'public/css/theme-light.css')
-    // .sass('resources/sass/theme/bunker/index.scss', 'public/css/theme-bunker.css')
-    .options({
-        processCssUrls: false
-    })
-
     .postCss('resources/css/main.css', 'public/css', [
         require('postcss-import'),
         require('postcss-calc'),
         require('postcss-url'),
         require('tailwindcss'),
         require('postcss-nested'),
-        // Reduces the weight of outputed CSS files
-        // To avoid cache issues while developping, better activate this before
-        // launching to production
-        // require('@fullhuman/postcss-purgecss')({
-        //     content: [
-        //         './templates/**/*.blade.php',
-        //         './assets/js/**/*.vue'
-        //     ]
-        // }),
         require('autoprefixer')({}),
     ])
 

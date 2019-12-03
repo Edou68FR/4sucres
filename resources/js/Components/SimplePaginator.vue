@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import ActionButton from "@/Shared/Components/ActionButton";
+import ActionButton from "@/Components/ActionButton";
 
 export default {
     name: 'SimplePaginator',

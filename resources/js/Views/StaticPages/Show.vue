@@ -1,7 +1,7 @@
 <template>
   <layout>
     <div class="container py-6">
-      <h1 class="text-xl font-semibold">Bienvenue sur 4sucres.org</h1>
+      <h1 class="text-xl font-semibold">{{ static_page.name }}</h1>
     </div>
     <hr class="border-b">
     <div class="container py-6">
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Layout from "@/Shared/Layout";
+import Layout from "@/Layouts/Default";
 
 export default {
   components: { Layout },

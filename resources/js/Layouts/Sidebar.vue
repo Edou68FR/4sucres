@@ -137,7 +137,7 @@
 
 <script>
 import Popper from 'vue-popperjs';
-import StaticPageLink from '@/Shared/Components/StaticPageLink';
+import StaticPageLink from '@/Components/StaticPageLink';
 
 export default {
   components: { Popper, StaticPageLink },

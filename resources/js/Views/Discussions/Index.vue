@@ -25,10 +25,10 @@
 </template>
 
 <script>
-import Layout from "@/Shared/Layout";
-import SimplePaginator from "@/Shared/Components/SimplePaginator";
-import DiscussionList from "@/Pages/Discussions/Components/List";
-import DiscussionShow from "@/Pages/Discussions/Components/Show";
+import Layout from "@/Layouts/Default";
+import SimplePaginator from "@/Components/SimplePaginator";
+import DiscussionList from "@/Views/Discussions/Components/List";
+import DiscussionShow from "@/Views/Discussions/Components/Show";
 
 export default {
   components: { Layout, SimplePaginator, DiscussionList, DiscussionShow },

@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import Layout from "@/Shared/Layout";
+import Layout from "@/Layouts/Default";
 
 export default {
   components: { Layout },

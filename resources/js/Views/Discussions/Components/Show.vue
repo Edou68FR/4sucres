@@ -36,10 +36,10 @@
 </template>
 
 <script>
-import DiscussionListElement from "@/Pages/Discussions/Components/ListElement";
-import SimplePaginator from "@/Shared/Components/SimplePaginator";
-import ActionButton from "@/Shared/Components/ActionButton";
-import Reply from "@/Pages/Discussions/Components/Show/Reply";
+import DiscussionListElement from "@/Views/Discussions/Components/ListElement";
+import SimplePaginator from "@/Components/SimplePaginator";
+import ActionButton from "@/Components/ActionButton";
+import Reply from "@/Views/Discussions/Components/Show/Reply";
 
 export default {
   components: { SimplePaginator, DiscussionListElement, ActionButton, Reply },

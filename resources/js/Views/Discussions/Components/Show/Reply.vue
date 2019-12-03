@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import ActionButton from '@/Shared/Components/ActionButton.vue'
+import ActionButton from '@/Components/ActionButton.vue'
 import Popper from 'vue-popperjs';
 
 export default {

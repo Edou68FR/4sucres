@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import StaticPageLink from '@/Shared/Components/StaticPageLink';
-import Sidebar from '@/Shared/Sidebar/Sidebar';
+import StaticPageLink from '@/Components/StaticPageLink';
+import Sidebar from '@/Layouts/Sidebar';
 
 export default {
-  name: 'Layout',
+  name: 'Default',
   components: { StaticPageLink, Sidebar }
 }
 </script>
