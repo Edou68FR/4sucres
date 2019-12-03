@@ -201,7 +201,7 @@ class SucresParser
         foreach ($matchs->results() as $match) {
             $uuid = (string) Str::uuid();
 
-            $markup = '<div class="integration my-2 shadow-sm" style="max-width: 500px">';
+            $markup = '<div class="my-2 integration shadow-sm" style="max-width: 500px">';
             $markup .= '<div class="embed-responsive embed-responsive-16by9" style="max-width: 500px">';
             $markup .= '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/' . $match->group(1) . '?rel=0" allowfullscreen></iframe>';
             $markup .= '</div>';
@@ -228,7 +228,7 @@ class SucresParser
         foreach ($matchs->results() as $match) {
             $uuid = (string) Str::uuid();
 
-            $markup = '<div class="integration my-2 shadow-sm" style="max-width: 500px">';
+            $markup = '<div class="my-2 integration shadow-sm" style="max-width: 500px">';
             $markup .= '<div style="max-width: 500px" class="border-bottom">';
             $markup .= '<audio controls="controls" volume="0.5" style="width: 100%; max-width: 500px">';
             $markup .= '<source src="https://vocaroo.com/media_command.php?media=' . $match->group(1) . '&command=download_mp3" type="audio/mpeg">';
@@ -258,7 +258,7 @@ class SucresParser
         foreach ($matchs->results() as $match) {
             $uuid = (string) Str::uuid();
 
-            $markup = '<div class="integration my-2 shadow-sm" style="max-width: 500px">';
+            $markup = '<div class="my-2 integration shadow-sm" style="max-width: 500px">';
             $markup .= '<div style="max-width: 500px" class="border-bottom">';
             $markup .= '<iframe style="width: 100%; height:200px; border:0;" scrolling="no" frameborder="no" src="https://vocabank.org/samples/' . $match->group(1) . '/iframe"></iframe>';
             $markup .= '</div>';
@@ -285,7 +285,7 @@ class SucresParser
         foreach ($matchs->results() as $match) {
             $uuid = (string) Str::uuid();
 
-            $markup = '<div class="integration my-2 shadow-sm" style="max-width: 500px">';
+            $markup = '<div class="my-2 integration shadow-sm" style="max-width: 500px">';
             $markup .= '<div class="embed-responsive embed-responsive-16by9" style="max-width: 500px">';
             $markup .= '<iframe class="embed-responsive-item" src="https://clips.twitch.tv/embed?autoplay=false&clip=' . $match->group(1) . '" allowfullscreen></iframe>';
             $markup .= '</div>';
@@ -340,11 +340,11 @@ class SucresParser
         foreach ($matchs->results() as $match) {
             $uuid = (string) Str::uuid();
 
-            $markup = '<div class="integration my-2 shadow-sm" style="max-width: 680px">';
+            $markup = '<div class="my-2 integration shadow-sm" style="max-width: 680px">';
             $markup .= '<div style="max-width: 680px" class="border-bottom d-none d-lg-block">';
             $markup .= '<iframe style="width:680px; height:457px; border:0;" scrolling="no" frameborder="no" src="https://www.strawpoll.me/embed_1/' . $match->group(1) . '/r"></iframe>';
             $markup .= '</div>';
-            $markup .= '<div class="border-bottom d-lg-none p-2 text-center" style="background-color: #ffd756">';
+            $markup .= '<div class="p-2 text-center border-bottom d-lg-none" style="background-color: #ffd756">';
             $markup .= '<a color="#000" target="_blank" href="https://www.strawpoll.me/' . $match->group(1) . '">https://www.strawpoll.me/' . $match->group(1) . '</a>';
             $markup .= '</div>';
             $markup .= '<div class="integration-text"><i class="fas fa-chart-pie" color="#ca302c"></i> <a target="_blank" href="https://www.strawpoll.me/' . $match->group(1) . '">Voter sur StrawPoll</a></div>';
@@ -371,7 +371,7 @@ class SucresParser
 
             $uuid = (string) Str::uuid();
 
-            $this->replacements[$uuid] = '<a href="' . $mention['user']->link . '" class="badge badge-primary align-middle">@' . $mention['user']->name . '</a>' . ' ';
+            $this->replacements[$uuid] = '<a href="' . $mention['user']->link . '" class="align-middle badge badge-primary">@' . $mention['user']->name . '</a>' . ' ';
 
             $this->content = Str::replaceFirst(
                 $mention['excerpt'],
@@ -430,7 +430,8 @@ class SucresParser
 
             $uuid = (string) Str::uuid();
 
-            $this->replacements[$uuid] = view('discussion.post._show_as_quote', array_merge(['post' => $quote['post']], ['current' => $quote['post']]))->render();
+            // $this->replacements[$uuid] = view('discussion.post._show_as_quote', array_merge(['post' => $quote['post']], ['current' => $quote['post']]))->render();
+            $this->replacements[$uuid] = '<quote :post="' . json_encode($quote['post']) . '" />';
 
             $this->content = Str::replaceFirst(
                 $quote['excerpt'],

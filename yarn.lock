@@ -672,6 +672,22 @@
   resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-2.5.4.tgz#fa20f45eaae74696070328342553ed5de224bb4d"
   integrity sha512-PXqAcLD6R8GL8dFcls728HrYzDdYN60U8RXvc39wmOs1pJIcyc3g+dleWu+fGgLnEGG4SwblEUu+EF4/dH/2ew==
 
+"@dicebear/avatars-initials-sprites@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@dicebear/avatars-initials-sprites/-/avatars-initials-sprites-1.0.9.tgz#18dc943f58d6027c4772f2f5758910da25a0ee55"
+  integrity sha512-IQBO1rPs0VWGVeRH4Q8xZh0PViQwjDRCrjvMBIDNjOiftbmOS99pggvHj8swz8YACYkzH12Gs6QTdiSk553tIQ==
+  dependencies:
+    bowser "^2.5.2"
+    initials "^3.0.1"
+
+"@dicebear/avatars@^3.1.4":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@dicebear/avatars/-/avatars-3.1.4.tgz#299924e4b920b0a0d1a052f55e3d28218e4ff8fb"
+  integrity sha512-ka6MbOGrcoXZwrjbdWBzroMc/mYXPlIAiSB80Y1azkaYqeR4wht8AYq43DA4vekF6/d0yq1GV/2jkuo5OqvrzA==
+  dependencies:
+    pure-color "^1.3.0"
+    seedrandom "^2.4.3"
+
 "@fancyapps/fancybox@^3.5.7":
   version "3.5.7"
   resolved "https://registry.yarnpkg.com/@fancyapps/fancybox/-/fancybox-3.5.7.tgz#12f8734663ec6eae7f9236b92ca236e6e07fdfd5"
@@ -1354,6 +1370,11 @@ bootstrap-vue@^2.0.0-rc.20:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.4.1.tgz#8582960eea0c5cd2bede84d8b0baf3789c3e8b01"
   integrity sha512-tbx5cHubwE6e2ZG7nqM3g/FZ5PQEDMWmMGNrCUBVRPHXTJaH7CBDdsLeu3eCh3B1tzAxTnAbtmrzvWEvT2NNEA==
+
+bowser@^2.5.2:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/bowser/-/bowser-2.7.0.tgz#96eab1fa07fab08c1ec4c75977a7c8ddf8e0fe1f"
+  integrity sha512-aIlMvstvu8x+34KEiOHD3AsBgdrzg6sxALYiukOWhFvGMbQI6TRP/iY0LMhUrHs56aD6P1G0Z7h45PUJaa5m9w==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -3648,6 +3669,11 @@ ini@^1.3.4, ini@^1.3.5, ini@~1.3.0:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
   integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
 
+initials@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/initials/-/initials-3.0.1.tgz#42a3bff5c6b4ab4581c15ee0e451f5f63239fc49"
+  integrity sha512-jZHGpuCnASob7wrbdq7/m9VFv5eJJR8pHpB2e46M0Q4A86ym9m2GK3oxH4ai0HQNQlGGWPQQapZoO+qgxw5X8Q==
+
 internal-ip@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/internal-ip/-/internal-ip-4.3.0.tgz#845452baad9d2ca3b69c635a137acb9a0dad0907"
@@ -5783,6 +5809,11 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
+pure-color@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/pure-color/-/pure-color-1.3.0.tgz#1fe064fb0ac851f0de61320a8bf796836422f33e"
+  integrity sha1-H+Bk+wrIUfDeYTIKi/eWg2Qi8z4=
+
 purgecss@^1.4.0:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/purgecss/-/purgecss-1.4.1.tgz#d362e63eb1ed9dd1fa1554b9fd7accb8d54e56dc"
@@ -6238,6 +6269,11 @@ scriptjs@^2.5.9:
   version "2.5.9"
   resolved "https://registry.yarnpkg.com/scriptjs/-/scriptjs-2.5.9.tgz#343915cd2ec2ed9bfdde2b9875cd28f59394b35f"
   integrity sha512-qGVDoreyYiP1pkQnbnFAUIS5AjenNwwQBdl7zeos9etl+hYKWahjRTfzAZZYBv5xNHx7vNKCmaLDQZ6Fr2AEXg==
+
+seedrandom@^2.4.3:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/seedrandom/-/seedrandom-2.4.4.tgz#b25ea98632c73e45f58b77cfaa931678df01f9ba"
+  integrity sha512-9A+PDmgm+2du77B5i0Ip2cxOqqHjgNxnBgglxLcX78A2D6c2rTo61z4jnVABpF4cKeDMDG+cmXXvdnqse2VqMA==
 
 select-hose@^2.0.0:
   version "2.0.0"

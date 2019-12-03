@@ -1,9 +1,7 @@
 <template>
-    <div class="post p-3 row no-gutters" :id="'p' + post.id">
-        <div class="col-auto mr-3">
-        <a :href="post.user.link">
-            <img :src="post.user.avatar_url" class="post-image rounded">
-        </a>
+    <div class="p-3 post row no-gutters" :id="'p' + post.id">
+        <div class="mr-3 col-auto">
+
         </div>
         <div class="col">
         <template v-if="!post.discussion.private">
@@ -54,11 +52,11 @@
         <small>@{{ post.user.name }}</small>
 
         <span v-if="post.user.id === post.discussion.user_id"
-            class="badge badge-full-height badge-op align-middle"
+            class="align-middle badge badge-full-height badge-op"
             :title="post.user.display_name + ' est l\'auteur de ce topic.'"><i class="fas fa-crown"></i></span>
 
         <span v-if="post.user.is_birthday"
-            class="badge badge-full-height badge-danger align-middle"
+            class="align-middle badge badge-full-height badge-danger"
             :title="'C\'est l\'anniversaire de ' + post.user.display_name + ', aujourd\'hui.'"><i class="fas fa-birthday-cake"></i></span>
 
         <br>
@@ -70,7 +68,7 @@
         <hr>
 
         <div class="post-content">
-            <div v-if="post.deleted_at" class="text-danger mb-3">
+            <div v-if="post.deleted_at" class="mb-3 text-danger">
                 <i class="fas fa-times"></i> Message supprimé
                 <span v-if="auth_user_can('read deleted posts')"
                     @click="onToggle"

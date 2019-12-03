@@ -9,6 +9,7 @@
 @import 'fonts';
 @import 'popper';
 @import 'scrollbar';
+@import "markdown";
 
 /* @import 'base'; */
 /* @import 'theme-4sucres';
@@ -17,5 +18,3 @@
 
 @import "tailwindcss/utilities";
 @import "utilities";
-
-/* @import "markdown"; */
