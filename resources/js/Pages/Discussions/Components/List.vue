@@ -9,12 +9,11 @@
             <action-button v-on:click="reload" type="secondary">
               <i class="fas fa-sync"></i>
             </action-button>
-            <inertia-link
-              class="btn btn-primary"
+            <action-button
               v-if="$page.auth.user && $page.auth.user.permissions.includes('create discussions')"
               :href="route('discussions.create')">
               <i class="fas fa-plus"></i>
-            </inertia-link>
+            </action-button>
           </div>
         </div>
       </div>
@@ -22,7 +21,7 @@
         <discussion-list-element
           v-for="discussion in discussions.data"
           :key="discussion.id"
-          :class="{ 'shadow-md': (selectedDiscussionId == discussion.id) }"
+          :class="{ 'bg-surface text-on-surface': (selectedDiscussionId == discussion.id) }"
           :discussion="discussion"
           @click.native="select(discussion)">
         </discussion-list-element>

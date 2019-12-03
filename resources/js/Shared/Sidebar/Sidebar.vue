@@ -3,7 +3,7 @@
     <div class="flex-grow text-center flex-start text-on-navigation">
       <div class="px-1 py-4">
         <inertia-link :href="route('discussions.index')">
-          <img src="/img/icons/apple-touch-icon-120x120.png" alt="Logo 4sucres.org" class="h-10 mx-auto">
+          <img src="/img/4sucres_sidebar.png" alt="Logo 4sucres.org" class="w-10 mx-auto">
         </inertia-link>
       </div>
       <ul class="px-1">
