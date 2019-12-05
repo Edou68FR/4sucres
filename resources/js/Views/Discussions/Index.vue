@@ -2,20 +2,20 @@
   <layout>
     <div class="flex">
       <discussion-list
-        class="w-full lg:border-r lg:block lg:w-1/3 border-body-border bg-body-variant text-on-body-variant"
-        :class="{ hidden: selectedDiscussionId }"
+        class="w-full lg:border-r md:block md:w-1/2 lg:w-1/3 border-body-border"
+        :class="{ hidden: selectedDiscussionId && discussion }"
         :discussions="discussions"
         :selected-discussion-id="selectedDiscussionId"
         :select-parent="select">
       </discussion-list>
       <discussion-show
-        class="w-full lg:block lg:w-2/3"
-        :class="{ hidden: !selectedDiscussionId }"
+        class="w-full md:block md:w-1/2 lg:w-2/3"
+        :class="{ hidden: !selectedDiscussionId && !discussion }"
         :discussion="discussion"
         v-if="selectedDiscussionId"
         :unselect-parent="unselect">
       </discussion-show>
-      <div class="hidden w-2/3 lg:block" v-else>
+      <div class="hidden md:w-1/2 lg:w-2/3 md:block" v-else>
         <div class="flex items-center justify-center h-screen">
           <img src="/img/4sucres_white_white.png" alt="Logo 4sucres">
         </div>

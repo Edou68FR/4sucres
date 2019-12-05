@@ -1,6 +1,6 @@
 <template>
   <span>
-    <inertia-link :href="route('users.show', user.name)" class="text-semibold">
+    <inertia-link :href="route('users.show', user.name)" class="font-semibold">
       {{ user.display_name }}
     </inertia-link>
     <span v-if="user.display_name != user.name">@{{ user.name }}</span>

@@ -1,0 +1,3 @@
+[submodule "resources/vendor/fontawesome-pro"]
+	path = resources/vendor/fontawesome-pro
+	url = https://github.com/ngdanghau/fontawesome-pro

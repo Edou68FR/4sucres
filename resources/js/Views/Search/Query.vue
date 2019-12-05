@@ -11,7 +11,7 @@
         <option value="posts">Réponses</option>
         <option value="users">Membres</option>
       </select>
-      <button type="submit" class="btn btn-primary" v-on:click="submit()"><i class="fas fa-search mr-1"></i> Recherche</button>
+      <button type="submit" class="btn btn-primary" v-on:click="submit()"><i class="fal fa-search mr-1"></i> Recherche</button>
     </div>
     <div class="container py-6">
       <div ref="results">

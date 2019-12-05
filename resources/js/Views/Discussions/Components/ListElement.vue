@@ -1,69 +1,59 @@
 <template>
-  <div class="px-4 py-2 border-b text-on-surface hover:bg-surface border-body-border">
+  <div class="px-6 py-4 hover:bg-body-variant">
     <div class="flex items-center">
-      <div class="flex-none mr-4">
-        <div class="px-2 py-1 text-sm text-center rounded bg-discussion-icon text-on-discussion-icon"
-          :class="{
-            'bg-discussion-icon-hot' : (discussion.replies >= 10 && !discussion.sticky),
-            'bg-discussion-icon-locked' : (discussion.locked),
-            'bg-discussion-icon-pinned' : (discussion.sticky),
-          }">
-          <i
-            class="fas fa-folder"
-            style="width: 1em;"
+      <div class="flex-none mx-auto mr-6">
+        <user-avatar :user="discussion.latest_post.user" />
+        <div class="absolute px-2 py-1 text-center rounded bg-discussion-icon text-on-discussion-icon"
+            style="font-size: .7rem; bottom: -.2rem; right: -.4rem;"
             :class="{
-                'fa-lock' : (discussion.locked),
-                'fa-thumbtack' : (discussion.sticky),
-                'fa-shield-alt' : (discussion.private),
-              }"
-          ></i>
+              'bg-discussion-icon-hot' : (discussion.replies >= 10 && !discussion.sticky),
+              'bg-discussion-icon-locked' : (discussion.locked),
+              'bg-discussion-icon-pinned' : (discussion.sticky),
+            }">
+            <i
+              class="fas fa-folder"
+              style="width: 1em;"
+              :class="{
+                  'fa-lock' : (discussion.locked),
+                  'fa-thumbtack' : (discussion.sticky),
+                  'fa-shield-alt' : (discussion.private),
+                }"
+            ></i>
         </div>
       </div>
-      <div class="flex flex-wrap items-center m-w-0 md:flex-1 md:flex-no-wrap">
+      <div class="flex-grow m-w-0">
         <div class="m-w-0">
           <div class="truncate">
             <inertia-link
               :href="route('discussions.show', [discussion.id, discussion.slug])"
-              class="font-bold accent"
-              v-html="discussion.title"
-            ></inertia-link>
+              class="font-semibold">
+              {{ discussion.title }}
+            </inertia-link>
           </div>
-          <div class="text-sm truncate">
-            le {{ moment(discussion.created_at).calendar() }}
-            par
-            <inertia-link
-              :href="route('users.show', discussion.user.name)"
-            >{{ discussion.user.display_name }}</inertia-link>
+          <!-- <inertia-link :href="route('users.show', discussion.user.name)">{{ discussion.user.display_name }}</inertia-link> -->
+          <div class="text-sm">
+            <inertia-link :href="route('users.show', discussion.user.name)">{{ discussion.user.display_name }}</inertia-link> {{ moment(discussion.user.created_at).fromNow() }}
           </div>
         </div>
       </div>
-      <div class="flex flex-wrap items-center flex-none w-12 ml-auto text-sm text-center md:w-32 lg:w-40 md:text-right m-w-0">
-        <div class="w-full truncate md:flex-1 md:ml-0 md:mr-4"
-          :class="{'font-bold text-red-600': ($page.auth.user && !discussion.has_seen)}">
-          <inertia-link
-            :href="route('users.show', discussion.latest_post.user.name)"
-            class="hidden md:inline"
-          >{{ discussion.latest_post.user.display_name }}</inertia-link>
-          <br class="hidden md:block" />
-          <inertia-link :href="route('posts.show', discussion.latest_post.id)">
-            <span class="hidden md:inline">il y a</span>
-            {{ moment(discussion.latest_post.created_at).fromNow().replace('il y a ', '') }}
-          </inertia-link>
-        </div>
-        <div class="mx-auto">
-          <img
-            :src="discussion.latest_post.user.avatar_url"
-            :alt="'Avatar de ' + discussion.latest_post.user.display_name"
-            class="rounded shadow wh-10"
-          />
-        </div>
+      <div class="flex-none">
+        <inertia-link :href="route('posts.show', discussion.latest_post.id)">
+          {{ moment(discussion.latest_post.created_at).fromNow().replace('il y a ', '') }}
+        </inertia-link>
+        <i
+          class="ml-2 text-sm text-brand fas fa-circle"
+          :class="{'hidden': ($page.auth.user && !discussion.has_seen)}" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import UserAvatar from '@/Components/UserAvatar';
+import UserName from '@/Components/UserName';
+
 export default {
+    components: { UserAvatar, UserName },
     props: ['discussion']
 }
 </script>

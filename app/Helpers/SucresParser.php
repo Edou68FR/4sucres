@@ -430,8 +430,8 @@ class SucresParser
 
             $uuid = (string) Str::uuid();
 
-            // $this->replacements[$uuid] = view('discussion.post._show_as_quote', array_merge(['post' => $quote['post']], ['current' => $quote['post']]))->render();
-            $this->replacements[$uuid] = '<quote :post="' . json_encode($quote['post']) . '" />';
+            $this->replacements[$uuid] = view('discussion.post._show_as_quote', array_merge(['post' => $quote['post']], ['current' => $quote['post']]))->render();
+            // $this->replacements[$uuid] = '<quote :post="' . json_encode($quote['post']) . '" />';
 
             $this->content = Str::replaceFirst(
                 $quote['excerpt'],

@@ -7,12 +7,12 @@
           <div class="flex">
             <simple-paginator :paginator="_.omit(discussions, 'data')" :only="['discussions']" />
             <action-button v-on:click="reload" type="secondary">
-              <i class="fas fa-sync"></i>
+              <i class="fal fa-sync"></i>
             </action-button>
             <action-button
               v-if="$page.auth.user && $page.auth.user.permissions.includes('create discussions')"
               :href="route('discussions.create')">
-              <i class="fas fa-plus"></i>
+              <i class="fal fa-plus"></i>
             </action-button>
           </div>
         </div>

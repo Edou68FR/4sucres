@@ -2,11 +2,11 @@
   <div class>
     <div class="mb-3">
       <a href="#" class="btn btn-sm btn-primary" v-on:click="fullScreen()">
-        <i class="fas fa-expand"></i> Élargir
+        <i class="fal fa-expand"></i> Élargir
       </a>
       <div v-if="page == 1" class="float-right">
         <span class="btn btn-success btn-sm">
-          <i class="fas fa-sync fa-spin"></i> Synced
+          <i class="fal fa-sync fa-spin"></i> Synced
         </span>
       </div>
     </div>

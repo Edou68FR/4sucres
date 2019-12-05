@@ -24,7 +24,7 @@
               <div class="mb-2">
                 <span class="font-bold">{{ user.display_name }}</span>
                 <span v-if="user.display_name != user.name">@{{ user.name }}</span>
-                <span class="badge badge-primary" v-if="google_2fa_enabled"><i class="fas fa-lock"></i> 2FA</span>
+                <span class="badge badge-primary" v-if="google_2fa_enabled"><i class="fal fa-lock"></i> 2FA</span>
               </div>
               <div class="mb-2">
                 <span class="text-base font-bold">{{ user.discussions_count }}</span> discussions

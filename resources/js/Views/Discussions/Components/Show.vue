@@ -4,20 +4,20 @@
     <div class="border-b flex-start border-body-border">
       <div class="flex flex-wrap items-center justify-between p-6 lg:order-1">
         <action-button class="mr-6 lg:hidden" @click.native="unselect" type="secondary">
-          <i class="fas fa-angle-left"></i> Retour
+          <i class="mr-1 fal fa-angle-left"></i> Retour
         </action-button>
         <div class="flex justify-end flex-none lg:order-3">
           <simple-paginator :paginator="_.omit(discussion.posts, 'data')" :only="['discussion']" />
           <template v-if="$page.auth.user">
             <action-button href="#">
-              <i class="fas fa-plus"></i><span class="hidden sm:inline">Répondre</span>
+              <i class="mr-1 fal fa-plus"></i><span class="hidden sm:inline"> Répondre</span>
             </action-button>
             <action-button :href="route('discussions.unsubscribe', [discussion.id, discussion.slug])">
-              <i class="far fa-star"></i>
+              <i class="fal fa-star"></i>
             </action-button>
           </template>
           <action-button @click.native="reload" type="secondary">
-            <i class="fas fa-sync"></i>
+            <i class="fal fa-sync"></i>
           </action-button>
         </div>
         <h1 class="w-full mt-6 text-xl font-semibold text-center lg:order-2 lg:w-auto lg:mt-0">
@@ -29,7 +29,8 @@
       <reply
         v-for="post in discussion.posts.data"
         :key="post.id"
-        :post="post" />
+        :post="post"
+        :discussion="discussion" />
     </div>
   </div>
 </div>

@@ -1,24 +1,26 @@
 <template>
-  <aside :class="{'animated slideInLeft faster': asideAnimation.value}" class="fixed top-0 bottom-0 flex flex-col w-16 -ml-16 bg-navigation">
-    <div class="flex-grow text-center flex-start text-on-navigation">
+  <aside
+    :class="{ 'animated slideInLeft faster': asideAnimation.value }"
+    class="fixed top-0 bottom-0 flex flex-col w-20 -ml-20 text-center text-on-navigation">
+    <div class="flex-grow flex-start bg-navigation">
       <div class="px-1 py-4 bg-navigation-brand">
         <inertia-link :href="route('discussions.index')">
           <img src="/img/4sucres_sidebar.png" alt="Logo 4sucres.org" class="w-10 mx-auto">
         </inertia-link>
       </div>
       <ul class="px-1">
-        <li class="my-6">
-          <inertia-link :href="route('home')" class="px-3 py-2 rounded hover:bg-navigation-hover" :class="{ 'bg-navigation-active': route().current('home') }"><i class="fas fa-home"></i></inertia-link>
+        <li class="my-8">
+          <inertia-link :href="route('home')" class="px-3 py-2 rounded hover:text-on-navigation-hover" :class="{ 'text-on-navigation-active': route().current('home') }"><i class="fad fa-home"></i></inertia-link>
         </li>
-        <li class="my-6">
-          <inertia-link :href="route('discussions.index')" class="px-3 py-2 rounded hover:bg-navigation-hover" :class="{ 'bg-navigation-active': route().current('discussions*') }"><i class="fas fa-folder"></i></inertia-link>
+        <li class="my-8">
+          <inertia-link :href="route('discussions.index')" class="px-3 py-2 rounded hover:text-on-navigation-hover" :class="{ 'text-on-navigation-active': route().current('discussions*') }"><i class="fas fa-folder"></i></inertia-link>
         </li>
-        <li class="my-6">
-          <inertia-link :href="route('search')" class="px-3 py-2 rounded hover:bg-navigation-hover" :class="{ 'bg-navigation-active': route().current('search') }"><i class="fas fa-search"></i></inertia-link>
+        <li class="my-8">
+          <inertia-link :href="route('search')" class="px-3 py-2 rounded hover:text-on-navigation-hover" :class="{ 'text-on-navigation-active': route().current('search') }"><i class="fad fa-search"></i></inertia-link>
         </li>
       </ul>
     </div>
-    <div class="flex-end">
+    <div class="flex-end bg-navigation">
       <ul class="px-1">
         <template v-if="$page.auth.user">
           <li>
@@ -47,7 +49,7 @@
               </div>
             </div>
             <button class="relative" slot="reference">
-              <i class="fas fa-bell"></i>
+              <i class="far fa-bell"></i>
               <span v-if="$page.auth.user.notifications.length" class="absolute badge badge-danger" style="bottom: .25rem; right: .75rem;">{{ $page.auth.user.notifications.length }}</span>
             </button>
           </popper>
@@ -55,17 +57,17 @@
           </li>
           <li>
             <inertia-link :href="route('home')" class="relative">
-              <i class="fas fa-envelope"></i>
+              <i class="far fa-envelope"></i>
               <span v-if="$page.auth.user.private_unread_count" class="absolute badge badge-primary" style="bottom: .25rem; right: .75rem;">{{ $page.auth.user.private_unread_count }}</span>
             </inertia-link>
           </li>
-          <li><button><i class="fas fa-lightbulb"></i></button></li>
+          <li><button><i class="far fa-lightbulb"></i></button></li>
           <li v-if="$page.auth.user.roles.includes('admin') || $page.auth.user.roles.includes('moderator')">
-            <inertia-link :href="route('admin.index')" :class="{ active: route().current('admin.index') }"><i class="fas fa-lock"></i></inertia-link>
+            <inertia-link :href="route('admin.index')" :class="{ active: route().current('admin.index') }"><i class="far fa-lock"></i></inertia-link>
           </li>
         </template>
 
-        <li>
+        <li class="my-6">
           <popper
             trigger="click"
             :options="{ placement: 'right-end', modifiers: {preventOverflow :{ boundariesElement: 'window'  }}}">
@@ -90,46 +92,47 @@
               </ul>
             </div>
             <button slot="reference">
-              <i class="fas fa-question-circle"></i>
+              <i class="far fa-question-circle"></i>
             </button>
           </popper>
         </li>
 
-        <template>
-          <li>
-            <popper
-              trigger="click"
-              :options="{ placement: 'right-end' }">
-              <div class="popper">
-                <template v-if="$page.auth.user">
-                  <div class="flex items-center px-4 py-4">
-                    <img :src="$page.auth.user.avatar_url" :alt="'Avatar de ' + $page.auth.user.name" class="rounded shadow wh-8">
-                    <div class="flex-1 ml-2" style="line-height: 1.1em;">
-                      <span class="font-bold">{{ $page.auth.user.display_name }}</span><br>
-                      <span class="text-xs text-muted">{{ $page.auth.user.email }}</span>
-                    </div>
+        <li class="my-6">
+          <popper
+            trigger="click"
+            :options="{ placement: 'right-end' }">
+            <div class="popper">
+              <template v-if="$page.auth.user">
+                <div class="flex items-center px-4 py-4">
+                  <img :src="$page.auth.user.avatar_url" :alt="'Avatar de ' + $page.auth.user.name" class="rounded shadow wh-8">
+                  <div class="flex-1 ml-2" style="line-height: 1.1em;">
+                    <span class="font-bold">{{ $page.auth.user.display_name }}</span><br>
+                    <span class="text-xs text-muted">{{ $page.auth.user.email }}</span>
                   </div>
-                  <hr>
-                  <ul>
-                    <li><inertia-link :href="route('users.me')">Profil</inertia-link></li>
-                    <li><inertia-link :href="route('user.settings.profile')">Paramètres</inertia-link></li>
-                    <li><inertia-link :href="route('logout')" method="post">Déconnexion</inertia-link></li>
-                  </ul>
-                </template>
-                <template v-else>
-                  <ul>
-                    <li><inertia-link :href="route('register')" :class="{ active: route().current('register') }">Inscription</inertia-link></li>
-                    <li><inertia-link :href="route('login')" :class="{ active: route().current('login') }">Connexion</inertia-link></li>
-                  </ul>
-                </template>
-              </div>
-              <button slot="reference">
-                <img v-if="$page.auth.user" :src="$page.auth.user.avatar_url" :alt="'Avatar de ' + $page.auth.user.name" class="mx-auto rounded wh-8">
-                <img v-else src="/img/guest.png" alt="Avatar Invité" class="mx-auto rounded wh-8">
-              </button>
-            </popper>
-          </li>
-        </template>
+                </div>
+                <hr>
+                <ul>
+                  <li><inertia-link :href="route('users.me')">Profil</inertia-link></li>
+                  <li><inertia-link :href="route('user.settings.profile')">Paramètres</inertia-link></li>
+                  <li><inertia-link :href="route('logout')" method="post">Déconnexion</inertia-link></li>
+                </ul>
+              </template>
+              <template v-else>
+                <ul>
+                  <li><inertia-link :href="route('register')" :class="{ active: route().current('register') }">Inscription</inertia-link></li>
+                  <li><inertia-link :href="route('login')" :class="{ active: route().current('login') }">Connexion</inertia-link></li>
+                </ul>
+              </template>
+            </div>
+            <button slot="reference">
+              <img v-if="$page.auth.user" :src="$page.auth.user.avatar_url" :alt="'Avatar de ' + $page.auth.user.name" class="mx-auto rounded wh-8">
+              <img v-else src="/img/guest.png" alt="Avatar Invité" class="mx-auto rounded wh-8">
+            </button>
+          </popper>
+        </li>
+
+        <li class="my-6">
+        </li>
       </ul>
     </div>
   </aside>
@@ -141,10 +144,15 @@ import StaticPageLink from '@/Components/StaticPageLink';
 
 export default {
   components: { Popper, StaticPageLink },
+  data() {
+    return {
+      sidebarVisible: true,
+    }
+  },
   mounted() {
     setTimeout(() => {
       this.asideAnimation.value = false;
     }, 500);
-  }
+  },
 }
 </script>

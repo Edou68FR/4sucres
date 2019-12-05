@@ -3,9 +3,9 @@
     <div class="p-6">
       <inertia-link :href="post.shortlink_url">{{ post.discussion.title }}</inertia-link><br>
 
-      <i class="fas fa-angle-double-left text-muted"></i>
+      <i class="fal fa-angle-double-left text-muted"></i>
       {{ post.trimmed_body }}
-      <i class="fas fa-angle-double-right text-muted"></i>
+      <i class="fal fa-angle-double-right text-muted"></i>
     </div>
     <hr class="border-b">
     <div class="p-6 flex items-center">

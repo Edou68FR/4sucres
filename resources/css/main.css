@@ -10,6 +10,7 @@
 @import 'popper';
 @import 'scrollbar';
 @import "markdown";
+@import "user-content";
 
 /* @import 'base'; */
 /* @import 'theme-4sucres';

@@ -1,23 +1,23 @@
 <template>
     <div class="flex items-center justify-between">
         <template v-if="paginator.current_page > 1">
-            <!-- <action-button @click.native="visit(paginator.first_page_url)" type="secondary"><i class="fas fa-angle-double-left"></i></action-button> -->
-            <action-button @click.native="visit(paginator.prev_page_url)" type="secondary"><i class="fas fa-angle-left"></i></action-button>
+            <!-- <action-button @click.native="visit(paginator.first_page_url)" type="secondary"><i class="fal fa-angle-double-left"></i></action-button> -->
+            <action-button @click.native="visit(paginator.prev_page_url)" type="secondary"><i class="fal fa-angle-left"></i></action-button>
         </template>
         <template v-else>
-            <!-- <span class="btn btn-secondary disabled" disabled><i class="fas fa-angle-double-left"></i></span> -->
-            <action-button disabled type="secondary"><i class="fas fa-angle-left"></i></action-button>
+            <!-- <span class="btn btn-secondary disabled" disabled><i class="fal fa-angle-double-left"></i></span> -->
+            <action-button disabled type="secondary"><i class="fal fa-angle-left"></i></action-button>
         </template>
         <span class="mx-2 text-muted">
             {{ paginator.current_page }} / {{ paginator.last_page }}
         </span>
         <template v-if="paginator.current_page < paginator.last_page">
-            <action-button @click.native="visit(paginator.next_page_url)" type="secondary"><i class="fas fa-angle-right"></i></action-button>
-            <!-- <action-button @click.native="visit(paginator.last_page_url)" type="secondary"><i class="fas fa-angle-double-right"></i></action-button> -->
+            <action-button @click.native="visit(paginator.next_page_url)" type="secondary"><i class="fal fa-angle-right"></i></action-button>
+            <!-- <action-button @click.native="visit(paginator.last_page_url)" type="secondary"><i class="fal fa-angle-double-right"></i></action-button> -->
         </template>
         <template v-else>
-            <action-button disabled type="secondary"><i class="fas fa-angle-right"></i></action-button>
-            <!-- <span class="btn btn-secondary disabled" disabled><i class="fas fa-angle-double-right"></i></span> -->
+            <action-button disabled type="secondary"><i class="fal fa-angle-right"></i></action-button>
+            <!-- <span class="btn btn-secondary disabled" disabled><i class="fal fa-angle-double-right"></i></span> -->
         </template>
     </div>
 </template>

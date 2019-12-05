@@ -1,0 +1,23 @@
+.user-content {
+    word-break: break-word;
+
+    img {
+        max-width: 270px;
+        max-height: 200px;
+        vertical-align: baseline;
+        display: inline;
+    }
+
+    .sticker-inline {
+        max-height: 24px !important;
+        vertical-align: middle !important;
+    }
+
+    .sticker {
+        max-width: 68px !important;
+        max-height: 51px !important;
+        vertical-align: baseline !important;
+    }
+
+    a {}
+}
