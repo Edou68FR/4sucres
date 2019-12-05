@@ -21,7 +21,7 @@
         <discussion-list-element
           v-for="discussion in discussions.data"
           :key="discussion.id"
-          :class="{ 'bg-surface text-on-surface': (selectedDiscussionId == discussion.id) }"
+          :class="{ 'bg-surface text-on-surface': (currentDiscussion && (currentDiscussion.id == discussion.id)) }"
           :discussion="discussion"
           @click.native="select(discussion)">
         </discussion-list-element>
@@ -37,7 +37,7 @@ import ActionButton from "@/Components/ActionButton";
 
 export default {
   components: { SimplePaginator, DiscussionListElement, ActionButton },
-  props: ['discussions', 'selectedDiscussionId', 'selectParent'],
+  props: ['discussions', 'currentDiscussion', 'selectParent'],
   methods: {
     select(discussion){
       this.selectParent(discussion);
