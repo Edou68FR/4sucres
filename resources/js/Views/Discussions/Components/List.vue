@@ -21,7 +21,7 @@
         <discussion-list-element
           v-for="discussion in discussions.data"
           :key="discussion.id"
-          :class="{ 'bg-surface text-on-surface': (currentDiscussion && (currentDiscussion.id == discussion.id)) }"
+          :class="{ 'bg-surface-hover border-b border-t border-body-border': (currentDiscussion && (currentDiscussion.id == discussion.id)) }"
           :discussion="discussion"
           @click.native="select(discussion)">
         </discussion-list-element>

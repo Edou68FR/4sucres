@@ -1,6 +1,6 @@
 <template>
-  <div class="flex-1 mb-2 border-b border-body-border">
-    <div class="flex items-center px-6 py-4">
+  <div class="flex-1 border-b border-body-border">
+    <div class="flex items-center px-6 py-4 bg-body-variant text-on-body-variant">
       <user-avatar :user="post.user" class="mr-4" />
       <div>
         <user-name :user="post.user" />
@@ -39,7 +39,7 @@
           </div>
           <button slot="reference">
             <action-button type="tertiary">
-              <i class="fal fa-ellipsis-v"></i>
+              <i class="fas fa-ellipsis-h"></i>
             </action-button>
           </button>
         </popper>

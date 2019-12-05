@@ -2,8 +2,8 @@ html {
     @apply text-base subpixel-antialiased tracking-tight;
 }
 
-@import url('https://rsms.me/inter/inter.css');
+/* @import url('https://rsms.me/inter/inter.css');
 
 @supports (font-variation-settings: normal) {
     html { font-family: 'Inter var', sans-serif; }
-}
+} */

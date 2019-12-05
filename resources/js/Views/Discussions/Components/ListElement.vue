@@ -1,10 +1,10 @@
 <template>
-  <div class="px-6 py-4 hover:bg-body-variant">
+  <div class="px-6 py-4 hover:bg-surface-hover">
     <div class="flex items-center">
-      <div class="flex-none mx-auto mr-6">
+      <div class="relative flex-none mx-auto mr-6">
         <user-avatar :user="discussion.latest_post.user" />
         <div class="absolute px-2 py-1 text-center rounded bg-discussion-icon text-on-discussion-icon"
-            style="font-size: .7rem; bottom: -.2rem; right: -.4rem;"
+            style="font-size: .7rem; bottom: -.3rem; right: -.5rem;"
             :class="{
               'bg-discussion-icon-hot' : (discussion.replies >= 10 && !discussion.sticky),
               'bg-discussion-icon-locked' : (discussion.locked),

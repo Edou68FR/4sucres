@@ -2,7 +2,7 @@
   <layout>
     <div class="flex">
       <discussion-list
-        class="w-full lg:border-r md:block md:w-1/2 lg:w-1/3 border-body-border"
+        class="w-full md:border-r md:block md:w-1/2 lg:w-1/3 border-body-border"
         :class="{ hidden: currentDiscussion }"
         :discussions="discussions"
         :current-discussion="currentDiscussion"

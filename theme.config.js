@@ -9,10 +9,11 @@ const mainTheme = new Theme()
     'body-variant': '#f1f5f8',
     'on-body-variant': '#636d88',
     'surface': '#ffffff',
+    'surface-hover': '#f1f5f8',
     'on-surface': '#676f7f',
     'surface-border': '#e8eaf0',
-    'navigation': '#222B3A',
-    'on-navigation': '#5B6272',
+    'navigation': '#222b3a',
+    'on-navigation': '#5b6272',
     'discussion-icon': '#fbc02d',
     'on-discussion-icon': '#ffffff',
     'button-primary': '#3d81fc',
@@ -24,8 +25,8 @@ const mainTheme = new Theme()
     'brand': '#3182ce',
     'on-brand': '#3182ce',
   })
-  .colorVariant('active', '#E9ECF4', 'on-navigation')
-  .colorVariant('hover', '#E9ECF4', 'on-navigation')
+  .colorVariant('active', '#e9ecf4', 'on-navigation')
+  .colorVariant('hover', '#e9ecf4', 'on-navigation')
   .colorVariant('pinned', '#479f4b', 'discussion-icon')
   .colorVariant('hot', '#e53e3e', 'discussion-icon')
   .colorVariant('locked', '#000000', 'discussion-icon')

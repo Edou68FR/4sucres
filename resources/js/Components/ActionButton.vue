@@ -4,7 +4,7 @@
     :class="{
       'bg-button-primary text-on-button-primary': type == 'primary',
       'bg-button-secondary text-on-button-secondary': type == 'secondary',
-      'bg-button-tertiary text-on-button-tertiary': type == 'tertiary',
+      'hover:bg-button-tertiary text-on-button-tertiary': type == 'tertiary',
       'cursor-not-allowed': disabled == true,
     }" v-if="href">
     <slot />
@@ -14,7 +14,7 @@
     :class="{
       'bg-button-primary text-on-button-primary': type == 'primary',
       'bg-button-secondary text-on-button-secondary': type == 'secondary',
-      'bg-button-tertiary text-on-button-tertiary': type == 'tertiary',
+      'hover:bg-button-tertiary text-on-button-tertiary': type == 'tertiary',
       'cursor-not-allowed': disabled == true,
     }"
     :href="href"
