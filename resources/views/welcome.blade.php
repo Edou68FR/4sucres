@@ -64,8 +64,11 @@
                     </div>
                 @endif
             @endif
-
+            
             <section class="card shadow-sm mb-3 discussion-previews">
+                @if ( Route::currentRouteName() == "discussions.subscriptions")
+                    <a href="{{ route('discussions.subscriptions.unsubscribeall') }}" class="btn float-right btn-warning shadow ">Se désabonner de tout</a>
+                @endif
                 @if (isset($sticky_discussions) && count($sticky_discussions))
                     @foreach ($sticky_discussions as $discussion)
                         <div class="discussion-preview">
